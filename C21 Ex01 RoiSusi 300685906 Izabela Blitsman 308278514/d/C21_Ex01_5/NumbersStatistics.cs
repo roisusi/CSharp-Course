@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace C21_Ex01_5
 {
     class NumbersStatistics
     {
         private static int m_UserInput;
-        private const int k_LigalLengthNumber = 9;
+        private const int k_ValidNumberLength = 9;
 
         public static void Main(string[] args)
         {
@@ -30,12 +28,10 @@ namespace C21_Ex01_5
             Console.WriteLine("Please enter a positive number with 9 digits:");
             stringUserInput = Console.ReadLine();
 
-
-            //TODO: maybe should check string[0] for positive or negative
             if (int.TryParse(stringUserInput, out m_UserInput))
             {
 
-                if (stringUserInput.Length != k_LigalLengthNumber)
+                if (stringUserInput.Length != k_ValidNumberLength)
                 {
                     Console.WriteLine("Number's length should be 9 digits");
                     return false;
@@ -64,7 +60,7 @@ namespace C21_Ex01_5
             int maxDigit = 0;
             int numberDigit = 0;
 
-            for (int i = 0; i < k_LigalLengthNumber; i++)
+            for (int i = 0; i < k_ValidNumberLength; i++)
             {
                 i_UserInputNumber = Math.DivRem(i_UserInputNumber, 10, out numberDigit);
 
@@ -84,13 +80,13 @@ namespace C21_Ex01_5
             int numberDigitAverage = 0;
             int numberDigit;
 
-            for (int i = 0; i < k_LigalLengthNumber; i++)
+            for (int i = 0; i < k_ValidNumberLength; i++)
             {
                 i_UserInputNumber = Math.DivRem(i_UserInputNumber, 10, out numberDigit);
                 numberDigitAverage += numberDigit;
             }
 
-            numberDigitAverage /= k_LigalLengthNumber; 
+            numberDigitAverage /= k_ValidNumberLength; 
             Console.WriteLine("The number's digits average is: " + numberDigitAverage);
         }
 
@@ -99,7 +95,7 @@ namespace C21_Ex01_5
             int countNumberDigitsDividedByThree = 0;
             int remainder;
 
-            for (int i = 0; i < k_LigalLengthNumber; i++)
+            for (int i = 0; i < k_ValidNumberLength; i++)
             {
                 i_UserInputNumber =  Math.DivRem(i_UserInputNumber, 10, out remainder);
 
@@ -120,7 +116,7 @@ namespace C21_Ex01_5
 
             i_UserInputNumber = Math.DivRem(i_UserInputNumber, 10, out unityDigit);
 
-            for (int i = 0; i < k_LigalLengthNumber - 1; i++)
+            for (int i = 0; i < k_ValidNumberLength - 1; i++)
             {
                 i_UserInputNumber = Math.DivRem(i_UserInputNumber, 10, out remainder);
 
@@ -130,7 +126,7 @@ namespace C21_Ex01_5
                 }
             }
 
-            Console.WriteLine("The numer's digits that smaller than unity digit is: " + countDigitsSmallerThanUnityDigit);
+            Console.WriteLine("The number's digits that smaller than unity digit is: " + countDigitsSmallerThanUnityDigit);
         }
     }
 }

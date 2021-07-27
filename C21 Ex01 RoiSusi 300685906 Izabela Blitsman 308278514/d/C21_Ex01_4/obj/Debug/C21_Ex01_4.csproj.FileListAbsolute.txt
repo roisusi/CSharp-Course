@@ -1,0 +1,6 @@
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\bin\Debug\C21_Ex01_4.exe
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\bin\Debug\C21_Ex01_4.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\obj\Debug\C21_Ex01_4.csproj.CoreCompileInputs.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\obj\Debug\C21_Ex01_4.exe
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\obj\Debug\C21_Ex01_4.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_4\obj\Debug\C21_Ex01_4.csprojAssemblyReference.cache
