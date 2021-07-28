@@ -4,8 +4,20 @@ using System.Text;
 
 namespace C21_Ex01_2
 {
-    public class BeginnersSandMachine
+    public class Program
     {
+        private const int m_SandMachineHeight = 5;
+        public static void Main()
+        {
+            BeginnersSandMachine();
+
+            Console.ReadLine();
+        }
+
+        public static void BeginnersSandMachine()
+        {
+            PrintSandMachine(CreateSandMachine(new StringBuilder(), 0, m_SandMachineHeight));
+        }
 
         public static StringBuilder CreateSandMachine(StringBuilder i_SandMachineStringBuilder , int i_SandMachineRows , int i_SandMachineHeight)
         {
@@ -24,21 +36,11 @@ namespace C21_Ex01_2
             CreateSandMachine(i_SandMachineStringBuilder, i_SandMachineRows + 1, i_SandMachineHeight);
 
             return i_SandMachineStringBuilder;
-
         }
 
         public static void PrintSandMachine(StringBuilder i_stringBuilder)
         {
             Console.WriteLine(i_stringBuilder);
         }
-
-
-        public static void Main()
-        {
-            PrintSandMachine(CreateSandMachine(new StringBuilder(), 0, 4));
-            Console.ReadLine();
-        }
-
-
     }
 }

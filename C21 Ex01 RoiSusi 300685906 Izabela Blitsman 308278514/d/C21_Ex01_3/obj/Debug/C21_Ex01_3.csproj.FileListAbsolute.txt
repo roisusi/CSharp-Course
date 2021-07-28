@@ -7,3 +7,12 @@ D:\OneDrive - Holon Institute of Technology\C#\C21 Ex01 RoiSusi 300685906 Izabel
 D:\OneDrive - Holon Institute of Technology\C#\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.csproj.CopyComplete
 D:\OneDrive - Holon Institute of Technology\C#\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.exe
 D:\OneDrive - Holon Institute of Technology\C#\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\bin\Debug\C21_Ex01_3.exe
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\bin\Debug\C21_Ex01_3.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\bin\Debug\C21_Ex01_2.exe
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\bin\Debug\C21_Ex01_2.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.csprojAssemblyReference.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.csproj.CoreCompileInputs.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.csproj.CopyComplete
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.exe
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_3\obj\Debug\C21_Ex01_3.pdb
