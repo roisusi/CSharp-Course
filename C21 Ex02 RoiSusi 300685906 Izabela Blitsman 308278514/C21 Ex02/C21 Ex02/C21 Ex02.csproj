@@ -31,5 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="EnumOption.cs" />
+    <Compile Include="FourInARow.cs" />
+    <Compile Include="MatrixCliUi.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
