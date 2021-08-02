@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "Vq5My0pBSSuyO9RBZYy+jROkXoejD8NIOuFVSh+7QMVDPaBj6KfXUf37k1A/xfhXIetB69ZP3IPl44X0JU/hKQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\izabe\\Documents\\GitHub\\CSharp-Course\\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\\d\\C21_Ex01_1\\C21_Ex01_1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "C:\\Users\\izabe\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "C21_Ex01_1/1.0.0": {
+        "runtime": {
+          "C21_Ex01_1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "C21_Ex01_1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
