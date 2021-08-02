@@ -37,15 +37,14 @@ namespace C21_Ex02
             string welcome = "";
 
             welcome = string.Format("Hello and welcome to 4 in a Row game\n" +
-                                           "Please Select the Size of the BoardGame\n" +
-                                           "Please Enter Width");
+                                    "Please Select the Size of the BoardGame\n" +
+                                    "Please Enter Width");
             System.Console.WriteLine(welcome);
-
             readFromUser = System.Console.ReadLine();
             matrixWidth = int.Parse(readFromUser);
+
             welcome = string.Format("Please Enter Height");
             System.Console.WriteLine(welcome);
-
             readFromUser = System.Console.ReadLine();
             matrixHeight = int.Parse(readFromUser);
             System.Console.WriteLine(welcome);
@@ -57,7 +56,6 @@ namespace C21_Ex02
 
             readFromUser = System.Console.ReadLine();
             optionChoose = int.Parse(readFromUser);
-
 
             switch (optionChoose)
             {
@@ -74,8 +72,13 @@ namespace C21_Ex02
             }
 
             MatrixCliUi matrixCliUi = new MatrixCliUi(matrixWidth, matrixHeight);
-            matrixCliUi.initiateNewGame();
-            matrixCliUi.PrintGameMatrix();
+            matrixCliUi.InitiateNewGame();
+            matrixCliUi.PrintGameMatrixBoard();
+
+            //Testing
+            matrixCliUi.AddCoin(3,3,"X");
+            List<string> getList = matrixCliUi.GetColumnPlayerInput(3);
+            System.Console.WriteLine(getList[3]);
         }
     }
 }
