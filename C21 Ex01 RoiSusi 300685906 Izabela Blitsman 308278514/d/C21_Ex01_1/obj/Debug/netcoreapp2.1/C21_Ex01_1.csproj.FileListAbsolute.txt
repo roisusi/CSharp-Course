@@ -1,0 +1,12 @@
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\bin\Debug\netcoreapp2.1\C21_Ex01_1.deps.json
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\bin\Debug\netcoreapp2.1\C21_Ex01_1.runtimeconfig.json
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\bin\Debug\netcoreapp2.1\C21_Ex01_1.runtimeconfig.dev.json
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\bin\Debug\netcoreapp2.1\C21_Ex01_1.dll
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\bin\Debug\netcoreapp2.1\C21_Ex01_1.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.csprojAssemblyReference.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.AssemblyInfoInputs.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.AssemblyInfo.cs
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.csproj.CoreCompileInputs.cache
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.dll
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.pdb
+C:\Users\izabe\Documents\GitHub\CSharp-Course\C21 Ex01 RoiSusi 300685906 Izabela Blitsman 308278514\d\C21_Ex01_1\obj\Debug\netcoreapp2.1\C21_Ex01_1.genruntimeconfig.cache
