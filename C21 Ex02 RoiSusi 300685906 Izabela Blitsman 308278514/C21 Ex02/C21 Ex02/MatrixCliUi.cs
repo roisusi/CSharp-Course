@@ -17,8 +17,8 @@ namespace C21_Ex02
         {
             this.m_width = width;
             this.m_height = height;
-            m_maxrixBorad = new string[this.m_height, this.m_width];
-            m_playerInput = new char[this.m_height, this.m_width];
+            m_maxrixBorad = new string[this.m_width, this.m_height];
+            m_playerInput = new char[this.m_width, this.m_height];
             m_currentHeightGame = new List<char>(this.m_height);
         }
 
@@ -35,7 +35,7 @@ namespace C21_Ex02
 
         public string[,] PrintGameMatrixBoard()
         {
-            for (int i = 0; i < m_maxrixBorad.GetLength(0); i++)
+            for (int i = 0; i < m_maxrixBorad.GetLength(1); i++)
             {
                 System.Console.Write("  {0} ", i+1);
             }
@@ -76,6 +76,8 @@ namespace C21_Ex02
 
         public List<char> GetColumnPlayerInput(int i_height)
         {
+            m_currentHeightGame.Clear();
+
             for (int width = 0; width < m_playerInput.GetLength(0); width++)
             {
                 if (!m_playerInput[width, i_height].Equals('\0'))
