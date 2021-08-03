@@ -85,5 +85,10 @@ namespace C21_Ex02
             }
             return m_currentHeightGame;
         }
+
+        public char[,] GetCurrentPlayerBoardMatrix()
+        {
+            return m_playerInput;
+        }
     }
 }
