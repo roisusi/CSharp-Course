@@ -37,6 +37,14 @@ namespace C21_Ex02
         {
             for (int i = 0; i < m_maxrixBorad.GetLength(0); i++)
             {
+                System.Console.Write("  {0} ", i+1);
+            }
+
+            System.Console.WriteLine();
+
+            for (int i = 0; i < m_maxrixBorad.GetLength(0); i++)
+            {
+                
                 for (int j = 0; j < m_maxrixBorad.GetLength(1) ; j++)
                 {
                     m_maxrixBorad[i, j] = "| ";
