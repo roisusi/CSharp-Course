@@ -10,7 +10,6 @@ namespace C21_Ex02
         {
             FourInARow fourInARow = new FourInARow();
             fourInARow.Menu();
-            System.Console.ReadLine();
         }
     }
 }

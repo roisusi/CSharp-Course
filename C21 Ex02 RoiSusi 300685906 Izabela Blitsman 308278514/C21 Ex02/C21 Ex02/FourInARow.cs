@@ -187,6 +187,7 @@ namespace C21_Ex02
             {
                 isPlayerWin = false;
                 Ex02.ConsoleUtils.Screen.Clear();
+                m_MatrixCliUi.ClearGame();
                 m_MatrixCliUi.PrintGameMatrixBoard();
 
                 while (!IsMatrixFull() && !isPlayerWin)
@@ -194,17 +195,17 @@ namespace C21_Ex02
                     Console.WriteLine("Please choose a column in matrix or press 'Q' to exit:");
                     readFromUser = Console.ReadLine();
 
-                    if (readFromUser.Equals('Q'))
+                    if (readFromUser.Equals("Q"))
                     {
                         if (m_FirstPlayer.GetTurn())
                         {
-                            int score = m_FirstPlayer.GetScore();
-                            m_FirstPlayer.SetScore(score++);
+                            int score = m_SecondPlayer.GetScore();
+                            m_SecondPlayer.SetScore(++score);
                         }
                         else
                         {
-                            int score = m_SecondPlayer.GetScore();
-                            m_SecondPlayer.SetScore(score++);
+                            int score = m_FirstPlayer.GetScore();
+                            m_FirstPlayer.SetScore(++score);
                         }
 
                         break;
@@ -269,10 +270,9 @@ namespace C21_Ex02
                     Console.WriteLine("This is a tie - no winner in this game");
                 }
 
-                Console.WriteLine("Player 1 score:" + m_FirstPlayer.GetScore());
-                Console.WriteLine("Player 2 score:" + m_SecondPlayer.GetScore());
+                Console.WriteLine("Player 1 score: " + m_FirstPlayer.GetScore());
+                Console.WriteLine("Player 2 score: " + m_SecondPlayer.GetScore());
 
-                //TODO: restart matrix before another round
             } while (IsAnotherRound());
         }
 
@@ -300,7 +300,7 @@ namespace C21_Ex02
             if (CheckIfPlayerWin(io_CurrentPlayer.GetCoin()))
             {
                 int score = io_CurrentPlayer.GetScore();
-                io_CurrentPlayer.SetScore(score++);
+                io_CurrentPlayer.SetScore(++score);
                 i_IsPlayerWin = true;
             }
         }
@@ -434,22 +434,12 @@ namespace C21_Ex02
         {
             string readFromUser = null;
 
-            Console.WriteLine("Do you want to play another round? Press YES/NO");
+            Console.WriteLine("Do you want to play another round? Press YES or any other key to exit");
             readFromUser = Console.ReadLine();
-
-            while (!StringInputValidtion(readFromUser))
-            {
-                readFromUser = Console.ReadLine();
-            }
-
+            
             if (readFromUser.ToUpper().Equals("YES"))
             {
                 return true;
-            }
-
-            else if (readFromUser.ToUpper().Equals("NO"))
-            {
-                return false;
             }
 
             return false;
