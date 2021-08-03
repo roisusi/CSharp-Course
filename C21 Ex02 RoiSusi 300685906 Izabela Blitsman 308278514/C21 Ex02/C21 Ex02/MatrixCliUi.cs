@@ -7,45 +7,45 @@ namespace C21_Ex02
 {
     class MatrixCliUi
     {
-        private int m_width = 0;
-        private int m_height = 0;
-        private string [,] m_maxrixBorad;
-        private string [,] m_playerInput;
-        private List<string> m_currentHeightGame;
+        private int m_Width = 0;
+        private int m_Height = 0;
+        private string [,] m_MatrixBorad;
+        private string [,] m_PlayerInput;
+        private List<string> m_CurrentHeightGame;
 
-        public MatrixCliUi(int width, int height)
+        public MatrixCliUi(int i_Width, int i_Height)
         {
-            this.m_width = width;
-            this.m_height = height;
-            m_maxrixBorad = new string[this.m_height, this.m_width];
-            m_playerInput = new string[this.m_height, this.m_width];
-            m_currentHeightGame = new List<string>(this.m_height);
+            this.m_Width = i_Width;
+            this.m_Height = i_Height;
+            m_MatrixBorad = new string[this.m_Height, this.m_Width];
+            m_PlayerInput = new string[this.m_Height, this.m_Width];
+            m_CurrentHeightGame = new List<string>(this.m_Height);
         }
 
         public void InitiateNewGame()
         {
-            for (int i = 0; i < m_playerInput.GetLength(0); i++)
+            for (int i = 0; i < m_PlayerInput.GetLength(0); i++)
             {
-                for (int j = 0; j < m_playerInput.GetLength(1); j++)
+                for (int j = 0; j < m_PlayerInput.GetLength(1); j++)
                 {
-                    m_playerInput[i, j] = " ";
+                    m_PlayerInput[i, j] = " ";
                 }
             }
         }
 
         public string[,] PrintGameMatrixBoard()
         {
-            for (int i = 0; i < m_maxrixBorad.GetLength(0); i++)
+            for (int i = 0; i < m_MatrixBorad.GetLength(0); i++)
             {
-                for (int j = 0; j < m_maxrixBorad.GetLength(1) ; j++)
+                for (int j = 0; j < m_MatrixBorad.GetLength(1) ; j++)
                 {
-                    m_maxrixBorad[i, j] = "| ";
-                    System.Console.Write("{0}{1} ", m_maxrixBorad[i,j] , m_playerInput[i,j]);
+                    m_MatrixBorad[i, j] = "| ";
+                    System.Console.Write("{0}{1} ", m_MatrixBorad[i,j] , m_PlayerInput[i,j]);
                 }
 
                 System.Console.WriteLine("|");
 
-                for (int h = 0; h < m_maxrixBorad.GetLength(1); h++)
+                for (int h = 0; h < m_MatrixBorad.GetLength(1); h++)
                 {
                     System.Console.Write("====");
                 }
@@ -53,26 +53,26 @@ namespace C21_Ex02
             }
 
             System.Console.WriteLine();
-            return m_maxrixBorad;
+            return m_MatrixBorad;
         }
 
         public void AddCoin(int i_width, int i_height, string i_coin)
         {
-            m_playerInput[i_width, i_height] = i_coin;
+            m_PlayerInput[i_width, i_height] = i_coin;
         }
 
         public string GetIndex(int i_width, int i_height)
         {
-            return m_playerInput[i_width, i_height];
+            return m_PlayerInput[i_width, i_height];
         }
 
         public List<string> GetColumnPlayerInput(int i_height)
         {
-            for (int width = 0; width < m_playerInput.GetLength(0); width++)
+            for (int width = 0; width < m_PlayerInput.GetLength(0); width++)
             {
-                m_currentHeightGame.Add(m_playerInput[width, i_height]);
+                m_CurrentHeightGame.Add(m_PlayerInput[width, i_height]);
             }
-            return m_currentHeightGame;
+            return m_CurrentHeightGame;
         }
     }
 }

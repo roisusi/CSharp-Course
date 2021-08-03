@@ -6,46 +6,58 @@ using System.Text;
 
 namespace C21_Ex02
 {
-    class Player
+    public class Player
     {
-        private string m_name;
-        private int m_score =0;
-        private char m_coin;
+        private string m_Name;
+        private int m_Score = 0;
+        private char m_Coin;
+        private bool m_Turn;
 
-        public Player(string i_name,char i_coin)
+        public Player(string i_Name, char i_Coin, bool i_Turn)
         {
-            this.m_name = i_name;
-            this.m_coin = i_coin;
+            this.m_Name = i_Name;
+            this.m_Coin = i_Coin;
+            this.m_Turn = i_Turn;
         }
 
         public string GetName()
         {
-            return this.m_name;
+            return this.m_Name;
         }
 
         public void SetName(string i_setName)
         {
-            this.m_name = i_setName;
+            this.m_Name = i_setName;
         }
 
         public int GetScore()
         {
-            return this.m_score;
+            return this.m_Score;
         }
 
         public void SetScore(int i_score)
         {
-            this.m_score = i_score;
+            this.m_Score = i_score;
         }
 
         public char GetCoin()
         {
-            return this.m_coin;
+            return this.m_Coin;
         }
 
-        public void SetCoin(char i_coin)
+        public void SetCoin(char i_Coin)
         {
-            this.m_coin = i_coin;
+            this.m_Coin = i_Coin;
+        }
+
+        public bool GetTurn()
+        {
+            return this.m_Turn;
+        }
+
+        public void SetTurn(bool i_Turn)
+        {
+            this.m_Turn = i_Turn;
         }
     }
 }
