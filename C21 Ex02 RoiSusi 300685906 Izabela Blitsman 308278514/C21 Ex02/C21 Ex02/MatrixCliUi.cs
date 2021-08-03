@@ -92,5 +92,10 @@ namespace C21_Ex02
         {
             return m_playerInput;
         }
+
+        public void ClearGame()
+        {
+            m_playerInput = new char[m_width, m_height];
+        }
     }
 }
