@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EnumOption.cs" />
+    <Compile Include="GameOption.cs" />
     <Compile Include="FourInARow.cs" />
     <Compile Include="MatrixCliUi.cs" />
     <Compile Include="Player.cs" />
