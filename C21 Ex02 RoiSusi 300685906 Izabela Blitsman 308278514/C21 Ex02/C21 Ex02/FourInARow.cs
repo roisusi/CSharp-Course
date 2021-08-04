@@ -18,7 +18,7 @@ namespace C21_Ex02
         private const int k_MaxBoardParameter = 8;
         private const int k_MinBoardParameter = 4;
         private MatrixCliUi m_MatrixCliUi = null;
-        private bool v_AnotherRoundFlag = false;
+        //private bool v_AnotherRoundFlag = false;
 
 
 /*        public FourInARow(string i_playerOne, string i_playerTwo)
@@ -72,6 +72,7 @@ namespace C21_Ex02
 
         public void PlayerVsMachineGame()
         {
+            int width = 0;
             int height = 0;
             bool isPlayerExitGame = false;
             bool isPlayerWin = false;
@@ -79,11 +80,12 @@ namespace C21_Ex02
             String userMessage = null;
             List<Player> playersList = new List<Player>();
             Random random = new Random();
+            MachineAI machineAI = new MachineAI();
 
             m_MatrixCliUi = new MatrixCliUi(m_MatrixWidth, m_MatrixHeight);
 
             m_FirstPlayer = new Player("Player 1", 'X', false, false);
-            m_SecondPlayer = new Player(null, 'O', true, false);
+            m_SecondPlayer = new Player("Computer", 'O', true, false);
 
             playersList.Add(m_FirstPlayer);
             playersList.Add(m_SecondPlayer);
@@ -118,11 +120,38 @@ namespace C21_Ex02
 
                         else 
                         {
-                            do
+                            width = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height).Count;
+
+                            if (machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1 &&
+                                !machineAI.FindSeuenceOfThreeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
+                                !machineAI.FindSeuenceOfThreeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
+                                !machineAI.FindSeuenceOfThreeRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height))
                             {
-                                height = random.Next(1, m_MatrixHeight + 1);
-                            } while (IsMatrixColumnFull(height));
-                            
+                                height = machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                            }
+
+                            else if (machineAI.TryNotToLoseeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
+                            {
+                                height = machineAI.TryNotToLoseeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                            }
+
+                            else if (machineAI.tryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
+                            {
+                                height = machineAI.tryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                            }
+
+                            else if (machineAI.tryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
+                            {
+                                height = machineAI.tryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                            }
+
+                            else
+                            {
+                                do
+                                {
+                                    height = random.Next(1, m_MatrixHeight + 1);
+                                } while (IsMatrixColumnFull(height));
+                            }
                         }
 
                         PlayerTurn(player, height, out isPlayerWin);
@@ -206,8 +235,8 @@ namespace C21_Ex02
             int width = 0;
             i_IsPlayerWin = false;
 
-            width = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height - 1).Count - 1;
-            m_MatrixCliUi.AddCoin(width, height - 1, io_CurrentPlayer.GetCoin());
+            width = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height).Count - 1;
+            m_MatrixCliUi.AddCoin(width, height, io_CurrentPlayer.GetCoin());
 
             if (CheckIfPlayerWin(io_CurrentPlayer.GetCoin()))
             {
@@ -381,9 +410,9 @@ namespace C21_Ex02
                 for (int j = m_MatrixHeight - 1; j >= 4; j--)
                 {
                     if (matrixBoard[i, j].Equals(i_PlayerCoin) &&
-                        matrixBoard[i + 1, j + 1].Equals(i_PlayerCoin) &&
-                        matrixBoard[i + 2, j + 2].Equals(i_PlayerCoin) &&
-                        matrixBoard[i + 3, j + 3].Equals(i_PlayerCoin))
+                        matrixBoard[i + 1, j - 1].Equals(i_PlayerCoin) &&
+                        matrixBoard[i + 2, j - 2].Equals(i_PlayerCoin) &&
+                        matrixBoard[i + 3, j - 3].Equals(i_PlayerCoin))
                     {
                         return true;
                     }
@@ -496,6 +525,8 @@ namespace C21_Ex02
                 }
 
             } while (IsMatrixColumnFull(o_MatrixHeight));
+
+            o_MatrixHeight--;
         }
     }
 }

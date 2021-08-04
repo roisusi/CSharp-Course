@@ -12,51 +12,84 @@ namespace C21_Ex02
         // 
         // O
         // O
-        public int tryToWinMove(ref char[,] i_currentBoard, int width, int height)
+        public int tryToWinMove(char[,] i_currentBoard, int width, int height)
         {
             int chooseColumns = -1;
 
             return chooseColumns;
         }
     
-        //find left or right 3 coin for player
-        public int tryNotToLoseeLeftOrRight(ref char[,] i_currentBoard, int width, int height)
+        //find left 3 coin for player
+        public int tryNotToLoseeLeft(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
             int chooseColumns = -1;
+
+            if (FindSeuenceOfThreeLeft(i_CurrentBoard, i_Width, i_Height) && FindFreeCellRight(i_CurrentBoard, i_Width, i_Height))
+            {
+                chooseColumns = i_Height + 1;
+            }
+            else if (FindSeuenceOfThreeLeft(i_CurrentBoard, i_Width, i_Height) && FindFreeCellLeft(i_CurrentBoard, i_Width, i_Height - 2))
+            {
+                chooseColumns = i_Height - 3;
+            }
+
+            return chooseColumns;
+        }
+
+        //find right 3 coin for player
+        public int tryNotToLoseeRigth(char[,] i_CurrentBoard, int i_Width, int i_Height)
+        {
+            int chooseColumns = -1;
+
+            if (FindSeuenceOfThreeRight(i_CurrentBoard, i_Width, i_Height) && FindFreeCellRight(i_CurrentBoard, i_Width, i_Height + 2))
+            {
+                chooseColumns = i_Height + 3;
+            }
+
+            else if (FindSeuenceOfThreeRight(i_CurrentBoard, i_Width, i_Height) && FindFreeCellLeft(i_CurrentBoard, i_Width, i_Height))
+            {
+                chooseColumns = i_Height - 1;
+            }
 
             return chooseColumns;
         }
 
         //find up 3 coin for player
-        public int tryNotToLoseeUp(ref char[,] i_currentBoard, int width, int height)
+        public int TryNotToLoseeUp(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
             int chooseColumns = -1;
+
+            if (FindSeuenceOfThreeUp(i_CurrentBoard, i_Width, i_Height) && FindFreeCellUp(i_CurrentBoard, i_Width, i_Height))
+            {
+                chooseColumns = i_Height;
+            }
 
             return chooseColumns;
         }
 
-        public int MoveLeftOrRightOrUp(ref char [,] i_currentBoard,int width , int height)
+        public int MoveLeftOrRightOrUp(char [,] i_CurrentBoard, int i_Width , int i_Height)
         {
             int chooseColumns = -1;
             Random leftOrRight = new Random();
-            if (leftOrRight.Next(0, 2) == 0)
-            {
-                if (findFreeCellLeft(i_currentBoard,  width, height))
+            //if (leftOrRight.Next(0, 2) == 0)
+            //{
+                if (FindFreeCellLeft(i_CurrentBoard,  i_Width, i_Height))
                 {
-                    chooseColumns = height - 1;
+                    chooseColumns = i_Height - 1;
                 }
-            }
-            else if (findFreeCellRight(i_currentBoard, width, height))
+            //}
+            else if (FindFreeCellRight(i_CurrentBoard, i_Width, i_Height))
             {
-                chooseColumns = height + 1;
+                chooseColumns = i_Height + 1;
             }
 
             //cant go left or right then go up
             if (chooseColumns == -1)
             {
-                if (findFreeCellRight(i_currentBoard, width, height))
+                if (FindFreeCellUp(i_CurrentBoard, i_Width, i_Height))
                 {
-                    chooseColumns = width - 1;
+                    //chooseColumns = i_Width - 1;
+                    chooseColumns = i_Height;
                 }
             }
 
@@ -64,53 +97,124 @@ namespace C21_Ex02
         }
 
         //search if i can insert coin on left and it is free
-        public bool findFreeCellLeft(char[,] i_currentBoard , int width, int height)
+        public bool FindFreeCellLeft(char[,] i_CurrentBoard , int i_Width, int i_Height)
         {
-            if (height - 1 >= 0)
+            if (i_Height - 1 >= 0)
             {
-                if (i_currentBoard[width, height - 1] == '\0')
+                if (i_CurrentBoard[i_Width, i_Height - 1] == '\0')
+                {
                     return true;
+                }
             }
+
             return false;
         }
 
         //search if i can insert coin on right and it is free
-        public bool findFreeCellRight(char[,] i_currentBoard, int width, int height)
+        public bool FindFreeCellRight(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
-            if (height + 1 <= i_currentBoard.GetLength(0))
+            /*            if (i_Height + 1 <= i_CurrentBoard.GetLength(0))
+                        {
+                            if (i_CurrentBoard[i_Width, i_Height + 1] == '\0')
+                            {
+                                return true;
+                            }  
+                        }*/
+
+            if (i_Height + 1 < i_CurrentBoard.GetLength(1))
             {
-                if (i_currentBoard[width, height + 1] == '\0')
+                if (i_CurrentBoard[i_Width, i_Height + 1] == '\0')
+                {
                     return true;
+                }
             }
             return false;
         }
 
 
         //search if i can insert coin UP and it is free
-        public bool findFreeCellUp(char[,] i_currentBoard, int width, int height)
+        public bool FindFreeCellUp(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
-            if (width - 1 <= i_currentBoard.GetLength(1))
+            /*            if (i_Width - 1 <= i_CurrentBoard.GetLength(1))
+                        {
+                            if (i_CurrentBoard[i_Width - 1, i_Height] == '\0')
+                            {
+                                return true;
+                            }
+                        }*/
+
+            if (i_Width - 1 >= 0)
             {
-                if (i_currentBoard[width-1, height] == '\0')
+                if (i_CurrentBoard[i_Width - 1, i_Height] == '\0')
+                {
                     return true;
+                }
             }
+
             return false;
         }
 
         //todo smart blocking
-
-
-        //if all other options were fail
-        public int RandomInsert(ref char[,] i_currentBoard, int width, int height)
+        
+        //search if there is a left sequence of three player's coins
+        public bool FindSeuenceOfThreeLeft(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
-            int chooseColumns = -1;
+            char playerCoin = i_CurrentBoard[i_Width, i_Height];
 
-            return chooseColumns;
+            if (i_Height - 2 >= 0)
+            {
+                if (i_CurrentBoard[i_Width, i_Height - 1].Equals(playerCoin) &&
+                    i_CurrentBoard[i_Width, i_Height - 2].Equals(playerCoin))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
+        //search if there is a right sequence of three player's coins
+        public bool FindSeuenceOfThreeRight(char[,] i_CurrentBoard, int i_Width, int i_Height)
+        {
+            char playerCoin = i_CurrentBoard[i_Width, i_Height];
+
+            if (i_Height + 2 < i_CurrentBoard.GetLength(1))
+            {
+                if (i_CurrentBoard[i_Width, i_Height + 1].Equals(playerCoin) &&
+                    i_CurrentBoard[i_Width, i_Height + 2].Equals(playerCoin))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        //search if there is a up sequence of three player's coins
+        public bool FindSeuenceOfThreeUp(char[,] i_CurrentBoard, int i_Width, int i_Height)
+        {
+            char playerCoin = i_CurrentBoard[i_Width, i_Height];
+
+            if (i_Width + 2 < i_CurrentBoard.GetLength(0))
+            {
+                if (i_CurrentBoard[i_Width + 1, i_Height].Equals(playerCoin) &&
+                    i_CurrentBoard[i_Width + 2, i_Height].Equals(playerCoin))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        //if all other options were fail
+/*        public int RandomInsert(ref char[,] i_currentBoard, int width, int height)
+        {
+            Random random = new Random();
 
 
 
-
+            return chooseColumns;
+        }*/
     }
 }
