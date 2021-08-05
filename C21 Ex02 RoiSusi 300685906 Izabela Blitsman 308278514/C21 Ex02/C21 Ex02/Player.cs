@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-
+﻿
 namespace C21_Ex02
 {
     public class Player
@@ -27,9 +22,9 @@ namespace C21_Ex02
             return this.m_Name;
         }
 
-        public void SetName(string i_setName)
+        public void SetName(string i_SetName)
         {
-            this.m_Name = i_setName;
+            this.m_Name = i_SetName;
         }
 
         public int GetScore()
@@ -37,9 +32,9 @@ namespace C21_Ex02
             return this.m_Score;
         }
 
-        public void SetScore(int i_score)
+        public void SetScore(int i_Score)
         {
-            this.m_Score = i_score;
+            this.m_Score = i_Score;
         }
 
         public char GetCoin()

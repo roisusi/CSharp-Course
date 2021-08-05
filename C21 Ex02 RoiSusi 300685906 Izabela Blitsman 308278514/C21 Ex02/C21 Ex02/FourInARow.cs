@@ -1,32 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace C21_Ex02
 {
     public class FourInARow
     {
-        //This is the Logic Class
-        //Here we need to implement all the rules
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
-        private const char m_CoinOne = 'X';
-        private const char m_CoinTwo = 'O';
+        private readonly char r_CoinOne = 'X';
+        private readonly char r_CoinTwo = 'O';
         private int m_MatrixWidth = 0;
         private int m_MatrixHeight = 0;
-        private const int k_MaxBoardParameter = 8;
-        private const int k_MinBoardParameter = 4;
+        private readonly int r_MaxBoardParameter = 8;
+        private readonly int r_MinBoardParameter = 4;
         private MatrixCliUi m_MatrixCliUi = null;
-        //private bool v_AnotherRoundFlag = false;
 
-
-/*        public FourInARow(string i_playerOne, string i_playerTwo)
+        public static void PlayFourInARow()
         {
-            m_PlayerOneName = new Player(i_playerOne, m_CoinOne);
-            m_PlayerTwoName = new Player(i_playerTwo, m_CoinTwo);
-        }*/
-
+            FourInARow fourInARow = new FourInARow();
+            fourInARow.Menu();
+        }
         public void Menu()
         {
             int optionChoose = 0;
@@ -35,35 +27,35 @@ namespace C21_Ex02
 
             userMessage = string.Format("Hello and welcome to 4 in a Row game\n" +
                                     "Please Select the Size of the BoardGame\n");
-            Console.WriteLine(userMessage);
+            System.Console.WriteLine(userMessage);
 
-            Console.WriteLine("Please Enter Matrix Width:");
-            readFromUser = Console.ReadLine();
-            GetMatrixInput(readFromUser, out m_MatrixWidth); 
+            System.Console.WriteLine("Please Enter Matrix Width:");
+            readFromUser = System.Console.ReadLine();
+            GetMatrixInput(readFromUser, out m_MatrixWidth);
 
-            Console.WriteLine("Please Enter Matrix Height");
-            readFromUser = Console.ReadLine();
+            System.Console.WriteLine("Please Enter Matrix Height");
+            readFromUser = System.Console.ReadLine();
             GetMatrixInput(readFromUser, out m_MatrixHeight); 
 
             userMessage = string.Format("Please select one of the options\n" +
                                     "1. Player Vs Player\n" +
                                     "2. Player Vs Computer\n");
-            
-            Console.WriteLine(userMessage);
-            readFromUser = Console.ReadLine();
+
+            System.Console.WriteLine(userMessage);
+            readFromUser = System.Console.ReadLine();
             GetGameInput(readFromUser, out optionChoose);
 
             switch (optionChoose)
             {
                 case 1:
                     {
-                        Console.WriteLine("You selected option {0} {1}\n" , optionChoose,GameOption.PlayerVsPlayer);
+                        System.Console.WriteLine("You selected option {0} {1}\n" , optionChoose,GameOption.PlayerVsPlayer);
                         PlayerVsPlayerGame();
                         break;
                     }
                 case 2:
                     {
-                        Console.WriteLine("You selected option {0} {1}\n", optionChoose, GameOption.PlayerVsMachine);
+                        System.Console.WriteLine("You selected option {0} {1}\n", optionChoose, GameOption.PlayerVsMachine);
                         PlayerVsMachineGame();
                         break;
                     }
@@ -78,16 +70,14 @@ namespace C21_Ex02
             int machineLastWidth = -1;
             bool isPlayerExitGame = false;
             bool isPlayerWin = false;
-            String readFromUser = null;
-            String userMessage = null;
             List<Player> playersList = new List<Player>();
-            Random random = new Random();
+            System.Random random = new System.Random();
             MachineAI machineAI = new MachineAI();
 
             m_MatrixCliUi = new MatrixCliUi(m_MatrixWidth, m_MatrixHeight);
 
-            m_FirstPlayer = new Player("Player 1", 'X', false, false);
-            m_SecondPlayer = new Player("Computer", 'O', true, false);
+            m_FirstPlayer = new Player("Player 1", r_CoinOne, false, false);
+            m_SecondPlayer = new Player("Computer", r_CoinTwo, true, false);
 
             playersList.Add(m_FirstPlayer);
             playersList.Add(m_SecondPlayer);
@@ -96,9 +86,13 @@ namespace C21_Ex02
             {
                 isPlayerWin = false;
                 isPlayerExitGame = false;
+                machineLastHight = -1;
+                machineLastWidth = -1;
                 Ex02.ConsoleUtils.Screen.Clear();
                 m_MatrixCliUi.ClearGame();
                 m_MatrixCliUi.PrintGameMatrixBoard();
+                m_FirstPlayer.SetTurn(false);
+                m_SecondPlayer.SetTurn(false);
 
                 while (!IsMatrixFull() && !isPlayerWin && !isPlayerExitGame)
                 {
@@ -106,38 +100,23 @@ namespace C21_Ex02
                     {
                         if (!player.GetMachine())
                         {
-                            userMessage = string.Format("Player named {0} - Please choose a column in matrix or press 'Q' to exit:", player.GetName());
-                            Console.WriteLine(userMessage);
-                            readFromUser = Console.ReadLine();
+                            PlayerInputValidation(player, out height);
 
-                            if (readFromUser.Equals("Q"))
+                            if (height == -1)
                             {
                                 UserExitGame(playersList, player);
                                 isPlayerExitGame = true;
                                 break;
                             }
-
-                            PlayerInputValidation(readFromUser, out height);
                         }
 
                         else 
                         {
                             width = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height).Count;
 
-                            //machineLastMove == -1 => the first move of machine
                             if (machineLastHight != -1 && machineAI.TryToWinMove(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight) != -1)
                             {
-                                
                                 height = machineAI.TryToWinMove(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight);
-                               
-                            }
-
-                            else if (machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1 &&
-                                !machineAI.FindSeuenceOfThreeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
-                                !machineAI.FindSeuenceOfThreeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
-                                !machineAI.FindSeuenceOfThreeRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height))
-                            {
-                                height = machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
                             }
 
                             else if (machineAI.TryNotToLoseeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
@@ -153,6 +132,29 @@ namespace C21_Ex02
                             else if (machineAI.TryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
                             {
                                 height = machineAI.TryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                            }
+
+                            else if (machineLastHight != -1 && machineAI.FindFreeCellSequenceOfTwoLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight) != -1)
+                            {
+                                height = machineAI.FindFreeCellSequenceOfTwoLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight);
+                            }
+
+                            else if (machineLastHight != -1 && machineAI.FindFreeCellSequenceOfTwoRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight) != -1)
+                            {
+                                height = machineAI.FindFreeCellSequenceOfTwoRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight);
+                            }
+
+                            else if (machineLastHight != -1 && machineAI.FindFreeCellSequenceOfTwoUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight) != -1)
+                            {
+                                height = machineAI.FindFreeCellSequenceOfTwoUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight);
+                            }
+
+                            else if (machineAI.IfCanMoveLeftRightUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
+                                !machineAI.FindSeuenceOfThreeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
+                                !machineAI.FindSeuenceOfThreeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
+                                !machineAI.FindSeuenceOfThreeRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height))
+                            {
+                                height = machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
                             }
 
                             else
@@ -178,7 +180,11 @@ namespace C21_Ex02
                     }
                 }
 
-                FindGameWinner(playersList);
+                if (!isPlayerExitGame)
+                {
+                    FindGameWinner(playersList);
+                }
+
                 PrintPlayersScore(playersList);
 
             } while (IsAnotherRound());
@@ -189,14 +195,12 @@ namespace C21_Ex02
             int height = 0;
             bool isPlayerWin = false;
             bool isPlayerExitGame = false;
-            string readFromUser = null;
-            string userMessage = null;
             List<Player> playersList = new List<Player>();
 
             m_MatrixCliUi = new MatrixCliUi(m_MatrixWidth, m_MatrixHeight);
 
-            m_FirstPlayer = new Player("player 1", 'X', false, false);
-            m_SecondPlayer = new Player("player 2", 'O', false, false);
+            m_FirstPlayer = new Player("player 1", r_CoinOne, false, false);
+            m_SecondPlayer = new Player("player 2", r_CoinTwo, false, false);
             
             playersList.Add(m_FirstPlayer);
             playersList.Add(m_SecondPlayer);
@@ -208,24 +212,22 @@ namespace C21_Ex02
                 Ex02.ConsoleUtils.Screen.Clear();
                 m_MatrixCliUi.ClearGame();
                 m_MatrixCliUi.PrintGameMatrixBoard();
+                m_FirstPlayer.SetTurn(false);
+                m_SecondPlayer.SetTurn(false);
 
                 while (!IsMatrixFull() && !isPlayerWin && !isPlayerExitGame)
                 {
-
                     foreach (Player player in playersList)
                     {
-                        userMessage = string.Format("Player named {0} - Please choose a column in matrix or press 'Q' to exit:", player.GetName());
-                        Console.WriteLine(userMessage);
-                        readFromUser = Console.ReadLine();
+                        PlayerInputValidation(player, out height);
 
-                        if (readFromUser.Equals("Q"))
+                        if (height == -1)
                         {
                             UserExitGame(playersList, player);
                             isPlayerExitGame = true;
                             break;
                         }
 
-                        PlayerInputValidation(readFromUser, out height);
                         PlayerTurn(player, height, out isPlayerWin);
                         Ex02.ConsoleUtils.Screen.Clear();
                         m_MatrixCliUi.PrintGameMatrixBoard();
@@ -237,7 +239,11 @@ namespace C21_Ex02
                     }
                 }
 
-                FindGameWinner(playersList);
+                if (!isPlayerExitGame)
+                {
+                    FindGameWinner(playersList);
+                }
+                
                 PrintPlayersScore(playersList);
 
             } while (IsAnotherRound());
@@ -276,12 +282,12 @@ namespace C21_Ex02
             if (winner != null)
             {
                 string winnerMessage = string.Format("Congradulations, the winner is {0}", winner.GetName());
-                Console.WriteLine(winnerMessage);
+                System.Console.WriteLine(winnerMessage);
             }
 
             else
             {
-                Console.WriteLine("This is a tie - no winner in this game");
+                System.Console.WriteLine("This is a Tie - no winner in this game");
             }
         }
 
@@ -306,7 +312,7 @@ namespace C21_Ex02
             foreach (Player player in i_PlayersList)
             {
                 scoreMessage = string.Format("{0} score is: {1}", player.GetName(), player.GetScore());
-                Console.WriteLine(scoreMessage);
+                System.Console.WriteLine(scoreMessage);
             }
         }
         
@@ -314,12 +320,12 @@ namespace C21_Ex02
         {
             List<char> matrixColumn = m_MatrixCliUi.GetColumnPlayerInput(i_MatrixColumn - 1);
 
-            if (matrixColumn.Count < m_MatrixHeight)
+            if (matrixColumn.Count < m_MatrixWidth)
             {
                 return false;
             }
 
-            Console.WriteLine("The current column is full.");
+            System.Console.WriteLine("The current column is full.");
             return true;
         }
 
@@ -327,11 +333,14 @@ namespace C21_Ex02
         {
             char[,] matrixBoard = m_MatrixCliUi.GetCurrentPlayerBoardMatrix();
 
-            for (int i = 0; i < m_MatrixHeight; i++)
+            for (int i = 0; i < m_MatrixWidth; i++)
             {
-                if (matrixBoard[0,i].Equals('\0'))
+                for (int j = 0; j < m_MatrixHeight; j++)
                 {
-                    return false;
+                    if (matrixBoard[i, j].Equals('\0'))
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -351,7 +360,7 @@ namespace C21_Ex02
             return false;
         }
 
-        public bool IsHorizontalSequence(Char i_PlayerCoin)
+        public bool IsHorizontalSequence(char i_PlayerCoin)
         {
             char[,] matrixBoard = m_MatrixCliUi.GetCurrentPlayerBoardMatrix();
 
@@ -420,7 +429,7 @@ namespace C21_Ex02
 
             for (int i = 0; i <= m_MatrixWidth - 4; i++)
             {
-                for (int j = m_MatrixHeight - 1; j >= 4; j--)
+                for (int j = m_MatrixHeight - 1; j >= 3; j--)
                 {
                     if (matrixBoard[i, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 1, j - 1].Equals(i_PlayerCoin) &&
@@ -439,8 +448,8 @@ namespace C21_Ex02
         {
             string readFromUser = null;
 
-            Console.WriteLine("Do you want to play another round? Press YES or any other key to exit");
-            readFromUser = Console.ReadLine();
+            System.Console.WriteLine("Do you want to play another round? Press YES or any other key to exit");
+            readFromUser = System.Console.ReadLine();
             
             if (readFromUser.ToUpper().Equals("YES"))
             {
@@ -456,8 +465,8 @@ namespace C21_Ex02
 
             while (!GameInputValidation(i_UserInput, out io_GameInput))
             {
-                Console.WriteLine("Please enter valid game option:");
-                i_UserInput = Console.ReadLine();
+                System.Console.WriteLine("Please enter valid game option:");
+                i_UserInput = System.Console.ReadLine();
             }
         }
 
@@ -473,7 +482,7 @@ namespace C21_Ex02
                 }
             }
 
-            Console.WriteLine("Invalid input - choose the first or the second option.");
+            System.Console.WriteLine("Invalid input - choose the first or the second option.");
             return false;
         }
 
@@ -483,8 +492,8 @@ namespace C21_Ex02
 
             while (!BoardInputValidation(i_UserInput, out io_MatrixParameter))
             {
-                Console.WriteLine("Please enter valid matrix parameter:");
-                i_UserInput = Console.ReadLine();
+                System.Console.WriteLine("Please enter valid matrix parameter:");
+                i_UserInput = System.Console.ReadLine();
             }
         }
 
@@ -494,16 +503,14 @@ namespace C21_Ex02
 
             if (int.TryParse(i_BoardParameter, out o_BoardParameter))
             {
-                if (o_BoardParameter >= k_MinBoardParameter && o_BoardParameter <= k_MaxBoardParameter)
+                if (o_BoardParameter >= r_MinBoardParameter && o_BoardParameter <= r_MaxBoardParameter)
                 {
                     return true;
                 }
             }
 
-            StringBuilder userMessage = new StringBuilder();
-            userMessage.AppendLine("Invalid board parameter.");
-            userMessage.AppendLine("Board's minimum size 4X4 and maximum size 8X8");
-            Console.WriteLine(userMessage);
+            string userMessage = string.Format("Invalid board parameter.\nBoard's minimum size 4X4 and maximum size 8X8");
+            System.Console.WriteLine(userMessage);
 
             return false;
         }
@@ -521,23 +528,34 @@ namespace C21_Ex02
             }
 
             string userMessage = string.Format("Invalid board parameter.\nBoard's column sould be between 1 and {0}", m_MatrixHeight);
-            Console.WriteLine(userMessage);
+
+            if (!i_MatrixParameter.Equals("Q"))
+            {
+                System.Console.WriteLine(userMessage);
+            }
+                
             return false;
         }
 
-        public void PlayerInputValidation(string io_MatrixHeight, out int o_MatrixHeight)
+        public void PlayerInputValidation(Player i_Player, out int o_MatrixHeight)
         {
             o_MatrixHeight = 0;
-
+            string userMessage = null;
+            string readFromUser = null;
+            
             do
             {
-                while (!MatrixInputValidation(io_MatrixHeight, out o_MatrixHeight))
+                userMessage = string.Format("Player named {0} - Please choose a column in matrix or press 'Q' to exit:", i_Player.GetName());
+                System.Console.WriteLine(userMessage);
+                readFromUser = System.Console.ReadLine();
+
+                while (!MatrixInputValidation(readFromUser, out o_MatrixHeight) && !readFromUser.Equals("Q"))
                 {
-                    Console.WriteLine("Please choose valid column in matrix:");
-                    io_MatrixHeight = Console.ReadLine();
+                    System.Console.WriteLine(userMessage);
+                    readFromUser = System.Console.ReadLine();
                 }
 
-            } while (IsMatrixColumnFull(o_MatrixHeight));
+            } while (!readFromUser.Equals("Q") && IsMatrixColumnFull(o_MatrixHeight));
 
             o_MatrixHeight--;
         }
