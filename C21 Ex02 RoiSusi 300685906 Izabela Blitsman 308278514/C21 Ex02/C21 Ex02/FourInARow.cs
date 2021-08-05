@@ -74,6 +74,8 @@ namespace C21_Ex02
         {
             int width = 0;
             int height = 0;
+            int machineLastHight = -1;
+            int machineLastWidth = -1;
             bool isPlayerExitGame = false;
             bool isPlayerWin = false;
             String readFromUser = null;
@@ -122,7 +124,15 @@ namespace C21_Ex02
                         {
                             width = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height).Count;
 
-                            if (machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1 &&
+                            //machineLastMove == -1 => the first move of machine
+                            if (machineLastHight != -1 && machineAI.TryToWinMove(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight) != -1)
+                            {
+                                
+                                height = machineAI.TryToWinMove(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), machineLastWidth, machineLastHight);
+                               
+                            }
+
+                            else if (machineAI.MoveLeftOrRightOrUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1 &&
                                 !machineAI.FindSeuenceOfThreeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
                                 !machineAI.FindSeuenceOfThreeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) &&
                                 !machineAI.FindSeuenceOfThreeRight(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height))
@@ -135,14 +145,14 @@ namespace C21_Ex02
                                 height = machineAI.TryNotToLoseeUp(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
                             }
 
-                            else if (machineAI.tryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
+                            else if (machineAI.TryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
                             {
-                                height = machineAI.tryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                                height = machineAI.TryNotToLoseeLeft(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
                             }
 
-                            else if (machineAI.tryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
+                            else if (machineAI.TryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height) != -1)
                             {
-                                height = machineAI.tryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
+                                height = machineAI.TryNotToLoseeRigth(m_MatrixCliUi.GetCurrentPlayerBoardMatrix(), width, height);
                             }
 
                             else
@@ -152,6 +162,9 @@ namespace C21_Ex02
                                     height = random.Next(1, m_MatrixHeight + 1);
                                 } while (IsMatrixColumnFull(height));
                             }
+
+                            machineLastHight = height;
+                            machineLastWidth = m_MatrixWidth - m_MatrixCliUi.GetColumnPlayerInput(height).Count - 1;
                         }
 
                         PlayerTurn(player, height, out isPlayerWin);

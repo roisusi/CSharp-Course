@@ -12,15 +12,30 @@ namespace C21_Ex02
         // 
         // O
         // O
-        public int tryToWinMove(char[,] i_currentBoard, int width, int height)
+        public int TryToWinMove(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
             int chooseColumns = -1;
+
+            if (TryNotToLoseeLeft(i_CurrentBoard, i_Width, i_Height) != -1)
+            {
+                chooseColumns = TryNotToLoseeLeft(i_CurrentBoard, i_Width, i_Height);
+            }
+
+            else if (TryNotToLoseeRigth(i_CurrentBoard, i_Width, i_Height) != -1)
+            {
+                chooseColumns = TryNotToLoseeRigth(i_CurrentBoard, i_Width, i_Height);
+            }
+
+            else if (TryNotToLoseeUp(i_CurrentBoard, i_Width, i_Height) != -1)
+            {
+                chooseColumns = TryNotToLoseeUp(i_CurrentBoard, i_Width, i_Height);
+            }
 
             return chooseColumns;
         }
     
         //find left 3 coin for player
-        public int tryNotToLoseeLeft(char[,] i_CurrentBoard, int i_Width, int i_Height)
+        public int TryNotToLoseeLeft(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
             int chooseColumns = -1;
 
@@ -37,7 +52,7 @@ namespace C21_Ex02
         }
 
         //find right 3 coin for player
-        public int tryNotToLoseeRigth(char[,] i_CurrentBoard, int i_Width, int i_Height)
+        public int TryNotToLoseeRigth(char[,] i_CurrentBoard, int i_Width, int i_Height)
         {
             int chooseColumns = -1;
 
@@ -128,6 +143,7 @@ namespace C21_Ex02
                     return true;
                 }
             }
+           
             return false;
         }
 
