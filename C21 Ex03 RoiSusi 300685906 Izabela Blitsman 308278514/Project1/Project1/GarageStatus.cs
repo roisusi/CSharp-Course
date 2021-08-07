@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project1
+﻿enum GarageStatus
 {
-    class GarageStatus
-    {
-    }
+    InRepair,
+    Fixed,
+    Paid
 }
