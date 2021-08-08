@@ -10,9 +10,11 @@ namespace Project1
         private float m_CurrentAmountOfFuel = 0f;
         private float m_MaxFuelCapacity = 0f;
 
-        public FuelVehicle(TypeOfFuel i_TypeOfFuel, float i_MaxFuelCapacity)
+        public FuelVehicle(TypeOfFuel i_TypeOfFuel, float i_MaxFuelCapacity , float i_CurrentAmountOfFuel)
         {
-
+            this.m_TypeOfFuel = i_TypeOfFuel;
+            this.m_MaxFuelCapacity = i_MaxFuelCapacity;
+            this.m_CurrentAmountOfFuel = i_CurrentAmountOfFuel;
         }
 
         public float GetCurrentAmountOfFuel()

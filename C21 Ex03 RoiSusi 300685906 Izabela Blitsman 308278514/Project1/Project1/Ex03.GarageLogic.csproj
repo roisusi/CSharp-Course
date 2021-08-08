@@ -41,8 +41,8 @@
     <Compile Include="Garage.cs" />
     <Compile Include="GarageStatus.cs" />
     <Compile Include="PaintColor.cs" />
-    <Compile Include="RegularCar.cs" />
-    <Compile Include="RegularMotorcycle.cs" />
+    <Compile Include="FuelCar.cs" />
+    <Compile Include="FuelMotorcycle.cs" />
     <Compile Include="Trunk.cs" />
     <Compile Include="TypeOfFuel.cs" />
     <Compile Include="TypeOfLicense.cs" />
