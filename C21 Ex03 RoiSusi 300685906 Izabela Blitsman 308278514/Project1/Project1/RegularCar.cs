@@ -4,10 +4,12 @@ using System.Text;
 
 namespace Project1
 {
-    class RegularCar : Car
+    class RegularCar : Vehicle
     {
         private FuelVehicle m_CarFuelStatus;
         private readonly float m_TankLiter = 55f;
+        private PaintColor m_PaintColor;
+        private int m_NumberOfDoors;
 
         public RegularCar(FuelVehicle i_CarFuelStatus)
         {
@@ -15,5 +17,8 @@ namespace Project1
         }
 
         public bool ReFuel()
+        {
+            return false;
+        }
     }
 }

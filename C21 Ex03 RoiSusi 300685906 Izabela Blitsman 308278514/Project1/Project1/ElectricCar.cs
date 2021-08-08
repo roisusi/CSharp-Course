@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Project1
 {
-    class ElectricCar : Car
+    class ElectricCar : Vehicle
     {
-
+        private PaintColor m_PaintColor;
+        private int m_NumberOfDoors;
     }
 }

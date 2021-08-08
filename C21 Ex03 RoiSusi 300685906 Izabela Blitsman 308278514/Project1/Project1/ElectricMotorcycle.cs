@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Project1
 {
-    class ElectricMotorcycle : Motorcycle
+    class ElectricMotorcycle : Vehicle
     {
-
+        private TypeOfLicense m_License;
+        private int m_EngineCapacity = 0;
     }
 }
