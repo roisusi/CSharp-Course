@@ -1,6 +1,9 @@
-﻿enum GarageStatus
+﻿namespace Project1
 {
-    InRepair,
-    Fixed,
-    Paid
+    public enum GarageStatus
+    {
+        InRepair,
+        Fixed,
+        Paid
+    }
 }

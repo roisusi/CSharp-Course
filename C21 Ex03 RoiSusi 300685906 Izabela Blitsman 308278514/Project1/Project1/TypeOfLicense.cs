@@ -1,7 +1,10 @@
-﻿enum TypeOfLicense
+﻿namespace Project1
 {
-    A,
-    A1,
-    A2,
-    B
+    public enum TypeOfLicense
+    {
+        A,
+        A1,
+        A2,
+        B
+    }
 }

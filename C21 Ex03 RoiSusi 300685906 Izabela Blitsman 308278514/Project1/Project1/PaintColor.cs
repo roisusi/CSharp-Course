@@ -1,7 +1,10 @@
-﻿enum PaintColor
+﻿namespace Project1
 {
-    Yellow,
-    White,
-    Black,
-    Blue
+    enum PaintColor
+    {
+        Yellow,
+        White,
+        Black,
+        Blue
+    }
 }

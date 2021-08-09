@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Project1
 {
-    class Wheels
+    public class Wheels
     {
         private string m_Manufacture = string.Empty;
         private float m_AirPressure = 0f;
         private float m_MaxAirPressureFromManufacture = 0f;
 
-        public Wheels(string i_Manufacture, float i_AirPressure , float i_MaxAirPressureFromManufacture)
+        public Wheels(string i_Manufacture, float i_AirPressure, float i_MaxAirPressureFromManufacture)
         {
             this.m_Manufacture = i_Manufacture;
             this.m_AirPressure = i_AirPressure;
@@ -36,5 +36,15 @@ namespace Project1
             }
             return false;
         }
+
+
+        public override string ToString()
+        {
+            float wheels = 0f;
+
+            return wheels + "" + m_Manufacture;
+        }
+
+
     }
 }

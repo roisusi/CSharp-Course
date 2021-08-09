@@ -1,7 +1,10 @@
-﻿enum TypeOfFuel
+﻿namespace Project1
 {
-    Soler,
-    Octan95,
-    Octan96,
-    Octan98
+    public enum TypeOfFuel
+    {
+        Soler,
+        Octan95,
+        Octan96,
+        Octan98
+    }
 }

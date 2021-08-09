@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Project1
 {
-    class FuelVehicle
+    public class FuelVehicle
     {
         private TypeOfFuel m_TypeOfFuel;
         private float m_CurrentAmountOfFuel = 0f;
