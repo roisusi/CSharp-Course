@@ -3,29 +3,52 @@ using System.Collections.Generic;
 using System.Text;
 using Project1;
 
-public class RegularCar : Vehicle
+public class FuelCar : Vehicle
 {
-    private FuelVehicle m_CarFuelStatus = null;
-    private readonly float m_TankLiter = 55f;
-    private PaintColor m_PaintColor;
-    private int m_NumberOfDoors;
-    private float m_CurrentFuel = 0f;
-    public RegularCar(string i_Moudle, string i_NumberLicense, float i_Energy, int i_NumberOfWheels) :
-        base(i_Moudle, i_NumberLicense, i_Energy, i_NumberOfWheels)
-    {
+    private Fuel m_CarFuelStatus = null;
+    private readonly float m_MaxFuelCapacity = 50f;
+    private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan95;
+    private PaintColor m_PaintColor = 0;
+    private int m_NumberOfDoors = 0;
 
+    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
+        base(i_Moudle, i_NumberLicense, i_Fuel)
+    {
+        m_CarFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
+        this.m_PaintColor = i_PaintColor;
+        this.m_NumberOfDoors = i_NumberOfDoors;
     }
 
+    public int NumberOfDoors
+    {
+        get { return this.m_NumberOfDoors; }
+        set { this.m_NumberOfDoors = value; }
+    }
 
-    //public RegularCar(FuelVehicle i_CarFuelStatus , float i_CurrentFuel)
-    //{
-    //    m_CarFuelStatus = new FuelVehicle(TypeOfFuel.Octan95, m_TankLiter , i_CurrentFuel);
-    //    m_CurrentFuel = i_CurrentFuel;
-    //}
+    public PaintColor PaintColor
+    {
+        get { return this.m_PaintColor; }
+        set { this.m_PaintColor = value; }
+    }
 
-    //public bool ReFuel()
-    //{
-    //    return m_CarFuelStatus.Refuel(m_CurrentFuel);
-    //}
+    public Fuel CarFuelStatus
+    {
+        get { return this.m_CarFuelStatus; }
+        set { this.m_CarFuelStatus = value; }
+    }
+
+    public override string ToString()
+    {
+        string vehicleInformation = string.Empty;
+        vehicleInformation = string.Format("Vehicle details:\n" +
+            "Model : {0}\n" +
+            "License Number : {1}\n" +
+            "Fuel in Tank : {2}\n" +
+            "Wheels :\n" +
+            "Color : {3}\n" +
+            "Number of doors : {4}\n" +
+            "{5}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor, m_NumberOfDoors, m_CarFuelStatus.ToString());
+        return vehicleInformation;
+    }
 }
 

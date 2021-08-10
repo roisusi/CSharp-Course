@@ -5,7 +5,7 @@
         private string m_OwnerName = string.Empty;
         private string m_OwnerPhone = string.Empty;
         private GarageStatus m_GarageStatus = GarageStatus.InRepair;
-        Vehicle m_Vehicle = null;
+        private Vehicle m_Vehicle = null;
 
         public GarageVehicleInformation(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
         {
@@ -16,51 +16,26 @@
 
         public string OwnerName
         {
-            get
-            {
-                return m_OwnerName;
-            }
-            set
-            {
-                this.m_OwnerName = value;
-            }
-        }
+            get { return m_OwnerName; }
 
-        public GarageStatus GarageStatus
-        {
-            get
-            {
-                return m_GarageStatus;
-            }
-            set
-            {
-                this.m_GarageStatus = value;
-            }
+            set { this.m_OwnerName = value; }
         }
 
         public string OwnerPhone
         {
-            get
-            {
-                return m_OwnerPhone;
-            }
-            set
-            {
-                this.m_OwnerPhone = value;
-            }
+            get { return m_OwnerPhone; }
+            set { this.m_OwnerPhone = value; }
         }
 
-        public string LicenceNumber
+        public GarageStatus GarageStatus
         {
-            get
-            {
-                if (m_Vehicle != null)
-                {
-                    return m_Vehicle.GetLicence();
-                }
+            get { return m_GarageStatus; }
+            set { this.m_GarageStatus = value; }
+        }
 
-                return "";
-            }
+        public Vehicle Vehicle
+        {
+            get { return m_Vehicle; }
         }
 
         public override string ToString()
@@ -69,7 +44,10 @@
             CustomerDetailsInGarrage = string.Format("Here is the vehicle details in the garage : \n" +
                 "Name : {0}\n" +
                 "Phone : {1}\n" +
-                "{2}\n", m_OwnerName, m_OwnerPhone, m_Vehicle.ToString());
+                "{2}" +
+                "Status : {3}\n", m_OwnerName, m_OwnerPhone, m_Vehicle.ToString(), m_GarageStatus);
+
+            
             return CustomerDetailsInGarrage;
         }
     }
