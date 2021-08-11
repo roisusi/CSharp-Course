@@ -5,14 +5,12 @@ using System.Text;
 namespace Project1
 {
     
-    public class ElectricCar : Vehicle, ICharge
+    public class ElectricCar : Car, ICharge
     {
-        Battery m_CarEnergyStatus = null;
+        private Battery m_CarEnergyStatus = null;
         private readonly int m_NumberOfWheels = 4;
         private readonly float m_MaxCharghingTime = 2.8f;
         private readonly float m_MaxAirPresure = 30f;
-        private PaintColor m_PaintColor = 0;
-        private int m_NumberOfDoors = 0;
 
         public ElectricCar()
         {
@@ -20,25 +18,10 @@ namespace Project1
         }
 
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
-                base(i_Model, i_NumberLicense, i_Energy)
+                base(i_PaintColor, i_NumberOfDoors)
         {
             m_CarEnergyStatus = new Battery(i_Energy, m_MaxCharghingTime);
-            this.m_PaintColor = i_PaintColor;
-            this.m_NumberOfDoors = i_NumberOfDoors;
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
-
-        }
-        public override List<Wheels> GetWheels()
-        {
-            return m_WheelsCollection;
-        }
-
-        public override void SetWheels()
-        {
-            foreach (Wheels wheels in m_WheelsCollection)
-            {
-                wheels.AirPressure = m_MaxAirPresure;
-            }
         }
 
         public int NumberOfDoors
@@ -56,6 +39,14 @@ namespace Project1
         public int NumberOfWheels
         {
             get { return this.m_NumberOfWheels; }
+        }
+
+        public override void SetWheels()
+        {
+            foreach (Wheels wheels in m_WheelsCollection)
+            {
+                wheels.AddAirToWheel(m_MaxAirPresure);
+            }
         }
 
         public override string ToString()
@@ -93,30 +84,6 @@ namespace Project1
             listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
 
             return listOfProperties;
-        }
-
-        public string GetAllPaintColor()
-        {
-            int count = 1;
-            string colors = string.Empty;
-            foreach (PaintColor paintColor in Enum.GetValues(typeof(PaintColor)))
-            {
-                colors += string.Format("{0}. {1}\n", count, paintColor);
-                count++;
-            }
-            return colors;
-        }
-
-        public string GetAllDoors()
-        {
-            int count = 1;
-            string colors = string.Empty;
-            for (int i = 2; i < 6; i++)
-            {
-                colors += string.Format("{0}. {1} Doors\n", count, i);
-                count++;
-            }
-            return colors;
         }
 
         public void Recharging(float i_TimeInMinutes)

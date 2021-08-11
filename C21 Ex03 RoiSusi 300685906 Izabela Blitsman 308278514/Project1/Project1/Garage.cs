@@ -174,6 +174,18 @@ namespace Project1 {
             return types;
         }
 
+        public int ParseNumberOfDoorsToInt(string i_NumberOfDoors)
+        {
+            int numberOfDoors = 0;
+
+            if (!int.TryParse(i_NumberOfDoors, out numberOfDoors))
+            {
+                throw new FormatException("Error in adding vehicle - charging or fuel should be float value");
+            }
+
+            return numberOfDoors;
+        }
+
         public void TryParseStringToFloat(string i_StringUserInput)
         {
             float floatUserInput = 0f;

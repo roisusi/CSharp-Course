@@ -46,7 +46,10 @@ namespace Project1 {
 
         public abstract override string ToString();
 
-        public abstract List<Wheels> GetWheels();
+        public List<Wheels> GetWheels()
+        {
+            return m_WheelsCollection;
+        }
 
         public abstract void SetWheels();
 
