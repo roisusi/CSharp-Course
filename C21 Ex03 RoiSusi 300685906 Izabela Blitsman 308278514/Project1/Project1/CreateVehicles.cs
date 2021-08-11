@@ -57,89 +57,122 @@ namespace Project1
 
         public void AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garageOperation)
         {
-            //Garage garageOperation = garage;
-
             //Add here any new Class to Create it
             switch (typeOfVehicle)
             {
                 case "ElectricCar":
                     {
-                        string i_firstName = valuesEnterByTheUser[0];
-                        string i_Phone = valuesEnterByTheUser[1];
-                        string i_Model = valuesEnterByTheUser[2];
-                        string i_Licence = valuesEnterByTheUser[3];
-                        string i_EnergyOrFuel = valuesEnterByTheUser[4];
+                        string firstName = valuesEnterByTheUser[0];
+                        string phone = valuesEnterByTheUser[1];
+                        string model = valuesEnterByTheUser[2];
+                        string licence = valuesEnterByTheUser[3];
+                        string energyOrFuel = valuesEnterByTheUser[4];
                         //Catch here Exception
-                        PaintColor i_PaintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
-                        string i_NumberOfDoors = valuesEnterByTheUser[6];
+                        PaintColor paintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
+                        string numberOfDoors = valuesEnterByTheUser[6];
 
                         //parse need try here of function "Format Exception"
-                        float EnergyOrFuel = float.Parse(i_EnergyOrFuel);
-                        int NumberOfDoors = int.Parse(i_NumberOfDoors);
+                        float energyOrFuelToFloat = float.Parse(energyOrFuel);
+                        int numberOfDoorsToInt = int.Parse(numberOfDoors);
 
-                        Vehicle electricCar = new ElectricCar(i_Model, i_Licence, EnergyOrFuel, i_PaintColor, NumberOfDoors);
-                        garageOperation.AddVehicleToGarrage(electricCar, i_firstName, i_Phone);
+                        Vehicle electricCar = new ElectricCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
+                        garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
                         break;
                     }
                 case "FuelCar":
                     {
-                        string i_firstName = valuesEnterByTheUser[0];
-                        string i_Phone = valuesEnterByTheUser[1];
-                        string i_Model = valuesEnterByTheUser[2];
-                        string i_Licence = valuesEnterByTheUser[3];
-                        string i_EnergyOrFuel = valuesEnterByTheUser[4];
+                        string firstName = valuesEnterByTheUser[0];
+                        string phone = valuesEnterByTheUser[1];
+                        string model = valuesEnterByTheUser[2];
+                        string licence = valuesEnterByTheUser[3];
+                        string energyOrFuel = valuesEnterByTheUser[4];
                         //Catch here Exception
-                        PaintColor i_PaintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
-                        string i_NumberOfDoors = valuesEnterByTheUser[6];
+                        PaintColor paintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
+                        string numberOfDoors = valuesEnterByTheUser[6];
 
                         //parse need try here of function "Format Exception"
-                        float EnergyOrFuel = float.Parse(i_EnergyOrFuel);
-                        int NumberOfDoors = int.Parse(i_NumberOfDoors);
+                        float energyOrFuelToFloat = float.Parse(energyOrFuel);
+                        int numberOfDoorsToInt = int.Parse(numberOfDoors);
 
-                        Vehicle electricCar = new FuelCar(i_Model, i_Licence, EnergyOrFuel, i_PaintColor, NumberOfDoors);
-                        garageOperation.AddVehicleToGarrage(electricCar, i_firstName, i_Phone);
+                        Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
+                        garageOperation.AddVehicleToGarrage(fuelCar, firstName, phone);
                         break;
                     }
 
                 case "FuelMotorcycle":
                     {
 
-                        string i_firstName = valuesEnterByTheUser[0];
-                        string i_Phone = valuesEnterByTheUser[1];
-                        string i_Model = valuesEnterByTheUser[2];
-                        string i_Licence = valuesEnterByTheUser[3];
-                        string i_EnergyOrFuel = valuesEnterByTheUser[4];
+                        string firstName = valuesEnterByTheUser[0];
+                        string phone = valuesEnterByTheUser[1];
+                        string model = valuesEnterByTheUser[2];
+                        string licence = valuesEnterByTheUser[3];
+                        string energyOrFuel = valuesEnterByTheUser[4];
                         //Catch here Exception
-                        TypeOfLicense i_TypeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
-                        string i_EngineCapacity = valuesEnterByTheUser[6];
+                        TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
+                        string engineCapacity = valuesEnterByTheUser[6];
 
                         //parse need try here of function "Format Exception"
-                        float EnergyOrFuel = float.Parse(i_EnergyOrFuel);
-                        int EngineCapacity = int.Parse(i_EngineCapacity);
+                        float energyOrFuelToFloat = float.Parse(energyOrFuel);
+                        int engineCapacityToInt = int.Parse(engineCapacity);
 
-                        Vehicle fuelMotorcycle = new FuelMotorcycle(i_Model, i_Licence, EnergyOrFuel, i_TypeOfLicense, EngineCapacity);
-                        garageOperation.AddVehicleToGarrage(fuelMotorcycle, i_firstName, i_Phone);
+                        Vehicle fuelMotorcycle = new FuelMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
+                        garageOperation.AddVehicleToGarrage(fuelMotorcycle, firstName, phone);
                         break;
                     }
 
                 case "ElectricMotorcycle":
                     {
 
-                        string i_firstName = valuesEnterByTheUser[0];
-                        string i_Phone = valuesEnterByTheUser[1];
-                        string i_Model = valuesEnterByTheUser[2];
-                        string i_Licence = valuesEnterByTheUser[3];
-                        string i_EnergyOrFuel = valuesEnterByTheUser[4];
+                        string firstName = valuesEnterByTheUser[0];
+                        string phone = valuesEnterByTheUser[1];
+                        string model = valuesEnterByTheUser[2];
+                        string licence = valuesEnterByTheUser[3];
+                        string energyOrFuel = valuesEnterByTheUser[4];
                         //Catch here Exception
-                        TypeOfLicense i_TypeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
-                        string i_EngineCapacity = valuesEnterByTheUser[6];
+                        TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
+                        string engineCapacity = valuesEnterByTheUser[6];
 
                         //parse need try here of function "Format Exception"
-                        float EnergyOrFuel = float.Parse(i_EnergyOrFuel);
-                        int EngineCapacity = int.Parse(i_EngineCapacity);
+                        float energyOrFuelToFloat = float.Parse(energyOrFuel);
+                        int engineCapacityToInt = int.Parse(engineCapacity);
 
-                        Vehicle electricCar = new ElectricMotorcycle(i_Model, i_Licence, EnergyOrFuel, i_TypeOfLicense, EngineCapacity);
-                        garageOperation.AddVehicleToGarrage(electricCar, i_firstName, i_Phone);
+                        Vehicle electricCar = new ElectricMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
+                        garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
+                        break;
+                    }
+
+                case "Truck":
+                    {
+
+                        string firstName = valuesEnterByTheUser[0];
+                        string phone = valuesEnterByTheUser[1];
+                        string model = valuesEnterByTheUser[2];
+                        string licence = valuesEnterByTheUser[3];
+                        string energyOrFuel = valuesEnterByTheUser[4];
+
+                        //Catch here Exception if yes or no
+                        string dengerousLoadString = valuesEnterByTheUser[5];
+                        bool dengerousLoad = false;
+                        if (dengerousLoadString.ToLower().Equals("yes"))
+                        {
+                            dengerousLoad = true;
+                        }
+                        else if (dengerousLoadString.ToLower().Equals("no"))
+                        {
+                            dengerousLoad = false;
+                        }
+                        else
+                        {
+                            //Todo here
+                        }
+                        string engineCapacity = valuesEnterByTheUser[6];
+
+                        //parse need try here of function "Format Exception"
+                        float energyOrFuelToFloat = float.Parse(energyOrFuel);
+                        float amountOfloadToFloat = float.Parse(engineCapacity);
+
+                        Vehicle truck = new Truck(model, licence, energyOrFuelToFloat, dengerousLoad, amountOfloadToFloat);
+                        garageOperation.AddVehicleToGarrage(truck, firstName, phone);
                         break;
                     }
             }

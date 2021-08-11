@@ -8,10 +8,10 @@ namespace Project1
     public class Truck : Vehicle
     {
         private Fuel m_TruckFuelStatus = null;
-        private readonly float m_MaxFuelCapacity = 50f;
-        private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan95;
-        private readonly int m_NumberOfWheels = 4;
-        private readonly float m_MaxAirPresure = 30f;
+        private readonly float m_MaxFuelCapacity = 110f;
+        private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Soler;
+        private readonly int m_NumberOfWheels = 16;
+        private readonly float m_MaxAirPresure = 26f;
         private bool m_IsLoadWithDangerousMaterials = false;
         private float m_AmountOfLoad = 0f;
 
@@ -33,12 +33,12 @@ namespace Project1
             string vehicleInformation = string.Empty;
             vehicleInformation = string.Format(
                 "Model : {0}\n" +
-                "License Number : {1}\n" +
-                "Tank Fuel left : {2}\n" +
+                "License number : {1}\n" +
+                "Tank fuel left : {2}\n" +
                 "Wheels :\n" +
                 "Load with dangerous cargo ? {3}\n" +
                 "Cargo capacity  : {4}\n" +
-                "{5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_MotorcycleFuelStatus.ToString());
+                "{5}", m_Model, m_LicenseNumber, m_Energy, ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, m_TruckFuelStatus.ToString());
             return vehicleInformation;
         }
 
@@ -46,13 +46,28 @@ namespace Project1
         {
             Dictionary<string, string> listOfProperties = new Dictionary<string, string>();
             listOfProperties.Add("1", "Name");
-            listOfProperties.Add("2", "Phone Number");
+            listOfProperties.Add("2", "Phone number");
             listOfProperties.Add("3", "Model");
-            listOfProperties.Add("4", "Licence Number");
-            listOfProperties.Add("5", "Tank Fuel left");
-            listOfProperties.Add("6", "Type of Licence:\n" + GetAllTypeOfLicense());
-            listOfProperties.Add("7", "Engine Capacity");
+            listOfProperties.Add("4", "Licence number");
+            listOfProperties.Add("5", "Tank fuel left");
+            listOfProperties.Add("6", "Is cargo load with dangerous matirials ? (Yes/No):\n");
+            listOfProperties.Add("7", "Cargo capacity");
             return listOfProperties;
+        }
+
+        public string ChageLoadWithDangerousMaterialsToString()
+        {
+            string yesOrNo = string.Empty;
+            if (m_IsLoadWithDangerousMaterials == true)
+            {
+                yesOrNo = "Yes";
+            }
+            else
+            {
+                yesOrNo = "No";
+            }
+
+            return yesOrNo;
         }
     }
 }

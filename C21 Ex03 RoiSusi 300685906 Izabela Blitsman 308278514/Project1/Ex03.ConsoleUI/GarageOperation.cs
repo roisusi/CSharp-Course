@@ -78,7 +78,6 @@ namespace Ex03.ConsoleUI
                     default:
                         {
                             System.Console.WriteLine("Please Select 1-7 or Q to Exit");
-                            loopForVehileSelection = false;
                             break;
                         }
 

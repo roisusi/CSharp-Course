@@ -49,6 +49,7 @@
     <Compile Include="Truck.cs" />
     <Compile Include="TypeOfFuel.cs" />
     <Compile Include="TypeOfLicense.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Wheels.cs" />
   </ItemGroup>
