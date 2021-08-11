@@ -117,6 +117,22 @@ namespace Project1 {
             return succesfullyChangeStatus;
         }
 
+        public bool InflateWheel(string i_Licence)
+        {
+            bool succesfullyChangeStatus = false;
+
+            foreach (GarageVehicleInformation info in m_CurrentVehicelIn)
+            {
+                if (info.Vehicle.Licence.Equals(i_Licence))
+                {
+                    info.Vehicle.SetWheels();
+                    succesfullyChangeStatus = true;
+                }
+            }
+
+            return succesfullyChangeStatus;
+        }
+
         public Dictionary<string, GarageStatus> ListOfCarsByLicence()
         {
             Dictionary<string, GarageStatus> listOfLicence = new Dictionary<string, GarageStatus>();

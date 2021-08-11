@@ -218,6 +218,23 @@ namespace Ex03.ConsoleUI
 
         public static void InflateWheel()
         {
+            string getLicenceFromUser = string.Empty;
+
+            System.Console.WriteLine("Please enter number of licence");
+            getLicenceFromUser = System.Console.ReadLine();
+
+            bool changeSuccessfully = garageOperation.InflateWheel(getLicenceFromUser);
+
+            if (changeSuccessfully == true)
+            {
+                System.Console.WriteLine("Air Filled");
+                System.Console.ReadLine();
+            }
+            else
+            {
+                System.Console.WriteLine("Cant find vehicle with that licence");
+                System.Console.ReadLine();
+            }
 
         }
 
