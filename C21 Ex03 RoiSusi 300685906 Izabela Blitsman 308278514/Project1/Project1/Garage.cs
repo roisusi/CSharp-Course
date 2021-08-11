@@ -9,12 +9,27 @@ namespace Project1 {
         private CreateVehicles createVehicles = new CreateVehicles();
         private List<GarageVehicleInformation> m_CurrentVehicelIn = new List<GarageVehicleInformation>();
 
-        public void AddVehicleToGarrage(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
+        public bool AddVehicleToGarrage(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
         {
+            bool vehicleExsists = false;
             GarageVehicleInformation i_AddInformation = new GarageVehicleInformation(i_Vehicle, i_OwnerName, i_OwnerPhone);
 
+            foreach(GarageVehicleInformation vehicles in m_CurrentVehicelIn)
+            {
+                if (i_Vehicle.Licence.Equals(vehicles.Vehicle.Licence))
+                {
+                    vehicleExsists = true;
+                    vehicles.GarageStatus = GarageStatus.InRepair;
+                }
+            }
 
-            m_CurrentVehicelIn.Add(i_AddInformation);
+            if (vehicleExsists == false)
+            {
+                m_CurrentVehicelIn.Add(i_AddInformation);
+            }
+
+            return vehicleExsists;
+
         }
 
         public string PrintCarByLicense(string i_Licence)
@@ -36,9 +51,9 @@ namespace Project1 {
 
         }
 
-        public void AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garage)
+        public bool AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garage)
         {
-            createVehicles.AddVehicle(typeOfVehicle, valuesEnterByTheUser, garage);
+            return createVehicles.AddVehicle(typeOfVehicle, valuesEnterByTheUser, garage);
         }
 
         public Dictionary<int,string> ListOfAllVehicles()

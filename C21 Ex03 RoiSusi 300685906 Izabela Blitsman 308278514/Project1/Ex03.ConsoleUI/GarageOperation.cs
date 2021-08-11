@@ -130,9 +130,16 @@ namespace Ex03.ConsoleUI
                 valuesEnterByTheUser.Add(getInputFromUser);
             }
 
-            //Add Exceptions
-            garageOperation.AddVehicle(carType, valuesEnterByTheUser, garageOperation);
-            System.Console.WriteLine("Car has add seccessfully press enter to return to menu");
+            //Add Exceptions ??
+
+            if (garageOperation.AddVehicle(carType, valuesEnterByTheUser, garageOperation) == false)
+            {
+                System.Console.WriteLine("Vehicle has add seccessfully press enter to return to menu");
+            }
+            else
+            {
+                System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
+            }
             System.Console.ReadLine();
 
         }

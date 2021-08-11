@@ -55,9 +55,10 @@ namespace Project1
             return listOfValues;
         }
 
-        public void AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garageOperation)
+        public bool AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garageOperation)
         {
             //Add here any new Class to Create it
+            bool addedSuccessfully = false;
             switch (typeOfVehicle)
             {
                 case "ElectricCar":
@@ -76,7 +77,7 @@ namespace Project1
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
 
                         Vehicle electricCar = new ElectricCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
-                        garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
+                        addedSuccessfully = garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
                         break;
                     }
                 case "FuelCar":
@@ -95,7 +96,7 @@ namespace Project1
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
 
                         Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
-                        garageOperation.AddVehicleToGarrage(fuelCar, firstName, phone);
+                        addedSuccessfully = garageOperation.AddVehicleToGarrage(fuelCar, firstName, phone);
                         break;
                     }
 
@@ -116,7 +117,7 @@ namespace Project1
                         int engineCapacityToInt = int.Parse(engineCapacity);
 
                         Vehicle fuelMotorcycle = new FuelMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
-                        garageOperation.AddVehicleToGarrage(fuelMotorcycle, firstName, phone);
+                        addedSuccessfully = garageOperation.AddVehicleToGarrage(fuelMotorcycle, firstName, phone);
                         break;
                     }
 
@@ -137,7 +138,7 @@ namespace Project1
                         int engineCapacityToInt = int.Parse(engineCapacity);
 
                         Vehicle electricCar = new ElectricMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
-                        garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
+                        addedSuccessfully = garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
                         break;
                     }
 
@@ -172,12 +173,12 @@ namespace Project1
                         float amountOfloadToFloat = float.Parse(engineCapacity);
 
                         Vehicle truck = new Truck(model, licence, energyOrFuelToFloat, dengerousLoad, amountOfloadToFloat);
-                        garageOperation.AddVehicleToGarrage(truck, firstName, phone);
+                        addedSuccessfully = garageOperation.AddVehicleToGarrage(truck, firstName, phone);
                         break;
                     }
             }
 
-
+            return addedSuccessfully;
         }
 
         public Dictionary<int, string> ListOfAllVehicles()
