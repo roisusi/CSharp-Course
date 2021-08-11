@@ -174,19 +174,7 @@ namespace Project1 {
             return types;
         }
 
-        private int ParseNumberOfDoorsToInt(string i_NumberOfDoors)
-        {
-            int numberOfDoors = 0;
-
-            if (!int.TryParse(i_NumberOfDoors, out numberOfDoors))
-            {
-                throw new FormatException("Error in adding vehicle - charging or fuel should be float value");
-            }
-
-            return numberOfDoors;
-        }
-
-        private void TryParseStringToFloat(string i_StringUserInput)
+        public void TryParseStringToFloat(string i_StringUserInput)
         {
             float floatUserInput = 0f;
 
@@ -196,7 +184,7 @@ namespace Project1 {
             }
         }
 
-        private void TryParseStringToInt(string i_StringUserInput)
+        public void TryParseStringToInt(string i_StringUserInput)
         {
             int intUserInput = 0;
 

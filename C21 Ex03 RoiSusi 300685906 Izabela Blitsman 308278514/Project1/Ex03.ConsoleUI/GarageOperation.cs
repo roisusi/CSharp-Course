@@ -46,7 +46,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "2":
                         {
-                            ListOfVehiclesInThegarage();
+                            ListOfVehiclesInTheGarage();
                             break;
                         }
                     case "3":
@@ -116,7 +116,7 @@ namespace Ex03.ConsoleUI
 
                 foreach (int str in listOfVehicles.Keys)
                 {
-                    int.TryParse(getInputFromUser, out correntInput);
+                    correntInput = int.Parse(getInputFromUser);
                     if (str.Equals(correntInput))
                     {
                         listOfVehicles.TryGetValue(str, out carType);
@@ -150,16 +150,18 @@ namespace Ex03.ConsoleUI
 
         }
 
-        public static void ListOfVehiclesInThegarage()
+        public static void ListOfVehiclesInTheGarage()
         {
             Dictionary<string, GarageStatus> listOfLiceneceAndGarageStatus = new Dictionary<string, GarageStatus>();
             string readFromUserYesOrNo = string.Empty;
             string readFromUserGarageStatus = string.Empty;
             string listFromTheDictionary = string.Empty;
+
             System.Console.WriteLine("Would you like to see the list by the status in the garrage ?\n" +
                                      "1. Yes\n" +
                                      "2. No");
             readFromUserYesOrNo = System.Console.ReadLine();
+
             if (readFromUserYesOrNo.ToLower().Equals("yes") || readFromUserYesOrNo.Equals("1"))
             {
                 System.Console.WriteLine("Please type what status you want from the list: \n");
@@ -168,6 +170,7 @@ namespace Ex03.ConsoleUI
             }
 
             listOfLiceneceAndGarageStatus = garageOperation.ListOfCarsByLicence();
+
             foreach (string licence in listOfLiceneceAndGarageStatus.Keys)
             {
                 if (readFromUserYesOrNo.ToLower().Equals("yes") || readFromUserYesOrNo.Equals("1"))
@@ -236,7 +239,6 @@ namespace Ex03.ConsoleUI
                 System.Console.WriteLine("Cant find vehicle with that licence");
                 System.Console.ReadLine();
             }
-
         }
 
         public static void RefuelACar()
