@@ -6,7 +6,7 @@ namespace Project1
 {
     public interface ICharge
     {
-        void Charging(float i_TimeInMinutes);
+        void Recharging(float i_TimeInMinutes);
     }
 
 

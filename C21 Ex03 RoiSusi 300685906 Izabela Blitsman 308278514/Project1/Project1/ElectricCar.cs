@@ -5,7 +5,7 @@ using System.Text;
 namespace Project1
 {
     
-    public class ElectricCar : Vehicle
+    public class ElectricCar : Vehicle, ICharge
     {
         Battery m_CarEnergyStatus = null;
         private readonly int m_NumberOfWheels = 4;
@@ -95,5 +95,9 @@ namespace Project1
             return colors;
         }
 
+        public void Recharging(float i_TimeInMinutes)
+        {
+            m_Energy = m_CarEnergyStatus.Recharging(i_TimeInMinutes);
+        }
     }
 }

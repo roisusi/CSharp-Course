@@ -5,7 +5,7 @@ using Project1;
 
 namespace Project1
 {
-    public class Truck : Vehicle
+    public class Truck : Vehicle, IFuel
     {
         private Fuel m_TruckFuelStatus = null;
         private readonly float m_MaxFuelCapacity = 110f;
@@ -27,6 +27,17 @@ namespace Project1
             this.m_AmountOfLoad = i_AmountOfLoad;
         }
 
+        public bool LoadWithDangerousMaterials
+        {
+            get { return this.m_IsLoadWithDangerousMaterials; }
+            set { this.m_IsLoadWithDangerousMaterials = value; }
+        }
+
+        public float AmountOfLoad
+        {
+            get { return this.m_AmountOfLoad; }
+            set { this.m_AmountOfLoad = value; }
+        }
 
         public override string ToString()
         {
@@ -68,6 +79,11 @@ namespace Project1
             }
 
             return yesOrNo;
+        }
+
+        public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
+        {
+            m_Energy = m_TruckFuelStatus.Refuel(i_TypeOfFuel, i_Amount);
         }
     }
 }

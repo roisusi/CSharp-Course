@@ -37,6 +37,17 @@ namespace Project1
             return canCharge;
         }
 
+        public float Recharging(float i_TimeToCharge)
+        {
+
+            if (m_CurrentBattary + i_TimeToCharge <= i_TimeToCharge)
+            {
+                CurrentBattary = m_CurrentBattary + i_TimeToCharge;
+            }
+
+            return CurrentBattary;
+        }
+
         public override string ToString()
         {
             string fuelInformation = string.Format("Current Car Battary : {0}\n" +
