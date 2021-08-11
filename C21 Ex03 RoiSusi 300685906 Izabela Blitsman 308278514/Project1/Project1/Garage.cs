@@ -60,6 +60,32 @@ namespace Project1 {
             return isRefuelSuccessfully;
         }
 
+        public bool Recharge(string i_licence, float i_TimeToChargeInMin)
+        {
+            bool isChargeSuccessfully = false;
+
+            foreach (GarageVehicleInformation vehicles in m_CurrentVehicelIn)
+            {
+                //Check is a fuel vehicle
+                if (i_licence.Equals(vehicles.Vehicle.Licence))
+                {
+                    if (vehicles.Vehicle is ICharge)
+                    {
+                        ICharge chargeVehicle = (ICharge)vehicles.Vehicle;
+                        chargeVehicle.Recharging(i_TimeToChargeInMin);
+                        isChargeSuccessfully = true;
+                    }
+                    else
+                    {
+                        isChargeSuccessfully = false;
+                    }
+                    break;
+                }
+            }
+
+            return isChargeSuccessfully;
+        }
+
         public string PrintCarByLicense(string i_Licence)
         {
             string printInformaiton = string.Empty;
