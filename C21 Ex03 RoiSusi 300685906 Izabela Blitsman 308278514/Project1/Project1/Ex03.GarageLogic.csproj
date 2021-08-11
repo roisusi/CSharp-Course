@@ -46,6 +46,7 @@
     <Compile Include="CreateVehicles.cs" />
     <Compile Include="ICharge.cs" />
     <Compile Include="IFuel.cs" />
+    <Compile Include="Motorcycler.cs" />
     <Compile Include="PaintColor.cs" />
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />

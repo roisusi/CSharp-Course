@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using Project1;
 
-public class FuelMotorcycle : Vehicle , IFuel
+public class FuelMotorcycle : Motorcycler , IFuel
 {
     private Fuel m_MotorcycleFuelStatus = null;
     private readonly float m_MaxFuelCapacity = 5.5f;
     private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan98;
     private readonly int m_NumberOfWheels = 2;
     private readonly float m_MaxAirPresure = 28f;
-    private TypeOfLicense m_TypeOfLicense = 0;
-    private int m_EngineCapacity = 0;
 
     public FuelMotorcycle()
     {
@@ -19,13 +17,10 @@ public class FuelMotorcycle : Vehicle , IFuel
     }
 
     public FuelMotorcycle(string i_Moudle, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
-        base(i_Moudle, i_NumberLicense, i_Fuel)
+        base(i_TypeOfLicense, i_EngineCapacity)
     {
         m_MotorcycleFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
-        this.m_TypeOfLicense = i_TypeOfLicense;
-        this.m_EngineCapacity = i_EngineCapacity;
         m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
-
     }
 
     public override void SetWheels()
@@ -34,18 +29,6 @@ public class FuelMotorcycle : Vehicle , IFuel
         {
             wheels.AirPressure = m_MaxAirPresure;
         }
-    }
-
-    public int EngineCapacity
-    {
-        get { return this.m_EngineCapacity; }
-        set { this.m_EngineCapacity = value; }
-    }
-
-    public TypeOfLicense TypeOfLicense
-    {
-        get { return this.m_TypeOfLicense; }
-        set { this.m_TypeOfLicense = value; }
     }
 
     public Fuel MotorcycleFuelStatus
@@ -88,18 +71,6 @@ public class FuelMotorcycle : Vehicle , IFuel
         listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
         listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
         return listOfProperties;
-    }
-
-    public string GetAllTypeOfLicense()
-    {
-        int count = 1;
-        string colors = string.Empty;
-        foreach (TypeOfLicense typeOfLicense in Enum.GetValues(typeof(TypeOfLicense)))
-        {
-            colors += string.Format("{0}. {1}\n", count, typeOfLicense);
-            count++;
-        }
-        return colors;
     }
 
     public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
