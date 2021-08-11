@@ -71,13 +71,19 @@ namespace Project1
                         //Catch here Exception
                         PaintColor paintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
                         string numberOfDoors = valuesEnterByTheUser[6];
+                        string airPresure = valuesEnterByTheUser[7];
+                        string manufactue = valuesEnterByTheUser[8];
 
                         //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
+                        float airPresureToFloat = float.Parse(airPresure);
+
 
                         Vehicle electricCar = new ElectricCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
+                        ((ElectricCar)electricCar).InsertWheelInformation(manufactue, airPresureToFloat);
+
                         break;
                     }
                 case "FuelCar":
@@ -90,13 +96,17 @@ namespace Project1
                         //Catch here Exception
                         PaintColor paintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
                         string numberOfDoors = valuesEnterByTheUser[6];
+                        string airPresure = valuesEnterByTheUser[7];
+                        string manufactue = valuesEnterByTheUser[8];
 
                         //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
+                        float airPresureToFloat = float.Parse(airPresure);
 
-                        Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat,"" ,paintColor, numberOfDoorsToInt);
+                        Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(fuelCar, firstName, phone);
+                        ((FuelCar)fuelCar).InsertWheelInformation(manufactue, airPresureToFloat);
                         break;
                     }
 
@@ -111,13 +121,18 @@ namespace Project1
                         //Catch here Exception
                         TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
                         string engineCapacity = valuesEnterByTheUser[6];
+                        string airPresure = valuesEnterByTheUser[7];
+                        string manufactue = valuesEnterByTheUser[8];
 
                         //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int engineCapacityToInt = int.Parse(engineCapacity);
+                        float airPresureToFloat = float.Parse(airPresure);
 
                         Vehicle fuelMotorcycle = new FuelMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(fuelMotorcycle, firstName, phone);
+                        ((FuelMotorcycle)fuelMotorcycle).InsertWheelInformation(manufactue, airPresureToFloat);
+
                         break;
                     }
 
@@ -132,13 +147,18 @@ namespace Project1
                         //Catch here Exception
                         TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
                         string engineCapacity = valuesEnterByTheUser[6];
+                        string airPresure = valuesEnterByTheUser[7];
+                        string manufactue = valuesEnterByTheUser[8];
 
                         //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int engineCapacityToInt = int.Parse(engineCapacity);
+                        float airPresureToFloat = float.Parse(airPresure);
 
                         Vehicle electricCar = new ElectricMotorcycle(model, licence, energyOrFuelToFloat, typeOfLicense, engineCapacityToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
+                        ((ElectricMotorcycle)electricCar).InsertWheelInformation(manufactue, airPresureToFloat);
+
                         break;
                     }
 
@@ -167,13 +187,19 @@ namespace Project1
                             //Todo here
                         }
                         string engineCapacity = valuesEnterByTheUser[6];
+                        string airPresure = valuesEnterByTheUser[7];
+                        string manufactue = valuesEnterByTheUser[8];
 
                         //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         float amountOfloadToFloat = float.Parse(engineCapacity);
+                        float airPresureToFloat = float.Parse(airPresure);
+
 
                         Vehicle truck = new Truck(model, licence, energyOrFuelToFloat, dengerousLoad, amountOfloadToFloat);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(truck, firstName, phone);
+                        ((Truck)truck).InsertWheelInformation(manufactue, airPresureToFloat);
+
                         break;
                     }
             }

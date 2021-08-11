@@ -45,7 +45,7 @@ namespace Project1 {
                 {
                     if (vehicles.Vehicle is IFuel)
                     { 
-                    IFuel fuelACar = (IFuel)vehicles.Vehicle;
+                        IFuel fuelACar = (IFuel)vehicles.Vehicle;
                         fuelACar.Refuel(typeOfFuel, amount);
                         isRefuelSuccessfully = true;
                     }

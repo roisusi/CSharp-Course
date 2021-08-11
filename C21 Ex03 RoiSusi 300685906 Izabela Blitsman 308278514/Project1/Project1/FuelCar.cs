@@ -10,7 +10,6 @@ public class FuelCar : Vehicle , IFuel
     private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan95;
     private readonly int m_NumberOfWheels = 4;
     private readonly float m_MaxAirPresure = 30f;
-    private string m_NameOfWhellManufacture = string.Empty;
     private PaintColor m_PaintColor = 0;
     private int m_NumberOfDoors = 0;
 
@@ -18,13 +17,12 @@ public class FuelCar : Vehicle , IFuel
     {
         // for Generic
     }
-    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, string i_NameOfWhellManufacture, PaintColor i_PaintColor, int i_NumberOfDoors) :
+    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
         base(i_Moudle, i_NumberLicense, i_Fuel)
     {
         m_CarFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
         this.m_PaintColor = i_PaintColor;
         this.m_NumberOfDoors = i_NumberOfDoors;
-        this.m_NameOfWhellManufacture = i_NameOfWhellManufacture;
         m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
     }
 
@@ -53,18 +51,18 @@ public class FuelCar : Vehicle , IFuel
             "Model : {0}\n" +
             "License number : {1}\n" +
             "Tank fuel left : {2}\n" +
-            "Wheels {3}:\n" +
+            "Wheels : \n{3}" +
             "Color : {4}\n" +
             "Number of doors : {5}\n" +
-            "Type Of Fuel : {6}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor, m_NameOfWhellManufacture, m_NumberOfDoors , m_TypeOfFuel);
+            "Type Of Fuel : {6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), m_PaintColor, m_NumberOfDoors , m_TypeOfFuel);
         return vehicleInformation;
     }
 
-    public void InsertWheelInformation()
+    public void InsertWheelInformation(string i_NameOfWhellManufacture , float i_CurrentPresure)
     {
         for (int i=0 ; i < m_NumberOfWheels ; i++)
         {
-            m_WheelsCollection.Add(new Wheels(m_NameOfWhellManufacture, m_MaxAirPresure, m_MaxAirPresure));
+            m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
         }
     }
 
@@ -78,7 +76,9 @@ public class FuelCar : Vehicle , IFuel
         listOfProperties.Add("5", "Tank fuel left");
         listOfProperties.Add("6", "Choose color:\n" + GetAllPaintColor());
         listOfProperties.Add("7", "How many doors you have:\n" + GetAllDoors());
-        listOfProperties.Add("8", "Enter you current air presure of your wheels:\n" + GetAllDoors());
+        listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
+        listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
+
         return listOfProperties;
     }
 

@@ -18,6 +18,7 @@ namespace Project1
         {
             //for Generics
         }
+
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
                 base(i_Model, i_NumberLicense, i_Energy)
         {
@@ -50,11 +51,18 @@ namespace Project1
                 "Model : {0}\n" +
                 "License number : {1}\n" +
                 "Energy level : {2}\n" +
-                "Wheels :\n" +
-                "Color : {3}\n" +
-                "Number of doors : {4}\n" +
-                "{5}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor,m_NumberOfDoors, m_MaxCharghingTime.ToString());
+                "Wheels : {3}\n" +
+                "Color : {4}\n" +
+                "Number of doors : {5}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels() ,m_PaintColor,m_NumberOfDoors);
             return vehicleInformation;
+        }
+
+        public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
+        {
+            for (int i = 0; i < m_NumberOfWheels; i++)
+            {
+                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+            }
         }
 
         public override Dictionary<string, string> GetExpectation()
@@ -67,6 +75,8 @@ namespace Project1
             listOfProperties.Add("5", "Battery left");
             listOfProperties.Add("6", "Choose color:\n" + GetAllPaintColor());
             listOfProperties.Add("7", "How many doors you have:\n" + GetAllDoors());
+            listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
+            listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
 
             return listOfProperties;
         }
