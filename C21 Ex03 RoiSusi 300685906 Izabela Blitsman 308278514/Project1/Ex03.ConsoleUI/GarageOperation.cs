@@ -8,11 +8,8 @@ namespace Ex03.ConsoleUI
     public class GarageOperation
     {
 
-        //private static OperationsVehicles garage = new OperationsVehicles();
         private static Garage garageOperation = new Garage();
         private static Dictionary<int, string> listOfVehicles = garageOperation.ListOfAllVehicles();
-
-
 
         public static void InvokeGarage()
         {
@@ -101,7 +98,6 @@ namespace Ex03.ConsoleUI
             string informationOfVehicles = string.Empty;
             string carType = string.Empty;
             int correntInput = 0;
-            int counter = 1;
             System.Console.WriteLine("Please choose the vehicle you want to enter the garage:");
             foreach (int str in listOfVehicles.Keys)
             {
@@ -135,7 +131,8 @@ namespace Ex03.ConsoleUI
                 valuesEnterByTheUser.Add(getInputFromUser);
             }
 
-            garageOperation.AddVehicle(carType, valuesEnterByTheUser);
+            //Add Exceptions
+            garageOperation.AddVehicle(carType, valuesEnterByTheUser, garageOperation);
             System.Console.WriteLine("Car has add seccessfully press enter to return to menu");
             System.Console.ReadLine();
 
@@ -154,6 +151,8 @@ namespace Ex03.ConsoleUI
                 if (getInfo.Equals(string.Empty))
                 {
                     System.Console.WriteLine("Not Found");
+                    System.Console.WriteLine("Press enter to return to menu");
+                    System.Console.ReadLine();
                 }
                 else
                 {

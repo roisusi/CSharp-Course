@@ -30,11 +30,11 @@ namespace Project1
             string vehicleInformation = string.Empty;
             vehicleInformation = string.Format(
                 "Model : {0}\n" +
-                "License Number : {1}\n" +
-                "Battary Left : {2}\n" +
+                "License number : {1}\n" +
+                "Battary left : {2}\n" +
                 "Wheels :\n" +
-                "Type of Licence : {3}\n" +
-                "Engine Capacity  : {4}\n" +
+                "Type of licence : {3}\n" +
+                "Engine capacity  : {4}\n" +
                 "{5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_MotorcycleEnergyStatus.ToString());
             return vehicleInformation;
         }

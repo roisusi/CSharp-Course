@@ -30,11 +30,11 @@ public class FuelMotorcycle : Vehicle
         string vehicleInformation = string.Empty;
         vehicleInformation = string.Format(
             "Model : {0}\n" +
-            "License Number : {1}\n" +
-            "Tank Fuel left : {2}\n" +
+            "License number : {1}\n" +
+            "Tank fuel left : {2}\n" +
             "Wheels :\n" +
-            "Type of Licence : {3}\n" +
-            "Engine Capacity  : {4}\n" +
+            "Type of licence : {3}\n" +
+            "Engine capacity  : {4}\n" +
             "{5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_MotorcycleFuelStatus.ToString());
         return vehicleInformation;
     }
@@ -44,12 +44,12 @@ public class FuelMotorcycle : Vehicle
     {
         Dictionary<string, string> listOfProperties = new Dictionary<string, string>();
         listOfProperties.Add("1", "Name");
-        listOfProperties.Add("2", "Phone Number");
+        listOfProperties.Add("2", "Phone number");
         listOfProperties.Add("3", "Model");
-        listOfProperties.Add("4", "Licence Number");
-        listOfProperties.Add("5", "Tank Fuel left");
-        listOfProperties.Add("6", "Type of Licence:\n" + GetAllTypeOfLicense());
-        listOfProperties.Add("7", "Engine Capacity");
+        listOfProperties.Add("4", "Licence number");
+        listOfProperties.Add("5", "Tank fuel left");
+        listOfProperties.Add("6", "Type of licence:\n" + GetAllTypeOfLicense());
+        listOfProperties.Add("7", "Engine capacity");
         return listOfProperties;
     }
 

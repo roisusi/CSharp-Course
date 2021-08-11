@@ -48,8 +48,8 @@ namespace Project1
             string vehicleInformation = string.Empty;
             vehicleInformation = string.Format(
                 "Model : {0}\n" +
-                "License Number : {1}\n" +
-                "Energy Level : {2}\n" +
+                "License number : {1}\n" +
+                "Energy level : {2}\n" +
                 "Wheels :\n" +
                 "Color : {3}\n" +
                 "Number of doors : {4}\n" +
@@ -61,14 +61,38 @@ namespace Project1
         {
             Dictionary<string, string> listOfProperties = new Dictionary<string, string>();
             listOfProperties.Add("1", "Name");
-            listOfProperties.Add("2", "Phone Number");
-            listOfProperties.Add("3", "Car Model");
-            listOfProperties.Add("4", "Licence Number");
+            listOfProperties.Add("2", "Phone number");
+            listOfProperties.Add("3", "Car model");
+            listOfProperties.Add("4", "Licence number");
             listOfProperties.Add("5", "Battery left");
-            listOfProperties.Add("6", "Color");
-            listOfProperties.Add("7", "Number Of Doors");
+            listOfProperties.Add("6", "Choose color:\n" + GetAllPaintColor());
+            listOfProperties.Add("7", "How many doors you have:\n" + GetAllDoors());
 
             return listOfProperties;
+        }
+
+        public string GetAllPaintColor()
+        {
+            int count = 1;
+            string colors = string.Empty;
+            foreach (PaintColor paintColor in Enum.GetValues(typeof(PaintColor)))
+            {
+                colors += string.Format("{0}. {1}\n", count, paintColor);
+                count++;
+            }
+            return colors;
+        }
+
+        public string GetAllDoors()
+        {
+            int count = 1;
+            string colors = string.Empty;
+            for (int i = 2; i < 6; i++)
+            {
+                colors += string.Format("{0}. {1} Doors\n", count, i);
+                count++;
+            }
+            return colors;
         }
 
     }

@@ -48,8 +48,8 @@ public class FuelCar : Vehicle
         string vehicleInformation = string.Empty;
         vehicleInformation = string.Format(
             "Model : {0}\n" +
-            "License Number : {1}\n" +
-            "Tank Fuel left : {2}\n" +
+            "License number : {1}\n" +
+            "Tank fuel left : {2}\n" +
             "Wheels :\n" +
             "Color : {3}\n" +
             "Number of doors : {4}\n" +
@@ -61,11 +61,11 @@ public class FuelCar : Vehicle
     {
         Dictionary<string, string> listOfProperties = new Dictionary<string, string>();
         listOfProperties.Add("1", "Name");
-        listOfProperties.Add("2", "Phone Number");
+        listOfProperties.Add("2", "Phone number");
         listOfProperties.Add("3", "Model");
-        listOfProperties.Add("4", "Licence Number");
-        listOfProperties.Add("5", "Tank Fuel left");
-        listOfProperties.Add("6", "Choose Color:\n" + GetAllPaintColor());
+        listOfProperties.Add("4", "Licence number");
+        listOfProperties.Add("5", "Tank fuel left");
+        listOfProperties.Add("6", "Choose color:\n" + GetAllPaintColor());
         listOfProperties.Add("7", "How many doors you have:\n" + GetAllDoors());
         return listOfProperties;
     }
@@ -86,7 +86,7 @@ public class FuelCar : Vehicle
     {
         int count = 1;
         string colors = string.Empty;
-        for (int i = 2; i < 5 ; i++) 
+        for (int i = 2; i < 6 ; i++) 
         {
             colors += string.Format("{0}. {1} Doors\n", count, i);
             count++;
