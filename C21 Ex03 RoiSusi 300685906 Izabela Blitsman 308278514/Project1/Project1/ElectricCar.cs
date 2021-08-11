@@ -7,7 +7,7 @@ namespace Project1
     
     public class ElectricCar : Vehicle
     {
-        //Todo Charging
+        Battery m_CarEnergyStatus = null;
         private readonly int m_NumberOfWheels = 4;
         private readonly float m_MaxCharghingTime = 2.8f;
         private readonly float m_MaxAirPresure = 30f;
@@ -21,6 +21,7 @@ namespace Project1
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
                 base(i_Model, i_NumberLicense, i_Energy)
         {
+            m_CarEnergyStatus = new Battery(i_Energy, m_MaxCharghingTime);
             this.m_PaintColor = i_PaintColor;
             this.m_NumberOfDoors = i_NumberOfDoors;
         }
@@ -45,13 +46,14 @@ namespace Project1
         public override string ToString()
         {
             string vehicleInformation = string.Empty;
-            vehicleInformation = string.Format("Vehicle details:\n" +
+            vehicleInformation = string.Format(
                 "Model : {0}\n" +
                 "License Number : {1}\n" +
                 "Energy Level : {2}\n" +
                 "Wheels :\n" +
                 "Color : {3}\n" +
-                "Number of doors : {4}\n", m_Model, m_LicenseNumber, m_Energy, m_PaintColor,m_NumberOfDoors);
+                "Number of doors : {4}\n" +
+                "{5}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor,m_NumberOfDoors, m_MaxCharghingTime.ToString());
             return vehicleInformation;
         }
 

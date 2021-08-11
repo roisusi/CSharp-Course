@@ -47,7 +47,6 @@
                 "{2}" +
                 "Status : {3}\n", m_OwnerName, m_OwnerPhone, m_Vehicle.ToString(), m_GarageStatus);
 
-            
             return CustomerDetailsInGarrage;
         }
     }

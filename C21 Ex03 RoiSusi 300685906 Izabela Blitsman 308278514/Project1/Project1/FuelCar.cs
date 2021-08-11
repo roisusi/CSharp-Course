@@ -46,7 +46,7 @@ public class FuelCar : Vehicle
     public override string ToString()
     {
         string vehicleInformation = string.Empty;
-        vehicleInformation = string.Format("Vehicle details:\n" +
+        vehicleInformation = string.Format(
             "Model : {0}\n" +
             "License Number : {1}\n" +
             "Tank Fuel left : {2}\n" +
