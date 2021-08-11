@@ -35,6 +35,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Battery.cs" />
     <Compile Include="ElectricCar.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
     <Compile Include="Fuel.cs" />
@@ -45,7 +46,7 @@
     <Compile Include="PaintColor.cs" />
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />
-    <Compile Include="Trunk.cs" />
+    <Compile Include="Truck.cs" />
     <Compile Include="TypeOfFuel.cs" />
     <Compile Include="TypeOfLicense.cs" />
     <Compile Include="Vehicle.cs" />

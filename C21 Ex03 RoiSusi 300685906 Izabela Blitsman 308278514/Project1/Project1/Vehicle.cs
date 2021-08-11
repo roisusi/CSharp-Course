@@ -11,6 +11,11 @@ namespace Project1 {
         protected float m_Energy = 0;
         protected List<Wheels> m_WheelsCollection = null;
 
+        public Vehicle()
+        {
+            // For Generics
+        }
+
         public Vehicle(string i_Moudle, string i_LicenseNumber, float i_Energy)
         {
             this.m_Model = i_Moudle;
@@ -47,14 +52,8 @@ namespace Project1 {
 
         }
 
+        public abstract Dictionary<string,string> GetExpectation();
 
-        public void printWheells<T>(List<T> i_List)
-        {
-            foreach (T items in i_List)
-            {
-                System.Console.WriteLine(i_List.ToString());
-            }
-        }
 
     }   
 }
