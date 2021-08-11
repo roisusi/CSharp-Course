@@ -24,18 +24,6 @@ namespace Project1
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
         }
 
-        public int NumberOfDoors
-        {
-            get { return this.m_NumberOfDoors; }
-            set { this.m_NumberOfDoors = value; }
-        }
-
-        public PaintColor PaintColor
-        {
-            get { return this.m_PaintColor; }
-            set { this.m_PaintColor = value; }
-        }
-
         public int NumberOfWheels
         {
             get { return this.m_NumberOfWheels; }

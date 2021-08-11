@@ -206,7 +206,7 @@ namespace Project1
             int i = 1;
             foreach (Type type in typeof(Vehicle).Assembly.GetTypes())
             {
-                if (type.IsSubclassOf(typeof(Vehicle)))
+                if (type.IsSubclassOf(typeof(Car)) || type.IsSubclassOf(typeof(Motorcycler)) || type == (typeof(Truck)))
                 {
                     m_ListOfAllVehicles.Add(i, type.Name);
                     i++;
