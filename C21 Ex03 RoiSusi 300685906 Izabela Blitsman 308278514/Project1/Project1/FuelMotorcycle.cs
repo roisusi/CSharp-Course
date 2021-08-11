@@ -17,6 +17,7 @@ public class FuelMotorcycle : Vehicle , IFuel
     {
         //for Generics
     }
+
     public FuelMotorcycle(string i_Moudle, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
         base(i_Moudle, i_NumberLicense, i_Fuel)
     {
@@ -50,13 +51,20 @@ public class FuelMotorcycle : Vehicle , IFuel
             "Model : {0}\n" +
             "License number : {1}\n" +
             "Tank fuel left : {2}\n" +
-            "Wheels :\n" +
-            "Type of licence : {3}\n" +
-            "Engine capacity  : {4}\n" +
-            "Type Of Fuel : {5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_TypeOfFuel);
+            "Wheels : \n{3}" +
+            "Type of licence : {4}\n" +
+            "Engine capacity  : {5}\n" +
+            "Type Of Fuel : {6}", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), m_TypeOfLicense, m_EngineCapacity, m_TypeOfFuel);
         return vehicleInformation;
     }
 
+    public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
+    {
+        for (int i = 0; i < m_NumberOfWheels; i++)
+        {
+            m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+        }
+    }
 
     public override Dictionary<string, string> GetExpectation()
     {
@@ -68,6 +76,8 @@ public class FuelMotorcycle : Vehicle , IFuel
         listOfProperties.Add("5", "Tank fuel left");
         listOfProperties.Add("6", "Type of licence:\n" + GetAllTypeOfLicense());
         listOfProperties.Add("7", "Engine capacity");
+        listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
+        listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
         return listOfProperties;
     }
 

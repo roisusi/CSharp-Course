@@ -8,7 +8,4 @@ namespace Project1
     {
         void Charging(float i_TimeInMinutes);
     }
-
-
-
 }

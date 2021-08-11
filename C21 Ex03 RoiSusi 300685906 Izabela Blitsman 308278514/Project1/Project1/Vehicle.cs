@@ -45,13 +45,22 @@ namespace Project1 {
         }
 
         public abstract override string ToString();
- 
-        public void AddWheels()
-        {
 
+        public abstract Dictionary<string, string> GetExpectation();
+
+        protected string PrintWheels()
+        {
+            string wheels = string.Empty;
+            int counter = 1;
+            foreach (Wheels wheel in m_WheelsCollection)
+            {
+                wheels += string.Format("{0}. {1}", counter, wheel.ToString());
+                counter++;
+            }
+
+            return wheels;
         }
 
-        public abstract Dictionary<string,string> GetExpectation();
 
     }   
 }

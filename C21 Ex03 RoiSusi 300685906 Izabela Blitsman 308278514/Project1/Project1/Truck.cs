@@ -19,6 +19,7 @@ namespace Project1
         {
             //for Generics
         }
+
         public Truck(string i_Moudle, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
             base(i_Moudle, i_NumberLicense, i_Fuel)
         {
@@ -27,7 +28,6 @@ namespace Project1
             this.m_AmountOfLoad = i_AmountOfLoad;
         }
 
-
         public override string ToString()
         {
             string vehicleInformation = string.Empty;
@@ -35,10 +35,10 @@ namespace Project1
                 "Model : {0}\n" +
                 "License number : {1}\n" +
                 "Tank fuel left : {2}\n" +
-                "Wheels :\n" +
-                "Load with dangerous cargo ? {3}\n" +
-                "Cargo capacity  : {4}\n" +
-                "{5}", m_Model, m_LicenseNumber, m_Energy, ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, m_TruckFuelStatus.ToString());
+                "Wheels : {3}\n" +
+                "Load with dangerous cargo ? {4}\n" +
+                "Cargo capacity : {5}\n" +
+                "Type Of Fuel: { 6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, m_TypeOfFuel);
             return vehicleInformation;
         }
 
@@ -52,7 +52,17 @@ namespace Project1
             listOfProperties.Add("5", "Tank fuel left");
             listOfProperties.Add("6", "Is cargo load with dangerous matirials ? (Yes/No):\n");
             listOfProperties.Add("7", "Cargo capacity");
+            listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
+            listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
             return listOfProperties;
+        }
+
+        public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
+        {
+            for (int i = 0; i < m_NumberOfWheels; i++)
+            {
+                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+            }
         }
 
         public string ChageLoadWithDangerousMaterialsToString()
