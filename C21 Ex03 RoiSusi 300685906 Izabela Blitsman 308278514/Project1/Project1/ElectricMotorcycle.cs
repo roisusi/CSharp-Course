@@ -43,7 +43,7 @@ namespace Project1
                 "Model : {0}\n" +
                 "License number : {1}\n" +
                 "Battary left : {2}\n" +
-                "Wheels : {3}\n" +
+                "Wheels : \n{3}" +
                 "Type of licence : {4}\n" +
                 "Engine capacity  : {5}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), m_TypeOfLicense, m_EngineCapacity );
             return vehicleInformation;

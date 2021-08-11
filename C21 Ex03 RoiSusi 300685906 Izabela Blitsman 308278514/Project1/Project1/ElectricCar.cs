@@ -44,7 +44,7 @@ namespace Project1
                 "Model : {0}\n" +
                 "License number : {1}\n" +
                 "Energy level : {2}\n" +
-                "Wheels : {3}\n" +
+                "Wheels : \n{3}" +
                 "Color : {4}\n" +
                 "Number of doors : {5}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels() ,m_PaintColor,m_NumberOfDoors);
             return vehicleInformation;
