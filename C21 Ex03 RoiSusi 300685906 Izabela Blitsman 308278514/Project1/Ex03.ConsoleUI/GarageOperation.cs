@@ -46,15 +46,17 @@ namespace Ex03.ConsoleUI
                         }
                     case "2":
                         {
-                            listOfVehiclesInThegarage();
+                            ListOfVehiclesInThegarage();
                             break;
                         }
                     case "3":
                         {
+                            ChangeStatus();
                             break;
                         }
                     case "4":
                         {
+                            InflateWheel();
                             break;
                         }
                     case "5":
@@ -147,7 +149,7 @@ namespace Ex03.ConsoleUI
 
         }
 
-        public static void listOfVehiclesInThegarage()
+        public static void ListOfVehiclesInThegarage()
         {
             Dictionary<string, GarageStatus> listOfLiceneceAndGarageStatus = new Dictionary<string, GarageStatus>();
             string readFromUserYesOrNo = string.Empty;
@@ -159,7 +161,7 @@ namespace Ex03.ConsoleUI
             readFromUserYesOrNo = System.Console.ReadLine();
             if (readFromUserYesOrNo.ToLower().Equals("yes") || readFromUserYesOrNo.Equals("1"))
             {
-                System.Console.WriteLine("please type what status you want from the list: \n");
+                System.Console.WriteLine("Please type what status you want from the list: \n");
                 System.Console.WriteLine(garageOperation.GetAllGarageStatus()); 
                 readFromUserGarageStatus = System.Console.ReadLine();
             }
@@ -186,6 +188,36 @@ namespace Ex03.ConsoleUI
                 System.Console.WriteLine("No vehicle in the garrage or you typed incorrect status");
             }
             System.Console.ReadLine();
+
+        }
+
+        public static void ChangeStatus()
+        {
+            string readFromUserLicence = string.Empty;
+            string readFromUserGarageStatus = string.Empty;
+            bool changeSuccessfully = false;
+            System.Console.WriteLine("Please type vehicle licence: \n");
+            readFromUserLicence = readFromUserGarageStatus = System.Console.ReadLine();
+
+            System.Console.WriteLine("Please type what status you want from the list: \n");
+            System.Console.WriteLine(garageOperation.GetAllGarageStatus());
+            readFromUserGarageStatus = System.Console.ReadLine();
+
+            changeSuccessfully = garageOperation.ChangeVehicleStatus(readFromUserGarageStatus, readFromUserLicence);
+            if (changeSuccessfully == true)
+            {
+                System.Console.WriteLine("Vehicle status change");
+                System.Console.ReadLine();
+            }
+            else
+            {
+                System.Console.WriteLine("Vehicle status did change because licence not found or new status is incorrect");
+                System.Console.ReadLine();
+            }
+        }
+
+        public static void InflateWheel()
+        {
 
         }
 

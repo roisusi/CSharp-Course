@@ -100,6 +100,23 @@ namespace Project1 {
             return printInformaiton;
         }
 
+        public bool ChangeVehicleStatus(string i_GarageStatus , string i_Licence)
+        {
+            bool succesfullyChangeStatus = false;
+            //Add Exception Argumant
+            GarageStatus garageStatus = (GarageStatus)Enum.Parse(typeof(GarageStatus), i_GarageStatus, true);
+
+            foreach (GarageVehicleInformation info in m_CurrentVehicelIn)
+            {
+                if (info.Vehicle.Licence.Equals(i_Licence))
+                {
+                    info.GarageStatus = garageStatus;
+                    succesfullyChangeStatus = true;
+                }
+            }
+            return succesfullyChangeStatus;
+        }
+
         public Dictionary<string, GarageStatus> ListOfCarsByLicence()
         {
             Dictionary<string, GarageStatus> listOfLicence = new Dictionary<string, GarageStatus>();
