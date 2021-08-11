@@ -7,7 +7,7 @@ namespace Project1
     
     public class ElectricCar : Vehicle, ICharge
     {
-        Battery m_CarEnergyStatus = null;
+        private Battery m_CarEnergyStatus = null;
         private readonly int m_NumberOfWheels = 4;
         private readonly float m_MaxCharghingTime = 2.8f;
         private readonly float m_MaxAirPresure = 30f;
