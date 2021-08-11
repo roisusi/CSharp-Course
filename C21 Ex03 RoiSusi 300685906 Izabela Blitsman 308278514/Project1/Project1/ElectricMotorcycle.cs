@@ -16,8 +16,8 @@ namespace Project1
             //for Generics
         }
 
-        public ElectricMotorcycle(string i_Moudle, string i_NumberLicense, float i_Energy, TypeOfLicense i_TypeOfLicense, int i_EngineCapacity) :
-            base(i_TypeOfLicense, i_EngineCapacity)
+        public ElectricMotorcycle(string i_Model, string i_NumberLicense, float i_Energy, TypeOfLicense i_TypeOfLicense, int i_EngineCapacity) :
+            base(i_Model, i_NumberLicense, i_Energy, i_TypeOfLicense, i_EngineCapacity)
         {
             m_MotorcycleEnergyStatus = new Battery(i_Energy,m_MaxCharghingTime);
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);

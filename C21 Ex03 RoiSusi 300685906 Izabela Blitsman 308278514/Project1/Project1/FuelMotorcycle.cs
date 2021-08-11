@@ -16,8 +16,8 @@ public class FuelMotorcycle : Motorcycler , IFuel
         //for Generics
     }
 
-    public FuelMotorcycle(string i_Moudle, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
-        base(i_TypeOfLicense, i_EngineCapacity)
+    public FuelMotorcycle(string i_Model, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
+        base(i_Model, i_NumberLicense, i_Fuel, i_TypeOfLicense, i_EngineCapacity)
     {
         m_MotorcycleFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
         m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);

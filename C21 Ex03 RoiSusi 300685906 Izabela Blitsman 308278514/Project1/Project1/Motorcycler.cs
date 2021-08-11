@@ -14,7 +14,8 @@ namespace Project1
             //for Generics
         }
 
-        public Motorcycler(TypeOfLicense i_TypeOfLicense, int i_EngineCapacity)
+        public Motorcycler(string i_Model, string i_NumberLicense, float i_Fuel , TypeOfLicense i_TypeOfLicense, int i_EngineCapacity) : 
+            base(i_Model, i_NumberLicense, i_Fuel)
         {
             this.m_TypeOfLicense = i_TypeOfLicense;
             this.m_EngineCapacity = i_EngineCapacity;

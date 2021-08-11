@@ -16,7 +16,8 @@ namespace Project1
         {
             //for Generics
         }
-        public Car(PaintColor i_PaintColor, int i_NumberOfDoors)
+        public Car(string i_Model, string i_NumberLicense, float i_Fuel ,PaintColor i_PaintColor, int i_NumberOfDoors) : 
+            base(i_Model, i_NumberLicense, i_Fuel)
         {
             this.m_PaintColor = i_PaintColor;
 
@@ -54,7 +55,7 @@ namespace Project1
             string colors = string.Empty;
             for (int i = r_MinDoorsNumber; i <= r_MaxDoorsNumber; i++)
             {
-                colors += string.Format("{0}. {1} Doors\n", count, i);
+                colors += string.Format("{0} Doors\n", i);
                 count++;
             }
             return colors;

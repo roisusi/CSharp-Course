@@ -18,7 +18,7 @@ namespace Project1
         }
 
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
-                base(i_PaintColor, i_NumberOfDoors)
+                base(i_Model, i_NumberLicense, i_Energy, i_PaintColor, i_NumberOfDoors)
         {
             m_CarEnergyStatus = new Battery(i_Energy, m_MaxCharghingTime);
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
