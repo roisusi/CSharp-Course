@@ -25,11 +25,11 @@ namespace Ex03.ConsoleUI
                             "Please select option from the Menu:\n" +
                             "1. Add a vehicle\n" +
                             "2. List of Cars\n" +
-                            "3. Fuel Motorcycle\n" +
-                            "4. Elelctirc Motorcyler\n" +
-                            "5. Trunk\n" +
+                            "3. Change car status\n" +
+                            "4. Inflate wheels\n" +
+                            "5. Refuel\n" +
                             "6. Charge the battery\n" +
-                            "7. Search for a car\n" +
+                            "7. Show car details\n" +
                             "For exit please press \'Q\'\n");
 
             while (loopForVehileSelection)
@@ -63,6 +63,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "6":
                         {
+                            ChargeTheBattary();
                             break;
                         }
                     case "7":
@@ -173,6 +174,40 @@ namespace Ex03.ConsoleUI
             }
             System.Console.ReadLine();
 
+        }
+
+        public static void ChargeTheBattary()
+        {
+            string licence = string.Empty;
+            float timeToChargeInMin = 0f;
+            string readFromUser = string.Empty;
+            bool isSuccessfully = false;
+
+            System.Console.WriteLine("Please enter car licence: \n");
+            licence = System.Console.ReadLine();
+
+
+            System.Console.WriteLine("Please enter time to charge in minutes: \n");
+            readFromUser = System.Console.ReadLine();
+
+            if (float.TryParse(readFromUser, out timeToChargeInMin))
+            {
+                isSuccessfully = garageOperation.Recharge(licence, timeToChargeInMin);
+
+                if (isSuccessfully)
+                {
+                    System.Console.WriteLine("Charge is done");
+                }
+
+                else 
+                {
+                    System.Console.WriteLine("The vehicle is not using electrcity to charge the system");
+                }
+            }
+            else 
+            {
+                //Throw FormatException
+            }
         }
 
         public static void SearchACar()
