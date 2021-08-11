@@ -28,11 +28,6 @@ namespace Project1
 
         }
 
-        public override List<Wheels> GetWheels()
-        {
-            return m_WheelsCollection;
-        }
-
         public override void SetWheels()
         {
             foreach (Wheels wheels in m_WheelsCollection)
