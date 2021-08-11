@@ -116,7 +116,7 @@ namespace Ex03.ConsoleUI
 
                 foreach (int str in listOfVehicles.Keys)
                 {
-                    correntInput = int.Parse(getInputFromUser);
+                    int.TryParse(getInputFromUser, out correntInput);
                     if (str.Equals(correntInput))
                     {
                         listOfVehicles.TryGetValue(str, out carType);
@@ -128,26 +128,35 @@ namespace Ex03.ConsoleUI
             System.Console.Clear();
             System.Console.WriteLine("Please enter the above infomration");
 
-            foreach (string keys in listOfParameters.Keys)
+            try
             {
-                informationOfVehicles = string.Format("{0}. {1}", keys, listOfParameters[keys]);
-                System.Console.WriteLine(informationOfVehicles);
-                getInputFromUser = System.Console.ReadLine();
-                valuesEnterByTheUser.Add(getInputFromUser);
+                foreach (string keys in listOfParameters.Keys)
+                {
+                    informationOfVehicles = string.Format("{0}. {1}", keys, listOfParameters[keys]);
+                    System.Console.WriteLine(informationOfVehicles);
+                    getInputFromUser = System.Console.ReadLine();
+                    valuesEnterByTheUser.Add(getInputFromUser);
+                }
+
+                if (garageOperation.AddVehicle(carType, valuesEnterByTheUser, garageOperation) == false)
+                {
+                    System.Console.WriteLine("Vehicle has add seccessfully press enter to return to menu");
+                }
+
+                else
+                {
+                    System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
+                }
+                System.Console.ReadLine();
             }
-
-            //Add Exceptions ??
-
-            if (garageOperation.AddVehicle(carType, valuesEnterByTheUser, garageOperation) == false)
+            catch (ArgumentException ax)
             {
-                System.Console.WriteLine("Vehicle has add seccessfully press enter to return to menu");
+                System.Console.WriteLine(ax.Message);
             }
-            else
+            catch (ValueOutOfRangeException ve)
             {
-                System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
+                System.Console.WriteLine(ve.Message);
             }
-            System.Console.ReadLine();
-
         }
 
         public static void ListOfVehiclesInTheGarage()
