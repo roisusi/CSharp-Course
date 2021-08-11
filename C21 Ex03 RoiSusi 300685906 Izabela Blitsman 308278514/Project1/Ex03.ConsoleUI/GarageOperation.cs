@@ -152,10 +152,12 @@ namespace Ex03.ConsoleUI
             catch (ArgumentException ax)
             {
                 System.Console.WriteLine(ax.Message);
+                System.Console.ReadLine();
             }
             catch (ValueOutOfRangeException ve)
             {
                 System.Console.WriteLine(ve.Message);
+                System.Console.ReadLine();
             }
         }
 
@@ -287,14 +289,17 @@ namespace Ex03.ConsoleUI
             catch (FormatException ex)
             {
                 System.Console.WriteLine(ex.Message);
+                System.Console.ReadLine();
             }
             catch (ArgumentException ax)
             {
                 System.Console.WriteLine(ax.Message);
+                System.Console.ReadLine();
             }
             catch (ValueOutOfRangeException vx)
             {
                 System.Console.WriteLine(vx.Message);
+                System.Console.ReadLine();
             }
         }
 
@@ -321,20 +326,25 @@ namespace Ex03.ConsoleUI
                 if (isSuccessfully)
                 {
                     System.Console.WriteLine("Charge is done");
+                    System.Console.ReadLine();
                 }
 
                 else
                 {
                     System.Console.WriteLine("The vehicle is not using electrcity to charge the system");
+                    System.Console.ReadLine();
                 }
             }
             catch (FormatException ex)
             {
                 System.Console.WriteLine(ex.Message);
+                System.Console.ReadLine();
+
             }
             catch (ValueOutOfRangeException vx)
             {
                 System.Console.WriteLine(vx.Message);
+                System.Console.ReadLine();
             }
         }
 
