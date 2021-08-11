@@ -100,9 +100,51 @@ namespace Project1 {
             return printInformaiton;
         }
 
-        public void ArrangeByStatus(GarageStatus i_GarageStatus)
+        public bool ChangeVehicleStatus(string i_GarageStatus , string i_Licence)
         {
+            bool succesfullyChangeStatus = false;
+            //Add Exception Argumant
+            GarageStatus garageStatus = (GarageStatus)Enum.Parse(typeof(GarageStatus), i_GarageStatus, true);
 
+            foreach (GarageVehicleInformation info in m_CurrentVehicelIn)
+            {
+                if (info.Vehicle.Licence.Equals(i_Licence))
+                {
+                    info.GarageStatus = garageStatus;
+                    succesfullyChangeStatus = true;
+                }
+            }
+            return succesfullyChangeStatus;
+        }
+
+        public bool InflateWheel(string i_Licence)
+        {
+            bool succesfullyChangeStatus = false;
+
+            foreach (GarageVehicleInformation info in m_CurrentVehicelIn)
+            {
+                if (info.Vehicle.Licence.Equals(i_Licence))
+                {
+                    info.Vehicle.SetWheels();
+                    succesfullyChangeStatus = true;
+                }
+            }
+
+            return succesfullyChangeStatus;
+        }
+
+        public Dictionary<string, GarageStatus> ListOfCarsByLicence()
+        {
+            Dictionary<string, GarageStatus> listOfLicence = new Dictionary<string, GarageStatus>();
+            foreach (GarageVehicleInformation vehicles in m_CurrentVehicelIn)
+            {
+                if (!vehicles.Vehicle.Licence.Equals(listOfLicence.Keys))
+                {
+                    listOfLicence.Add(vehicles.Vehicle.Licence, vehicles.GarageStatus);
+                }
+            }
+
+            return listOfLicence;
         }
 
         public bool AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garage)
@@ -162,6 +204,18 @@ namespace Project1 {
             {
                 throw new FormatException("Error in parsing user input - should be integer value");
             }
+		}
+		
+        public string GetAllGarageStatus()
+        {
+            int count = 1;
+            string types = string.Empty;
+            foreach (GarageStatus garageStatus in Enum.GetValues(typeof(GarageStatus)))
+            {
+                types += string.Format("{0}. {1}\n", count, garageStatus);
+                count++;
+            }
+            return types;
         }
     }
 }

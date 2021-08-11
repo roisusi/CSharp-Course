@@ -24,6 +24,21 @@ public class FuelMotorcycle : Vehicle , IFuel
         m_MotorcycleFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
         this.m_TypeOfLicense = i_TypeOfLicense;
         this.m_EngineCapacity = i_EngineCapacity;
+        m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
+    }
+
+    public override List<Wheels> GetWheels()
+    {
+        return m_WheelsCollection;
+    }
+
+    public override void SetWheels()
+    {
+        foreach (Wheels wheels in m_WheelsCollection)
+        {
+            wheels.AirPressure = m_MaxAirPresure;
+        }
     }
 
     public int EngineCapacity

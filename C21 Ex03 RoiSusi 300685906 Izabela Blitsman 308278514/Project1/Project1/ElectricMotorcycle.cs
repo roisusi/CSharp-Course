@@ -24,6 +24,21 @@ namespace Project1
             m_MotorcycleEnergyStatus = new Battery(i_Energy,m_MaxCharghingTime);
             this.m_TypeOfLicense = i_TypeOfLicense;
             this.m_EngineCapacity = i_EngineCapacity;
+            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
+        }
+
+        public override List<Wheels> GetWheels()
+        {
+            return m_WheelsCollection;
+        }
+
+        public override void SetWheels()
+        {
+            foreach (Wheels wheels in m_WheelsCollection)
+            {
+                wheels.AirPressure = m_MaxAirPresure;
+            }
         }
 
         public override string ToString()

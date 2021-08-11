@@ -26,6 +26,19 @@ public class FuelCar : Vehicle , IFuel
         m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
     }
 
+    public override List<Wheels> GetWheels()
+    {
+        return m_WheelsCollection;
+    }
+
+    public override void SetWheels()
+    {
+        foreach (Wheels wheels in m_WheelsCollection)
+        {
+            wheels.AddAirToWheel(m_MaxAirPresure);
+        }
+    }
+
     public int NumberOfDoors
     {
         get { return this.m_NumberOfDoors; }

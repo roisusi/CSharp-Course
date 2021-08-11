@@ -17,26 +17,33 @@ namespace Project1
             this.m_MaxAirPressureFromManufacture = i_MaxAirPressureFromManufacture;
         }
 
-        public float GetAirPressure()
+        public float AirPressure
         {
-            return m_AirPressure;
+            get { return m_AirPressure; }
+            set { this.m_AirPressure = value; }
         }
 
-        public void SetAirPressure(float i_AirPressure)
+        public string Manufacture
         {
-            this.m_AirPressure = i_AirPressure;
+            get { return m_Manufacture; }
+            set { this.m_Manufacture = value; }
+        }
+
+        public float MaxAirPressureFromManufacture
+        {
+            get { return m_MaxAirPressureFromManufacture; }
+            set { this.m_MaxAirPressureFromManufacture = value; }
         }
 
         public bool AddAirToWheel(float i_AmountAirToAdd)
         {
             if (m_AirPressure + i_AmountAirToAdd <= m_MaxAirPressureFromManufacture)
             {
-                SetAirPressure(m_AirPressure + i_AmountAirToAdd);
+                AirPressure = m_AirPressure + i_AmountAirToAdd;
                 return true;
             }
             return false;
         }
-
 
         public override string ToString()
         {
@@ -45,7 +52,6 @@ namespace Project1
             
             return wheelsInformation;
         }
-
 
     }
 }
