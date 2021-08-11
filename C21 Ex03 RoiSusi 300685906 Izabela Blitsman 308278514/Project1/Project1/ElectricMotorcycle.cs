@@ -76,7 +76,19 @@ namespace Project1
 
         public void Recharging(float i_TimeInMinutes)
         {
-            m_Energy = m_MotorcycleEnergyStatus.Recharging(i_TimeInMinutes);
+            float timeInHours = i_TimeInMinutes / 60;
+
+            CheckChargingTimeInRange(timeInHours);
+
+            m_Energy = m_MotorcycleEnergyStatus.Recharging(timeInHours);
+        }
+
+        public void CheckChargingTimeInRange(float i_TimeCharge)
+        {
+            if (i_TimeCharge > m_MaxCharghingTime || i_TimeCharge < 0)
+            {
+                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxCharghingTime);
+            }
         }
     }
 }

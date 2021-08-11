@@ -41,7 +41,6 @@ public class FuelMotorcycle : Vehicle , IFuel
     public Fuel MotorcycleFuelStatus
     {
         get { return this.m_MotorcycleFuelStatus; }
-        set { this.m_MotorcycleFuelStatus = value; }
     }
 
     public override string ToString()
@@ -95,7 +94,27 @@ public class FuelMotorcycle : Vehicle , IFuel
 
     public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
     {
+        CheckFuelType(i_TypeOfFuel);
+
+        CheckFuelAmountInRange(i_Amount);
+
         m_Energy = m_MotorcycleFuelStatus.Refuel(i_TypeOfFuel, i_Amount);
+    }
+
+    public void CheckFuelType(TypeOfFuel i_TypeOfFuel)
+    {
+        if (i_TypeOfFuel != m_TypeOfFuel)
+        {
+            throw new ArgumentException("Invalid fuel type for car - should be Octan95");
+        }
+    }
+
+    public void CheckFuelAmountInRange(float i_Amount)
+    {
+        if (i_Amount > m_MaxFuelCapacity || i_Amount < 0)
+        {
+            throw new ValueOutOfRangeException(new Exception(), 0, m_MaxFuelCapacity);
+        }
     }
 }
 

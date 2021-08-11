@@ -43,7 +43,11 @@ namespace Project1
                 CurrentAmountOfFuel = m_CurrentAmountOfFuel + i_LiterToAdd;
                 return CurrentAmountOfFuel;
             }
-            return CurrentAmountOfFuel;
+
+            else 
+            {
+                throw new ValueOutOfRangeException(new Exception(), 0, MaxFuelCapacity);
+            }
         }
 
         //public override string ToString()

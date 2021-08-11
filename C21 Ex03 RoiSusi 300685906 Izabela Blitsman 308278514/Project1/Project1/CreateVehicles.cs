@@ -8,7 +8,7 @@ namespace Project1
 {
     public class CreateVehicles
     {
-        private Dictionary<int, string> listOfAllVehicles = new Dictionary<int, string>();
+        private Dictionary<int, string> m_ListOfAllVehicles = new Dictionary<int, string>();
 
         public Dictionary<string, string> GetListOfValues(string type)
         {
@@ -74,11 +74,9 @@ namespace Project1
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];
 
-                        //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
                         float airPresureToFloat = float.Parse(airPresure);
-
 
                         Vehicle electricCar = new ElectricCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(electricCar, firstName, phone);
@@ -99,7 +97,6 @@ namespace Project1
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];
 
-                        //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
                         float airPresureToFloat = float.Parse(airPresure);
@@ -124,7 +121,6 @@ namespace Project1
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];
 
-                        //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int engineCapacityToInt = int.Parse(engineCapacity);
                         float airPresureToFloat = float.Parse(airPresure);
@@ -144,13 +140,14 @@ namespace Project1
                         string model = valuesEnterByTheUser[2];
                         string licence = valuesEnterByTheUser[3];
                         string energyOrFuel = valuesEnterByTheUser[4];
-                        //Catch here Exception
-                        TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
+                        TypeOfLicense typeOfLicense;
+
+                        typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
+
                         string engineCapacity = valuesEnterByTheUser[6];
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];
 
-                        //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int engineCapacityToInt = int.Parse(engineCapacity);
                         float airPresureToFloat = float.Parse(airPresure);
@@ -164,7 +161,6 @@ namespace Project1
 
                 case "Truck":
                     {
-
                         string firstName = valuesEnterByTheUser[0];
                         string phone = valuesEnterByTheUser[1];
                         string model = valuesEnterByTheUser[2];
@@ -190,11 +186,9 @@ namespace Project1
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];
 
-                        //parse need try here of function "Format Exception"
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         float amountOfloadToFloat = float.Parse(engineCapacity);
                         float airPresureToFloat = float.Parse(airPresure);
-
 
                         Vehicle truck = new Truck(model, licence, energyOrFuelToFloat, dengerousLoad, amountOfloadToFloat);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(truck, firstName, phone);
@@ -214,11 +208,11 @@ namespace Project1
             {
                 if (type.IsSubclassOf(typeof(Vehicle)))
                 {
-                    listOfAllVehicles.Add(i, type.Name);
+                    m_ListOfAllVehicles.Add(i, type.Name);
                     i++;
                 }
             }
-            return listOfAllVehicles;
+            return m_ListOfAllVehicles;
         }
     }
 }

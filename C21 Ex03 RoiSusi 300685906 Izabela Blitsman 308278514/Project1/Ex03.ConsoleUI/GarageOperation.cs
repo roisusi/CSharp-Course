@@ -99,6 +99,7 @@ namespace Ex03.ConsoleUI
             string informationOfVehicles = string.Empty;
             string carType = string.Empty;
             int correntInput = 0;
+
             System.Console.WriteLine("Please choose the vehicle you want to enter the garage:");
             foreach (int str in listOfVehicles.Keys)
             {
@@ -154,26 +155,44 @@ namespace Ex03.ConsoleUI
             string fuelList = string.Empty;
             bool isSuccessfully = false;
 
-            System.Console.WriteLine("Please enter car licence: \n");
-            licence = System.Console.ReadLine();
-            System.Console.WriteLine("Please enter Fuel Type: \n");
-            fuelList = garageOperation.GetAllFuelTypes();
-            System.Console.WriteLine(fuelList);
-            FuelType = System.Console.ReadLine();
-            System.Console.WriteLine("Please enter Amout to Fill: \n");
-            amount = System.Console.ReadLine();
-
-            isSuccessfully = garageOperation.Refuel(licence, licence , amount);
-            if (isSuccessfully == true)
+            try
             {
-                System.Console.WriteLine("Reful is Done");
-            }
-            else
-            {
-                System.Console.WriteLine("The car is not using fueling system");
-            }
-            System.Console.ReadLine();
+                System.Console.WriteLine("Please enter car licence: \n");
+                licence = System.Console.ReadLine();
 
+                System.Console.WriteLine("Please enter Fuel Type: \n");
+                fuelList = garageOperation.GetAllFuelTypes();
+                System.Console.WriteLine(fuelList);
+                FuelType = System.Console.ReadLine();
+                //CHECK PARSE STRING TO ENUM 
+
+                System.Console.WriteLine("Please enter Amout to Fill: \n");
+                amount = System.Console.ReadLine();
+                garageOperation.TryParseStringToFloat(amount);
+
+                isSuccessfully = garageOperation.Refuel(licence, licence, amount);
+                if (isSuccessfully == true)
+                {
+                    System.Console.WriteLine("Reful is Done");
+                }
+                else
+                {
+                    System.Console.WriteLine("The car is not using fueling system");
+                }
+                System.Console.ReadLine();
+            }
+            catch (FormatException ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentException ax)
+            {
+                System.Console.WriteLine(ax.Message);
+            }
+            catch (ValueOutOfRangeException vx)
+            {
+                System.Console.WriteLine(vx.Message);
+            }
         }
 
         public static void ChargeTheBattary()
@@ -183,15 +202,17 @@ namespace Ex03.ConsoleUI
             string readFromUser = string.Empty;
             bool isSuccessfully = false;
 
-            System.Console.WriteLine("Please enter car licence: \n");
-            licence = System.Console.ReadLine();
-
-
-            System.Console.WriteLine("Please enter time to charge in minutes: \n");
-            readFromUser = System.Console.ReadLine();
-
-            if (float.TryParse(readFromUser, out timeToChargeInMin))
+            try
             {
+                System.Console.WriteLine("Please enter car licence: \n");
+                licence = System.Console.ReadLine();
+
+                System.Console.WriteLine("Please enter time to charge in minutes: \n");
+                readFromUser = System.Console.ReadLine();
+                garageOperation.TryParseStringToFloat(readFromUser);
+
+                timeToChargeInMin = float.Parse(readFromUser);
+
                 isSuccessfully = garageOperation.Recharge(licence, timeToChargeInMin);
 
                 if (isSuccessfully)
@@ -199,14 +220,18 @@ namespace Ex03.ConsoleUI
                     System.Console.WriteLine("Charge is done");
                 }
 
-                else 
+                else
                 {
                     System.Console.WriteLine("The vehicle is not using electrcity to charge the system");
                 }
             }
-            else 
+            catch (FormatException ex)
             {
-                //Throw FormatException
+                System.Console.WriteLine(ex.Message);
+            }
+            catch (ValueOutOfRangeException vx)
+            {
+                System.Console.WriteLine(vx.Message);
             }
         }
 
@@ -214,6 +239,7 @@ namespace Ex03.ConsoleUI
         {
             string inputFromUser = string.Empty;
             string getInfo = string.Empty;
+
             System.Console.WriteLine("Please enter licence number or Q to return to Menu");
             inputFromUser = System.Console.ReadLine();
             

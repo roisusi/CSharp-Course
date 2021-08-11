@@ -40,6 +40,11 @@ namespace Project1
             set { this.m_AmountOfLoad = value; }
         }
 
+        public Fuel TruckFuelStatus
+        {
+            get { return this.m_TruckFuelStatus; }
+        }
+
         public override string ToString()
         {
             string vehicleInformation = string.Empty;
@@ -94,7 +99,27 @@ namespace Project1
 
         public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
         {
+            CheckFuelType(i_TypeOfFuel);
+
+            CheckFuelAmountInRange(i_Amount);
+
             m_Energy = m_TruckFuelStatus.Refuel(i_TypeOfFuel, i_Amount);
+        }
+
+        public void CheckFuelType(TypeOfFuel i_TypeOfFuel)
+        {
+            if (i_TypeOfFuel != m_TypeOfFuel)
+            {
+                throw new ArgumentException("Invalid fuel type for car - should be Octan95");
+            }
+        }
+
+        public void CheckFuelAmountInRange(float i_Amount)
+        {
+            if (i_Amount > m_MaxFuelCapacity || i_Amount < 0)
+            {
+                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxFuelCapacity);
+            }
         }
     }
 }

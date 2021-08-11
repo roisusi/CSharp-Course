@@ -40,12 +40,16 @@ namespace Project1
         public float Recharging(float i_TimeToCharge)
         {
 
-            if (m_CurrentBattary + i_TimeToCharge <= i_TimeToCharge)
+            if (m_CurrentBattary + i_TimeToCharge <= m_MaxTimeChargeInHours)
             {
                 CurrentBattary = m_CurrentBattary + i_TimeToCharge;
+                return CurrentBattary;
             }
 
-            return CurrentBattary;
+            else 
+            {
+                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxTimeChargeInHours);
+            }
         }
 
         public override string ToString()
