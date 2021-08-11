@@ -6,11 +6,10 @@ namespace Project1
 {
     public class ElectricMotorcycle : Motorcycler, ICharge
     {
-        Battery m_MotorcycleEnergyStatus = null;
+        private Battery m_MotorcycleEnergyStatus = null;
         private readonly int m_NumberOfWheels = 2;
         private readonly float m_MaxCharghingTime = 1.6f;
         private readonly float m_MaxAirPresure = 28f;
-
 
         public ElectricMotorcycle()
         {
@@ -22,6 +21,11 @@ namespace Project1
         {
             m_MotorcycleEnergyStatus = new Battery(i_Energy,m_MaxCharghingTime);
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+        }
+
+        public Battery MotorcycleBatteryStatus
+        {
+            get { return this.m_MotorcycleEnergyStatus; }
         }
 
         public override void SetWheels()

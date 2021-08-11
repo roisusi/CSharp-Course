@@ -31,7 +31,6 @@ public class FuelMotorcycle : Motorcycler , IFuel
         }
     }
 
-
     public Fuel MotorcycleFuelStatus
     {
         get { return this.m_MotorcycleFuelStatus; }

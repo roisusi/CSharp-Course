@@ -24,9 +24,9 @@ namespace Project1
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
         }
 
-        public int NumberOfWheels
+        public Battery CarBatteryStatus
         {
-            get { return this.m_NumberOfWheels; }
+            get { return this.m_CarEnergyStatus; }
         }
 
         public override void SetWheels()
