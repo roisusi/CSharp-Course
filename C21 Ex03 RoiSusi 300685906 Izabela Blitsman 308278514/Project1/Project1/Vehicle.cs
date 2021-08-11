@@ -21,7 +21,6 @@ namespace Project1 {
             this.m_Model = i_Moudle;
             this.m_LicenseNumber = i_LicenseNumber;
             this.m_Energy = i_Energy;
-            //this.m_WheelsCollection = new List<Wheels>(i_NumberOfWheels);
         }
 
         public string Model
@@ -53,7 +52,6 @@ namespace Project1 {
         }
 
         public abstract Dictionary<string,string> GetExpectation();
-
 
     }   
 }

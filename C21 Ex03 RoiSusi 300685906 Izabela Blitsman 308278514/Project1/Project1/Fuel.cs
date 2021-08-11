@@ -36,24 +36,24 @@ namespace Project1
         }
 
         //exception !! for type of fuel and amount
-        public bool Refuel(float i_LiterToAdd , TypeOfFuel i_TypeOfFuel)
+        public float Refuel(TypeOfFuel i_TypeOfFuel , float i_LiterToAdd)
         {
             if (m_CurrentAmountOfFuel + i_LiterToAdd <= m_MaxFuelCapacity)
             {
                 CurrentAmountOfFuel = m_CurrentAmountOfFuel + i_LiterToAdd;
-                return true;
+                return CurrentAmountOfFuel;
             }
-            return false;
+            return CurrentAmountOfFuel;
         }
 
-        public override string ToString()
-        {
-            string fuelInformation = string.Format("Current Fuel : {0}\n" +
-                                                   "Type of Fuel : {1}\n" +
-                                                   "Max Capacity : {2}\n", 
-                                                   m_CurrentAmountOfFuel , m_TypeOfFuel, m_MaxFuelCapacity);
+        //public override string ToString()
+        //{
+        //    string fuelInformation = string.Format("Current Fuel : {0}\n" +
+        //                                           "Type of Fuel : {1}\n" +
+        //                                           "Max Capacity : {2}\n", 
+        //                                           m_CurrentAmountOfFuel , m_TypeOfFuel, m_MaxFuelCapacity);
 
-            return fuelInformation;
-        }
+        //    return fuelInformation;
+        //}
     }
 }

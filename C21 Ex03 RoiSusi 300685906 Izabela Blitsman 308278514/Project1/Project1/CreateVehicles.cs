@@ -95,7 +95,7 @@ namespace Project1
                         float energyOrFuelToFloat = float.Parse(energyOrFuel);
                         int numberOfDoorsToInt = int.Parse(numberOfDoors);
 
-                        Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat, paintColor, numberOfDoorsToInt);
+                        Vehicle fuelCar = new FuelCar(model, licence, energyOrFuelToFloat,"" ,paintColor, numberOfDoorsToInt);
                         addedSuccessfully = garageOperation.AddVehicleToGarrage(fuelCar, firstName, phone);
                         break;
                     }

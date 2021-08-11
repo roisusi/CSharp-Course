@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Project1;
 
-public class FuelCar : Vehicle
+public class FuelCar : Vehicle , IFuel
 {
     private Fuel m_CarFuelStatus = null;
     private readonly float m_MaxFuelCapacity = 50f;
     private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan95;
     private readonly int m_NumberOfWheels = 4;
     private readonly float m_MaxAirPresure = 30f;
+    private string m_NameOfWhellManufacture = string.Empty;
     private PaintColor m_PaintColor = 0;
     private int m_NumberOfDoors = 0;
 
@@ -17,12 +18,14 @@ public class FuelCar : Vehicle
     {
         // for Generic
     }
-    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
+    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, string i_NameOfWhellManufacture, PaintColor i_PaintColor, int i_NumberOfDoors) :
         base(i_Moudle, i_NumberLicense, i_Fuel)
     {
         m_CarFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
         this.m_PaintColor = i_PaintColor;
         this.m_NumberOfDoors = i_NumberOfDoors;
+        this.m_NameOfWhellManufacture = i_NameOfWhellManufacture;
+        m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
     }
 
     public int NumberOfDoors
@@ -50,11 +53,19 @@ public class FuelCar : Vehicle
             "Model : {0}\n" +
             "License number : {1}\n" +
             "Tank fuel left : {2}\n" +
-            "Wheels :\n" +
-            "Color : {3}\n" +
-            "Number of doors : {4}\n" +
-            "{5}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor, m_NumberOfDoors, m_CarFuelStatus.ToString());
+            "Wheels {3}:\n" +
+            "Color : {4}\n" +
+            "Number of doors : {5}\n" +
+            "Type Of Fuel : {6}", m_Model, m_LicenseNumber, m_Energy, m_PaintColor, m_NameOfWhellManufacture, m_NumberOfDoors , m_TypeOfFuel);
         return vehicleInformation;
+    }
+
+    public void InsertWheelInformation()
+    {
+        for (int i=0 ; i < m_NumberOfWheels ; i++)
+        {
+            m_WheelsCollection.Add(new Wheels(m_NameOfWhellManufacture, m_MaxAirPresure, m_MaxAirPresure));
+        }
     }
 
     public override Dictionary<string, string> GetExpectation()
@@ -67,6 +78,7 @@ public class FuelCar : Vehicle
         listOfProperties.Add("5", "Tank fuel left");
         listOfProperties.Add("6", "Choose color:\n" + GetAllPaintColor());
         listOfProperties.Add("7", "How many doors you have:\n" + GetAllDoors());
+        listOfProperties.Add("8", "Enter you current air presure of your wheels:\n" + GetAllDoors());
         return listOfProperties;
     }
 
@@ -93,5 +105,11 @@ public class FuelCar : Vehicle
         }
         return colors;
     }
+
+    public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
+    {
+        m_Energy = m_CarFuelStatus.Refuel(i_TypeOfFuel, i_Amount);
+    }
+
 }
 

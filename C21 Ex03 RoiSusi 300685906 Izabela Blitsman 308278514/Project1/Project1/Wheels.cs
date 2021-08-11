@@ -40,9 +40,10 @@ namespace Project1
 
         public override string ToString()
         {
-            float wheels = 0f;
+            string wheelsInformation = string.Format("Air Presure : {0}\n" +
+                                                     "Manufacture : {1}" , m_AirPressure, m_Manufacture);
 
-            return wheels + "" + m_Manufacture;
+            return wheelsInformation;
         }
 
 

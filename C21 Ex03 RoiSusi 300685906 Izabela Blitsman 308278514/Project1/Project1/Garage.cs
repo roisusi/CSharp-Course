@@ -20,6 +20,7 @@ namespace Project1 {
                 {
                     vehicleExsists = true;
                     vehicles.GarageStatus = GarageStatus.InRepair;
+                    break;
                 }
             }
 
@@ -27,9 +28,36 @@ namespace Project1 {
             {
                 m_CurrentVehicelIn.Add(i_AddInformation);
             }
-
             return vehicleExsists;
+        }
 
+        public bool Refuel(string i_licence , string i_TypeOfFuel , string i_Amount)
+        {
+
+            bool isRefuelSuccessfully = false;
+            TypeOfFuel typeOfFuel = (TypeOfFuel)Enum.Parse(typeof(TypeOfFuel), i_TypeOfFuel, true);
+            float amount = float.Parse(i_Amount);
+
+            foreach (GarageVehicleInformation vehicles in m_CurrentVehicelIn)
+            {
+                //Check is a fuel vehicle
+                if (i_licence.Equals(vehicles.Vehicle.Licence))
+                {
+                    if (vehicles.Vehicle is IFuel)
+                    { 
+                    IFuel fuelACar = (IFuel)vehicles.Vehicle;
+                        fuelACar.Refuel(typeOfFuel, amount);
+                        isRefuelSuccessfully = true;
+                    }
+                    else
+                    {
+                        isRefuelSuccessfully = false;
+                    }
+                    break;
+                }
+
+            }
+            return isRefuelSuccessfully;
         }
 
         public string PrintCarByLicense(string i_Licence)
@@ -66,6 +94,17 @@ namespace Project1 {
             return createVehicles.GetListOfValues(type);
         }
 
+        public string GetAllFuelTypes()
+        {
+            int count = 1;
+            string types = string.Empty;
+            foreach (TypeOfFuel typeOfFuel in Enum.GetValues(typeof(TypeOfFuel)))
+            {
+                types += string.Format("{0}. {1}\n", count, typeOfFuel);
+                count++;
+            }
+            return types;
+        }
     }
 }
 

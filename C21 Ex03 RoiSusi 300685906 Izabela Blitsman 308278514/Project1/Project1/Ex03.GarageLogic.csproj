@@ -43,6 +43,7 @@
     <Compile Include="GarageStatus.cs" />
     <Compile Include="GarrageVehicleInformation.cs" />
     <Compile Include="CreateVehicles.cs" />
+    <Compile Include="IFuel.cs" />
     <Compile Include="PaintColor.cs" />
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />

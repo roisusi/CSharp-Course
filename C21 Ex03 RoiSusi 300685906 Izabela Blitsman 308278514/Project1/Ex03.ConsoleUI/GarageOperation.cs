@@ -58,6 +58,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "5":
                         {
+                            RefuelACar();
                             break;
                         }
                     case "6":
@@ -139,6 +140,36 @@ namespace Ex03.ConsoleUI
             else
             {
                 System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
+            }
+            System.Console.ReadLine();
+
+        }
+
+        public static void RefuelACar()
+        {
+            string licence = string.Empty;
+            string FuelType = string.Empty;
+            string amount = string.Empty;
+            string fuelList = string.Empty;
+            bool isSuccessfully = false;
+
+            System.Console.WriteLine("Please enter car licence: \n");
+            licence = System.Console.ReadLine();
+            System.Console.WriteLine("Please enter Fuel Type: \n");
+            fuelList = garageOperation.GetAllFuelTypes();
+            System.Console.WriteLine(fuelList);
+            FuelType = System.Console.ReadLine();
+            System.Console.WriteLine("Please enter Amout to Fill: \n");
+            amount = System.Console.ReadLine();
+
+            isSuccessfully = garageOperation.Refuel(licence, licence , amount);
+            if (isSuccessfully == true)
+            {
+                System.Console.WriteLine("Reful is Done");
+            }
+            else
+            {
+                System.Console.WriteLine("The car is not using fueling system");
             }
             System.Console.ReadLine();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Project1;
 
-public class FuelMotorcycle : Vehicle
+public class FuelMotorcycle : Vehicle , IFuel
 {
     private Fuel m_MotorcycleFuelStatus = null;
     private readonly float m_MaxFuelCapacity = 5.5f;
@@ -25,6 +25,24 @@ public class FuelMotorcycle : Vehicle
         this.m_EngineCapacity = i_EngineCapacity;
     }
 
+    public int EngineCapacity
+    {
+        get { return this.m_EngineCapacity; }
+        set { this.m_EngineCapacity = value; }
+    }
+
+    public TypeOfLicense TypeOfLicense
+    {
+        get { return this.m_TypeOfLicense; }
+        set { this.m_TypeOfLicense = value; }
+    }
+
+    public Fuel MotorcycleFuelStatus
+    {
+        get { return this.m_MotorcycleFuelStatus; }
+        set { this.m_MotorcycleFuelStatus = value; }
+    }
+
     public override string ToString()
     {
         string vehicleInformation = string.Empty;
@@ -35,7 +53,7 @@ public class FuelMotorcycle : Vehicle
             "Wheels :\n" +
             "Type of licence : {3}\n" +
             "Engine capacity  : {4}\n" +
-            "{5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_MotorcycleFuelStatus.ToString());
+            "Type Of Fuel : {5}", m_Model, m_LicenseNumber, m_Energy, m_TypeOfLicense, m_EngineCapacity, m_TypeOfFuel);
         return vehicleInformation;
     }
 
@@ -63,6 +81,11 @@ public class FuelMotorcycle : Vehicle
             count++;
         }
         return colors;
+    }
+
+    public void Refuel(TypeOfFuel i_TypeOfFuel, float i_Amount)
+    {
+        m_Energy = m_MotorcycleFuelStatus.Refuel(i_TypeOfFuel, i_Amount);
     }
 }
 
