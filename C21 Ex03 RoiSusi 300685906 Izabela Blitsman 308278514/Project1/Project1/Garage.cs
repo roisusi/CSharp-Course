@@ -100,9 +100,18 @@ namespace Project1 {
             return printInformaiton;
         }
 
-        public void ArrangeByStatus(GarageStatus i_GarageStatus)
+        public Dictionary<string, GarageStatus> ListOfCarsByLicence()
         {
+            Dictionary<string, GarageStatus> listOfLicence = new Dictionary<string, GarageStatus>();
+            foreach (GarageVehicleInformation vehicles in m_CurrentVehicelIn)
+            {
+                if (!vehicles.Vehicle.Licence.Equals(listOfLicence.Keys))
+                {
+                    listOfLicence.Add(vehicles.Vehicle.Licence, vehicles.GarageStatus);
+                }
+            }
 
+            return listOfLicence;
         }
 
         public bool AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garage)
@@ -127,6 +136,18 @@ namespace Project1 {
             foreach (TypeOfFuel typeOfFuel in Enum.GetValues(typeof(TypeOfFuel)))
             {
                 types += string.Format("{0}. {1}\n", count, typeOfFuel);
+                count++;
+            }
+            return types;
+        }
+
+        public string GetAllGarageStatus()
+        {
+            int count = 1;
+            string types = string.Empty;
+            foreach (GarageStatus garageStatus in Enum.GetValues(typeof(GarageStatus)))
+            {
+                types += string.Format("{0}. {1}\n", count, garageStatus);
                 count++;
             }
             return types;

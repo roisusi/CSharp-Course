@@ -46,6 +46,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "2":
                         {
+                            listOfVehiclesInThegarage();
                             break;
                         }
                     case "3":
@@ -141,6 +142,48 @@ namespace Ex03.ConsoleUI
             else
             {
                 System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
+            }
+            System.Console.ReadLine();
+
+        }
+
+        public static void listOfVehiclesInThegarage()
+        {
+            Dictionary<string, GarageStatus> listOfLiceneceAndGarageStatus = new Dictionary<string, GarageStatus>();
+            string readFromUserYesOrNo = string.Empty;
+            string readFromUserGarageStatus = string.Empty;
+            string listFromTheDictionary = string.Empty;
+            System.Console.WriteLine("Would you like to see the list by the status in the garrage ?\n" +
+                                     "1. Yes\n" +
+                                     "2. No");
+            readFromUserYesOrNo = System.Console.ReadLine();
+            if (readFromUserYesOrNo.ToLower().Equals("yes") || readFromUserYesOrNo.Equals("1"))
+            {
+                System.Console.WriteLine("please type what status you want from the list: \n");
+                System.Console.WriteLine(garageOperation.GetAllGarageStatus()); 
+                readFromUserGarageStatus = System.Console.ReadLine();
+            }
+
+            listOfLiceneceAndGarageStatus = garageOperation.ListOfCarsByLicence();
+            foreach (string licence in listOfLiceneceAndGarageStatus.Keys)
+            {
+                if (readFromUserYesOrNo.ToLower().Equals("yes") || readFromUserYesOrNo.Equals("1"))
+                {
+                    if (readFromUserGarageStatus.Equals(listOfLiceneceAndGarageStatus[licence].ToString()))
+                    {
+                        listFromTheDictionary = string.Format("Licence is : {0} , Status : {1}", licence, listOfLiceneceAndGarageStatus[licence]);
+                        System.Console.WriteLine(listFromTheDictionary);
+                    }
+                }
+                else
+                {
+                    listFromTheDictionary = string.Format("Licence is : {0}", licence);
+                    System.Console.WriteLine(listFromTheDictionary);
+                }
+            }
+            if (listFromTheDictionary.Equals(string.Empty))
+            {
+                System.Console.WriteLine("No vehicle in the garrage or you typed incorrect status");
             }
             System.Console.ReadLine();
 

@@ -25,6 +25,8 @@ namespace Project1
             m_CarEnergyStatus = new Battery(i_Energy, m_MaxCharghingTime);
             this.m_PaintColor = i_PaintColor;
             this.m_NumberOfDoors = i_NumberOfDoors;
+            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
         }
 
         public int NumberOfDoors

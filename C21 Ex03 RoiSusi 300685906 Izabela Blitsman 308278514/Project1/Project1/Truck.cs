@@ -26,6 +26,8 @@ namespace Project1
             m_TruckFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
             this.m_IsLoadWithDangerousMaterials = i_IsLoadWithDangerousMaterials;
             this.m_AmountOfLoad = i_AmountOfLoad;
+            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
         }
 
         public bool LoadWithDangerousMaterials

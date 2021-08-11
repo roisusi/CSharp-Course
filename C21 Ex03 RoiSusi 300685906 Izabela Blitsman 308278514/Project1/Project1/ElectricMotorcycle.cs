@@ -24,6 +24,8 @@ namespace Project1
             m_MotorcycleEnergyStatus = new Battery(i_Energy,m_MaxCharghingTime);
             this.m_TypeOfLicense = i_TypeOfLicense;
             this.m_EngineCapacity = i_EngineCapacity;
+            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
         }
 
         public override string ToString()

@@ -24,6 +24,8 @@ public class FuelMotorcycle : Vehicle , IFuel
         m_MotorcycleFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
         this.m_TypeOfLicense = i_TypeOfLicense;
         this.m_EngineCapacity = i_EngineCapacity;
+        m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+
     }
 
     public int EngineCapacity
