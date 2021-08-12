@@ -8,10 +8,10 @@ namespace Project1
     public class Truck : Vehicle, IFuel
     {
         private Fuel m_TruckFuelStatus = null;
-        private readonly float m_MaxFuelCapacity = 110f;
-        private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Soler;
-        private readonly int m_NumberOfWheels = 16;
-        private readonly float m_MaxAirPresure = 26f;
+        private readonly float r_MaxFuelCapacity = 110f;
+        private readonly TypeOfFuel r_TypeOfFuel = TypeOfFuel.Soler;
+        private readonly int r_NumberOfWheels = 16;
+        private readonly float r_MaxAirPresure = 26f;
         private bool m_IsLoadWithDangerousMaterials = false;
         private float m_AmountOfLoad = 0f;
 
@@ -23,25 +23,11 @@ namespace Project1
         public Truck(string i_Moudle, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
             base(i_Moudle, i_NumberLicense, i_Fuel)
         {
-            m_TruckFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
+            m_TruckFuelStatus = new Fuel(r_TypeOfFuel, r_MaxFuelCapacity, i_Fuel);
             this.m_IsLoadWithDangerousMaterials = i_IsLoadWithDangerousMaterials;
             this.m_AmountOfLoad = i_AmountOfLoad;
-            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+            m_WheelsCollection = new List<Wheels>(r_NumberOfWheels);
 
-        }
-
-        public override void SetWheels()
-        {
-            foreach(Wheels wheels in m_WheelsCollection)
-            {
-                wheels.AirPressure = m_MaxAirPresure;
-            }
-        }
-
-        public bool LoadWithDangerousMaterials
-        {
-            get { return this.m_IsLoadWithDangerousMaterials; }
-            set { this.m_IsLoadWithDangerousMaterials = value; }
         }
 
         public float AmountOfLoad
@@ -55,6 +41,20 @@ namespace Project1
             get { return this.m_TruckFuelStatus; }
         }
 
+        public bool LoadWithDangerousMaterials
+        {
+            get { return this.m_IsLoadWithDangerousMaterials; }
+            set { this.m_IsLoadWithDangerousMaterials = value; }
+        }
+
+        public override void SetWheels()
+        {
+            foreach(Wheels wheels in m_WheelsCollection)
+            {
+                wheels.AirPressure = r_MaxAirPresure;
+            }
+        }
+
         public override string ToString()
         {
             string vehicleInformation = string.Empty;
@@ -65,7 +65,7 @@ namespace Project1
                 "Wheels : {3}\n" +
                 "Load with dangerous cargo ? {4}\n" +
                 "Cargo capacity : {5}\n" +
-                "Type Of Fuel: { 6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, m_TypeOfFuel);
+                "Type Of Fuel: { 6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, r_TypeOfFuel);
             return vehicleInformation;
         }
 
@@ -86,9 +86,9 @@ namespace Project1
 
         public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
         {
-            for (int i = 0; i < m_NumberOfWheels; i++)
+            for (int i = 0; i < r_NumberOfWheels; i++)
             {
-                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
             }
         }
 
@@ -118,7 +118,7 @@ namespace Project1
 
         public void CheckFuelType(TypeOfFuel i_TypeOfFuel)
         {
-            if (i_TypeOfFuel != m_TypeOfFuel)
+            if (i_TypeOfFuel != r_TypeOfFuel)
             {
                 throw new ArgumentException("Invalid fuel type for car - should be Octan95");
             }
@@ -126,9 +126,9 @@ namespace Project1
 
         public void CheckFuelAmountInRange(float i_Amount)
         {
-            if (i_Amount > m_MaxFuelCapacity || i_Amount < 0)
+            if (i_Amount > r_MaxFuelCapacity || i_Amount < 0)
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxFuelCapacity);
+                throw new ValueOutOfRangeException(new Exception(), 0, r_MaxFuelCapacity);
             }
         }
     }

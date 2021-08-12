@@ -6,10 +6,10 @@ using Project1;
 public class FuelMotorcycle : Motorcycler , IFuel
 {
     private Fuel m_MotorcycleFuelStatus = null;
-    private readonly float m_MaxFuelCapacity = 5.5f;
-    private readonly TypeOfFuel m_TypeOfFuel = TypeOfFuel.Octan98;
-    private readonly int m_NumberOfWheels = 2;
-    private readonly float m_MaxAirPresure = 28f;
+    private readonly float r_MaxFuelCapacity = 5.5f;
+    private readonly TypeOfFuel r_TypeOfFuel = TypeOfFuel.Octan98;
+    private readonly int r_NumberOfWheels = 2;
+    private readonly float r_MaxAirPresure = 28f;
 
     public FuelMotorcycle()
     {
@@ -19,21 +19,41 @@ public class FuelMotorcycle : Motorcycler , IFuel
     public FuelMotorcycle(string i_Model, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
         base(i_Model, i_NumberLicense, i_Fuel, i_TypeOfLicense, i_EngineCapacity)
     {
-        m_MotorcycleFuelStatus = new Fuel(m_TypeOfFuel, m_MaxFuelCapacity, i_Fuel);
-        m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+        m_MotorcycleFuelStatus = new Fuel(r_TypeOfFuel, r_MaxFuelCapacity, i_Fuel);
+        m_WheelsCollection = new List<Wheels>(r_NumberOfWheels);
+    }
+
+    public float MaxFuelCapacity
+    {
+        get { return r_MaxFuelCapacity; }
+    }
+
+    public TypeOfFuel TypeOfFuel
+    {
+        get { return r_TypeOfFuel; }
+    }
+
+    public int NumberOfWheels
+    {
+        get { return r_NumberOfWheels; }
+    }
+
+    public float MaxAirPresure
+    {
+        get { return r_MaxAirPresure; }
+    }
+
+    public Fuel MotorcycleFuelStatus
+    {
+        get { return this.m_MotorcycleFuelStatus; }
     }
 
     public override void SetWheels()
     {
         foreach (Wheels wheels in m_WheelsCollection)
         {
-            wheels.AirPressure = m_MaxAirPresure;
+            wheels.AirPressure = r_MaxAirPresure;
         }
-    }
-
-    public Fuel MotorcycleFuelStatus
-    {
-        get { return this.m_MotorcycleFuelStatus; }
     }
 
     public override string ToString()
@@ -46,15 +66,15 @@ public class FuelMotorcycle : Motorcycler , IFuel
             "Wheels : \n{3}" +
             "Type of licence : {4}\n" +
             "Engine capacity  : {5}\n" +
-            "Type Of Fuel : {6}", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), m_TypeOfLicense, m_EngineCapacity, m_TypeOfFuel);
+            "Type Of Fuel : {6}", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), m_TypeOfLicense, m_EngineCapacity, r_TypeOfFuel);
         return vehicleInformation;
     }
 
     public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
     {
-        for (int i = 0; i < m_NumberOfWheels; i++)
+        for (int i = 0; i < r_NumberOfWheels; i++)
         {
-            m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+            m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
         }
     }
 
@@ -84,7 +104,7 @@ public class FuelMotorcycle : Motorcycler , IFuel
 
     public void CheckFuelType(TypeOfFuel i_TypeOfFuel)
     {
-        if (i_TypeOfFuel != m_TypeOfFuel)
+        if (i_TypeOfFuel != r_TypeOfFuel)
         {
             throw new ArgumentException("Invalid fuel type for car - should be Octan95");
         }
@@ -92,9 +112,9 @@ public class FuelMotorcycle : Motorcycler , IFuel
 
     public void CheckFuelAmountInRange(float i_Amount)
     {
-        if (i_Amount > m_MaxFuelCapacity || i_Amount < 0)
+        if (i_Amount > r_MaxFuelCapacity || i_Amount < 0)
         {
-            throw new ValueOutOfRangeException(new Exception(), 0, m_MaxFuelCapacity);
+            throw new ValueOutOfRangeException(new Exception(), 0, r_MaxFuelCapacity);
         }
     }
 }

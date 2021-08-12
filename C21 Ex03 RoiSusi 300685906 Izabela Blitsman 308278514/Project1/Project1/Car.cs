@@ -33,6 +33,18 @@ namespace Project1
             }   
         }
 
+        public int NumberOfDoors
+        {
+            get { return this.m_NumberOfDoors; }
+            set { m_NumberOfDoors = value; }
+        }
+
+        public PaintColor PaintColor
+        {
+            get { return this.m_PaintColor; }
+            set { this.m_PaintColor = value; }
+        }
+
         public abstract override Dictionary<string, string> GetExpectation();
 
         public abstract override string ToString();
@@ -61,15 +73,5 @@ namespace Project1
             return colors;
         }
 
-        public int NumberOfDoors
-        {
-            get { return this.m_NumberOfDoors; }
-        }
-
-        public PaintColor PaintColor
-        {
-            get { return this.m_PaintColor; }
-            set { this.m_PaintColor = value; }
-        }
     }
 }

@@ -6,7 +6,7 @@ namespace Project1
 {
     public class Fuel
     {
-        private TypeOfFuel m_TypeOfFuel;
+        private TypeOfFuel m_TypeOfFuel = 0;
         private float m_CurrentAmountOfFuel = 0f;
         private float m_MaxFuelCapacity = 0f;
 
@@ -35,7 +35,6 @@ namespace Project1
             set { m_MaxFuelCapacity = value; }
         }
 
-        //exception !! for type of fuel and amount
         public float Refuel(TypeOfFuel i_TypeOfFuel , float i_LiterToAdd)
         {
             if (m_CurrentAmountOfFuel + i_LiterToAdd <= m_MaxFuelCapacity)
@@ -49,15 +48,5 @@ namespace Project1
                 throw new ValueOutOfRangeException(new Exception(), 0, MaxFuelCapacity);
             }
         }
-
-        //public override string ToString()
-        //{
-        //    string fuelInformation = string.Format("Current Fuel : {0}\n" +
-        //                                           "Type of Fuel : {1}\n" +
-        //                                           "Max Capacity : {2}\n", 
-        //                                           m_CurrentAmountOfFuel , m_TypeOfFuel, m_MaxFuelCapacity);
-
-        //    return fuelInformation;
-        //}
     }
 }

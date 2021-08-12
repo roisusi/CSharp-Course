@@ -6,7 +6,7 @@ using System.Text;
 //Section 3
 namespace Project1
 {
-    public class CreateVehicles
+    internal class CreateVehicles
     {
         private Dictionary<int, string> m_ListOfAllVehicles = new Dictionary<int, string>();
 

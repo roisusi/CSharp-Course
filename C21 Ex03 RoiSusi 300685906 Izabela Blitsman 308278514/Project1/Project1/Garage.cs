@@ -6,7 +6,7 @@ using System.Text;
 namespace Project1 {
     public class Garage
     {
-        private CreateVehicles createVehicles = new CreateVehicles();
+        private CreateVehicles m_createVehicles = new CreateVehicles();
         private List<GarageVehicleInformation> m_CurrentVehicelIn = new List<GarageVehicleInformation>();
 
         public bool AddVehicleToGarrage(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
@@ -149,17 +149,17 @@ namespace Project1 {
 
         public bool AddVehicle(string typeOfVehicle, List<string> valuesEnterByTheUser, Garage garage)
         {
-            return createVehicles.AddVehicle(typeOfVehicle, valuesEnterByTheUser, garage);
+            return m_createVehicles.AddVehicle(typeOfVehicle, valuesEnterByTheUser, garage);
         }
 
         public Dictionary<int,string> ListOfAllVehicles()
         {
-            return createVehicles.ListOfAllVehicles();
+            return m_createVehicles.ListOfAllVehicles();
         }
 
         public Dictionary<string, string> GetListOfValues(string type)
         {
-            return createVehicles.GetListOfValues(type);
+            return m_createVehicles.GetListOfValues(type);
         }
 
         public string GetAllFuelTypes()
