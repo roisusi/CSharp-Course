@@ -18,7 +18,6 @@ namespace Ex03.ConsoleUI
 
         public static string WelcomeMenu()
         {
-            bool orderByGarageStatus = false;
             string getInputFromUser = string.Empty;
             bool loopForVehileSelection = true;
             string welcome = string.Format("Hello and Welcome to The Garage\n" +
