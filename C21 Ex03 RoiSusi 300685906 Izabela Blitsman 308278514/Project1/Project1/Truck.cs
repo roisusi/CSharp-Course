@@ -23,7 +23,7 @@ namespace Ex03GatageLogic
         public Truck(string i_Model, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
             base(i_Model, i_NumberLicense, i_Fuel)
         {
-            if (i_Fuel > r_MaxFuelCapacity)
+            if (i_Fuel > r_MaxFuelCapacity || i_Fuel < 0)
             {
                 throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
             }
@@ -67,7 +67,7 @@ namespace Ex03GatageLogic
                 "Model : {0}\n" +
                 "License number : {1}\n" +
                 "Tank fuel left : {2}\n" +
-                "Wheels : {3}\n" +
+                "Wheels : \n{3}" +
                 "Load with dangerous cargo ? {4}\n" +
                 "Cargo capacity : {5}\n" +
                 "Type Of Fuel: {6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, r_TypeOfFuel);
@@ -82,7 +82,7 @@ namespace Ex03GatageLogic
             listOfProperties.Add("3", "Model");
             listOfProperties.Add("4", "Licence number");
             listOfProperties.Add("5", "Tank fuel left");
-            listOfProperties.Add("6", "Is cargo load with dangerous matirials ? (Yes/No):\n");
+            listOfProperties.Add("6", "Is cargo load with dangerous matirials ? (Yes/any another input will select No):\n");
             listOfProperties.Add("7", "Cargo capacity");
             listOfProperties.Add("8", "Enter your current air presure of your wheels:\n");
             listOfProperties.Add("9", "Enter the name of the wheels manufacture:\n");
@@ -92,8 +92,7 @@ namespace Ex03GatageLogic
         public void InsertWheelInformation(string i_NameOfWheelManufacture, float i_CurrentPresure)
         {
             for (int i = 0; i < r_NumberOfWheels; i++)
-            {
-                m_WheelsCollection.Add(new Wheels(i_NameOfWheelManufacture, i_CurrentPresure, r_MaxAirPresure));
+            { 
 
                 if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
                 {
@@ -118,7 +117,7 @@ namespace Ex03GatageLogic
             
             else
             {
-                yesOrNo = "any another input will select No";
+                yesOrNo = "No";
             }
              
             return yesOrNo;

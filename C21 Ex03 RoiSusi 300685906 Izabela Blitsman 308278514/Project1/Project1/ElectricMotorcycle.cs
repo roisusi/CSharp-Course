@@ -19,7 +19,7 @@ namespace Ex03GatageLogic
         public ElectricMotorcycle(string i_Model, string i_NumberLicense, float i_Energy, TypeOfLicense i_TypeOfLicense, int i_EngineCapacity) :
             base(i_Model, i_NumberLicense, i_Energy, i_TypeOfLicense, i_EngineCapacity)
         {
-            if (i_Energy > r_MaxCharghingTime)
+            if (i_Energy > r_MaxCharghingTime || i_Energy < 0)
             {
                 throw new ValueOutOfRangeException(new Exception(), r_MaxCharghingTime, 0);
             }
@@ -88,7 +88,6 @@ namespace Ex03GatageLogic
         {
             for (int i = 0; i < r_NumberOfWheels; i++)
             {
-                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
                 
                 if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
                 {

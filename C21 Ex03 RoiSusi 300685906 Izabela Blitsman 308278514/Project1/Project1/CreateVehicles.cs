@@ -91,7 +91,7 @@ namespace Ex03GatageLogic
                         string model = valuesEnterByTheUser[2];
                         string licence = valuesEnterByTheUser[3];
                         string energyOrFuel = valuesEnterByTheUser[4];
-                        //Catch here Exception
+                        
                         PaintColor paintColor = (PaintColor)Enum.Parse(typeof(PaintColor), valuesEnterByTheUser[5], true);
                         string numberOfDoors = valuesEnterByTheUser[6];
                         string airPresure = valuesEnterByTheUser[7];

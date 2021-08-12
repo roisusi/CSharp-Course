@@ -2,8 +2,8 @@
 {
     public enum GarageStatus
     {
-        InRepair,
-        Fixed,
-        Paid
+        InRepair=1,
+        Fixed=2,
+        Paid=3
     }
 }

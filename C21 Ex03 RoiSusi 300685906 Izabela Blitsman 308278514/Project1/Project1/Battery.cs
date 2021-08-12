@@ -48,7 +48,7 @@ namespace Ex03GatageLogic
 
             else 
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxTimeChargeInHours);
+                throw new ValueOutOfRangeException(new Exception(), m_MaxTimeChargeInHours, 0);
             }
         }
 

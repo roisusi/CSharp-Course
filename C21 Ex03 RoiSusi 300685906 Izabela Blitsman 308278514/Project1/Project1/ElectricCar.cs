@@ -20,7 +20,7 @@ namespace Ex03GatageLogic
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
                 base(i_Model, i_NumberLicense, i_Energy, i_PaintColor, i_NumberOfDoors)
         {
-            if (i_Energy > r_MaxChargingTime)
+            if (i_Energy > r_MaxChargingTime || i_Energy < 0)
             {
                 throw new ValueOutOfRangeException(new Exception(), r_MaxChargingTime, 0);
             }
@@ -72,7 +72,7 @@ namespace Ex03GatageLogic
 
         public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
         {
-            for (int i = 0; i < m_NumberOfWheels; i++)
+            for (int i = 0; i < r_NumberOfWheels; i++)
             {
                 if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
                 {

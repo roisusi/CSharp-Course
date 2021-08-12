@@ -45,7 +45,7 @@ namespace Ex03GatageLogic
 
             else 
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, MaxFuelCapacity);
+                throw new ValueOutOfRangeException(new Exception(), MaxFuelCapacity, 0);
             }
         }
     }

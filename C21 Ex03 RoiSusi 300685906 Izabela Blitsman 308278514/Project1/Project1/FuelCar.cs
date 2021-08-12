@@ -18,7 +18,7 @@ public class FuelCar : Car , IFuel
     public FuelCar(string i_Model, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
         base(i_Model, i_NumberLicense,  i_Fuel,i_PaintColor, i_NumberOfDoors)
     {
-        if(i_Fuel > r_MaxFuelCapacity)
+        if(i_Fuel > r_MaxFuelCapacity || i_Fuel < 0)
         {
             throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
         }
@@ -78,7 +78,7 @@ public class FuelCar : Car , IFuel
     {
         for (int i=0 ; i < r_NumberOfWheels ; i++)
         {
-            m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
+       
             if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
             {
                 m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
