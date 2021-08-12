@@ -282,7 +282,7 @@ namespace Ex03.ConsoleUI
                 amount = System.Console.ReadLine();
                 garageOperation.TryParseStringToFloat(amount);
 
-                isSuccessfully = garageOperation.Refuel(licence, licence, amount);
+                isSuccessfully = garageOperation.Refuel(licence, FuelType, amount);
                 if (isSuccessfully == true)
                 {
                     System.Console.WriteLine("Reful is Done");
