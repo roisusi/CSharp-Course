@@ -152,11 +152,19 @@ namespace Ex03.ConsoleUI
             catch (ArgumentException ax)
             {
                 System.Console.WriteLine(ax.Message);
+                System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
+                System.Console.ReadLine();
+            }
+            catch (FormatException fx)
+            {
+                System.Console.WriteLine(fx.Message);
+                System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
                 System.Console.ReadLine();
             }
             catch (ValueOutOfRangeException ve)
             {
                 System.Console.WriteLine(ve.Message);
+                System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
                 System.Console.ReadLine();
             }
         }

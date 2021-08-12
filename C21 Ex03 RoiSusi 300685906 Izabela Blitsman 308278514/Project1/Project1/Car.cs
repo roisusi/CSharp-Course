@@ -28,8 +28,7 @@ namespace Project1
             
             else 
             {
-                throw new ArgumentException("Invalid number of doors been entered");
-                throw new ValueOutOfRangeException(new Exception(), r_MinDoorsNumber, r_MaxDoorsNumber);
+                throw new ArgumentException("Error occured - Invalid number of doors been entered");
             }   
         }
 

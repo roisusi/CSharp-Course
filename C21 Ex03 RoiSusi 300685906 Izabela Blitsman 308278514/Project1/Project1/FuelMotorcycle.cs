@@ -75,6 +75,16 @@ public class FuelMotorcycle : Motorcycler , IFuel
         for (int i = 0; i < r_NumberOfWheels; i++)
         {
             m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
+
+            if (i_CurrentPresure <= m_MaxAirPresure && i_CurrentPresure >= 0)
+            {
+                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+            }
+
+            else
+            {
+                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxAirPresure);
+            }
         }
     }
 
