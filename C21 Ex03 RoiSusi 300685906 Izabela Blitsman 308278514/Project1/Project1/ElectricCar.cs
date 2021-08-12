@@ -8,7 +8,7 @@ namespace Ex03GatageLogic
     public class ElectricCar : Car, ICharge
     {
         private Battery m_CarEnergyStatus = null;
-        private readonly int m_NumberOfWheels = 4;
+        private readonly int r_NumberOfWheels = 4;
         private readonly float r_MaxChargingTime = 2.8f;
         private readonly float r_MaxAirPresure = 30f;
 
@@ -26,12 +26,27 @@ namespace Ex03GatageLogic
             }
 
             m_CarEnergyStatus = new Battery(i_Energy, r_MaxChargingTime);
-            m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
+            m_WheelsCollection = new List<Wheels>(r_NumberOfWheels);
         }
 
         public Battery CarBatteryStatus
         {
             get { return this.m_CarEnergyStatus; }
+        }
+
+        public int NumberOfWheels
+        {
+            get { return r_NumberOfWheels; }
+        }
+
+        public float MaxChargingTime
+        {
+            get { return r_MaxChargingTime; }
+        }
+
+        public float MaxAirPresure
+        {
+            get { return r_MaxAirPresure; }
         }
 
         public override void SetWheels()

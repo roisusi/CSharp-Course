@@ -15,8 +15,8 @@ public class FuelCar : Car , IFuel
     {
         // for Generic
     }
-    public FuelCar(string i_Modle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
-        base(i_Modle, i_NumberLicense,  i_Fuel,i_PaintColor, i_NumberOfDoors)
+    public FuelCar(string i_Model, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
+        base(i_Model, i_NumberLicense,  i_Fuel,i_PaintColor, i_NumberOfDoors)
     {
         if(i_Fuel > r_MaxFuelCapacity)
         {

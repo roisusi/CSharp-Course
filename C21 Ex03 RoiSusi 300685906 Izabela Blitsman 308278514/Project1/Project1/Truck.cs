@@ -20,8 +20,8 @@ namespace Ex03GatageLogic
             //for Generics
         }
 
-        public Truck(string i_Modle, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
-            base(i_Modle, i_NumberLicense, i_Fuel)
+        public Truck(string i_Model, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
+            base(i_Model, i_NumberLicense, i_Fuel)
         {
             if (i_Fuel > r_MaxFuelCapacity)
             {
@@ -89,15 +89,15 @@ namespace Ex03GatageLogic
             return listOfProperties;
         }
 
-        public void InsertWheelInformation(string i_NameOfWhellManufacture, float i_CurrentPresure)
+        public void InsertWheelInformation(string i_NameOfWheelManufacture, float i_CurrentPresure)
         {
             for (int i = 0; i < r_NumberOfWheels; i++)
             {
-                m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
+                m_WheelsCollection.Add(new Wheels(i_NameOfWheelManufacture, i_CurrentPresure, r_MaxAirPresure));
 
                 if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
                 {
-                    m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
+                    m_WheelsCollection.Add(new Wheels(i_NameOfWheelManufacture, i_CurrentPresure, r_MaxAirPresure));
                 }
 
                 else
