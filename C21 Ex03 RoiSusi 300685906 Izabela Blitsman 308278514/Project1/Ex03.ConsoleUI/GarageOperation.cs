@@ -271,7 +271,7 @@ namespace Ex03.ConsoleUI
         public static void RefuelACar()
         {
             string licence = string.Empty;
-            string FuelType = string.Empty;
+            string fuelType = string.Empty;
             string amount = string.Empty;
             string fuelList = string.Empty;
             bool isSuccessfully = false;
@@ -284,14 +284,13 @@ namespace Ex03.ConsoleUI
                 System.Console.WriteLine("Please enter Fuel Type: \n");
                 fuelList = garageOperation.GetAllFuelTypes();
                 System.Console.WriteLine(fuelList);
-                FuelType = System.Console.ReadLine();
-                //CHECK PARSE STRING TO ENUM 
+                fuelType = System.Console.ReadLine();
 
                 System.Console.WriteLine("Please enter Amount to Fill: \n");
                 amount = System.Console.ReadLine();
                 garageOperation.TryParseStringToFloat(amount);
 
-                isSuccessfully = garageOperation.Refuel(licence, FuelType, amount);
+                isSuccessfully = garageOperation.Refuel(licence, fuelType, amount);
                 if (isSuccessfully == true)
                 {
                     System.Console.WriteLine("Refuel is Done");

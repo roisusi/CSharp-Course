@@ -115,7 +115,7 @@ namespace Ex03GatageLogic
                         string model = valuesEnterByTheUser[2];
                         string licence = valuesEnterByTheUser[3];
                         string energyOrFuel = valuesEnterByTheUser[4];
-                        //Catch here Exception
+
                         TypeOfLicense typeOfLicense = (TypeOfLicense)Enum.Parse(typeof(TypeOfLicense), valuesEnterByTheUser[5], true);
                         string engineCapacity = valuesEnterByTheUser[6];
                         string airPresure = valuesEnterByTheUser[7];
@@ -167,21 +167,18 @@ namespace Ex03GatageLogic
                         string licence = valuesEnterByTheUser[3];
                         string energyOrFuel = valuesEnterByTheUser[4];
 
-                        //Catch here Exception if yes or no
+
                         string dengerousLoadString = valuesEnterByTheUser[5];
                         bool dengerousLoad = false;
                         if (dengerousLoadString.ToLower().Equals("yes"))
                         {
                             dengerousLoad = true;
                         }
-                        else if (dengerousLoadString.ToLower().Equals("no"))
+                        else
                         {
                             dengerousLoad = false;
                         }
-                        else
-                        {
-                            //Todo here
-                        }
+
                         string engineCapacity = valuesEnterByTheUser[6];
                         string airPresure = valuesEnterByTheUser[7];
                         string manufactue = valuesEnterByTheUser[8];

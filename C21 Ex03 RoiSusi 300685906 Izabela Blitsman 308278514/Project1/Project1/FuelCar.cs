@@ -15,9 +15,14 @@ public class FuelCar : Car , IFuel
     {
         // for Generic
     }
-    public FuelCar(string i_Moudle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
-        base(i_Moudle, i_NumberLicense,  i_Fuel,i_PaintColor, i_NumberOfDoors)
+    public FuelCar(string i_Modle, string i_NumberLicense, float i_Fuel, PaintColor i_PaintColor, int i_NumberOfDoors) :
+        base(i_Modle, i_NumberLicense,  i_Fuel,i_PaintColor, i_NumberOfDoors)
     {
+        if(i_Fuel > r_MaxFuelCapacity)
+        {
+            throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
+        }
+
         m_CarFuelStatus = new Fuel(r_TypeOfFuel, r_MaxFuelCapacity, i_Fuel);
         m_WheelsCollection = new List<Wheels>(r_NumberOfWheels);
     }
@@ -81,7 +86,7 @@ public class FuelCar : Car , IFuel
 
             else 
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, r_MaxAirPresure);
+                throw new ValueOutOfRangeException(new Exception(),r_MaxAirPresure, 0);
             }
         }
     }
@@ -123,7 +128,7 @@ public class FuelCar : Car , IFuel
     {
         if (i_Amount > r_MaxFuelCapacity || i_Amount < 0)
         {
-            throw new ValueOutOfRangeException(new Exception(), 0, r_MaxFuelCapacity);
+            throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
         }
     }
 }

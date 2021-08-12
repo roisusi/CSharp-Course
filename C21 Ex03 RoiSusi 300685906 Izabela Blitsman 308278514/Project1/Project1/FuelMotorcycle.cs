@@ -19,6 +19,11 @@ public class FuelMotorcycle : Motorcycler , IFuel
     public FuelMotorcycle(string i_Model, string i_NumberLicense, float i_Fuel, TypeOfLicense i_TypeOfLicense,int i_EngineCapacity) :
         base(i_Model, i_NumberLicense, i_Fuel, i_TypeOfLicense, i_EngineCapacity)
     {
+        if (i_Fuel > r_MaxFuelCapacity)
+        {
+            throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
+        }
+
         m_MotorcycleFuelStatus = new Fuel(r_TypeOfFuel, r_MaxFuelCapacity, i_Fuel);
         m_WheelsCollection = new List<Wheels>(r_NumberOfWheels);
     }
@@ -83,7 +88,7 @@ public class FuelMotorcycle : Motorcycler , IFuel
 
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, r_MaxAirPresure);
+                throw new ValueOutOfRangeException(new Exception(), r_MaxAirPresure, 0);
             }
         }
     }
@@ -124,7 +129,7 @@ public class FuelMotorcycle : Motorcycler , IFuel
     {
         if (i_Amount > r_MaxFuelCapacity || i_Amount < 0)
         {
-            throw new ValueOutOfRangeException(new Exception(), 0, r_MaxFuelCapacity);
+            throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
         }
     }
 }

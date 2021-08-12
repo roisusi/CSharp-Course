@@ -9,8 +9,8 @@ namespace Ex03GatageLogic
     {
         private Battery m_CarEnergyStatus = null;
         private readonly int m_NumberOfWheels = 4;
-        private readonly float m_MaxCharghingTime = 2.8f;
-        private readonly float m_MaxAirPresure = 30f;
+        private readonly float r_MaxChargingTime = 2.8f;
+        private readonly float r_MaxAirPresure = 30f;
 
         public ElectricCar()
         {
@@ -20,7 +20,12 @@ namespace Ex03GatageLogic
         public ElectricCar(string i_Model, string i_NumberLicense, float i_Energy, PaintColor i_PaintColor, int i_NumberOfDoors) :
                 base(i_Model, i_NumberLicense, i_Energy, i_PaintColor, i_NumberOfDoors)
         {
-            m_CarEnergyStatus = new Battery(i_Energy, m_MaxCharghingTime);
+            if (i_Energy > r_MaxChargingTime)
+            {
+                throw new ValueOutOfRangeException(new Exception(), r_MaxChargingTime, 0);
+            }
+
+            m_CarEnergyStatus = new Battery(i_Energy, r_MaxChargingTime);
             m_WheelsCollection = new List<Wheels>(m_NumberOfWheels);
         }
 
@@ -33,7 +38,7 @@ namespace Ex03GatageLogic
         {
             foreach (Wheels wheels in m_WheelsCollection)
             {
-                wheels.AddAirToWheel(m_MaxAirPresure);
+                wheels.AddAirToWheel(r_MaxAirPresure);
             }
         }
 
@@ -54,14 +59,14 @@ namespace Ex03GatageLogic
         {
             for (int i = 0; i < m_NumberOfWheels; i++)
             {
-                if (i_CurrentPresure <= m_MaxAirPresure && i_CurrentPresure >= 0)
+                if (i_CurrentPresure <= r_MaxAirPresure && i_CurrentPresure >= 0)
                 {
-                    m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, m_MaxAirPresure));
+                    m_WheelsCollection.Add(new Wheels(i_NameOfWhellManufacture, i_CurrentPresure, r_MaxAirPresure));
                 }
 
                 else
                 {
-                    throw new ValueOutOfRangeException(new Exception(), 0, m_MaxAirPresure);
+                    throw new ValueOutOfRangeException(new Exception(), r_MaxAirPresure, 0);
                 }
             }
         }
@@ -93,9 +98,9 @@ namespace Ex03GatageLogic
 
         public void CheckChargingTimeInRange(float i_TimeCharge)
         {
-            if (i_TimeCharge > m_MaxCharghingTime || i_TimeCharge < 0)
+            if (i_TimeCharge > r_MaxChargingTime || i_TimeCharge < 0)
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, m_MaxCharghingTime);
+                throw new ValueOutOfRangeException(new Exception(), r_MaxChargingTime, 0);
             }
         }
     }

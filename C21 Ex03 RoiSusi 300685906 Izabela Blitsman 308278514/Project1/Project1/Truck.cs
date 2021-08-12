@@ -20,9 +20,14 @@ namespace Ex03GatageLogic
             //for Generics
         }
 
-        public Truck(string i_Moudle, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
-            base(i_Moudle, i_NumberLicense, i_Fuel)
+        public Truck(string i_Modle, string i_NumberLicense, float i_Fuel, bool i_IsLoadWithDangerousMaterials, float i_AmountOfLoad) :
+            base(i_Modle, i_NumberLicense, i_Fuel)
         {
+            if (i_Fuel > r_MaxFuelCapacity)
+            {
+                throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
+            }
+
             m_TruckFuelStatus = new Fuel(r_TypeOfFuel, r_MaxFuelCapacity, i_Fuel);
             this.m_IsLoadWithDangerousMaterials = i_IsLoadWithDangerousMaterials;
             this.m_AmountOfLoad = i_AmountOfLoad;
@@ -65,7 +70,7 @@ namespace Ex03GatageLogic
                 "Wheels : {3}\n" +
                 "Load with dangerous cargo ? {4}\n" +
                 "Cargo capacity : {5}\n" +
-                "Type Of Fuel: { 6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, r_TypeOfFuel);
+                "Type Of Fuel: {6}\n", m_Model, m_LicenseNumber, m_Energy, PrintWheels(), ChageLoadWithDangerousMaterialsToString() , m_AmountOfLoad, r_TypeOfFuel);
             return vehicleInformation;
         }
 
@@ -97,7 +102,7 @@ namespace Ex03GatageLogic
 
                 else
                 {
-                    throw new ValueOutOfRangeException(new Exception(), 0, r_MaxAirPresure);
+                    throw new ValueOutOfRangeException(new Exception(), r_MaxAirPresure, 0);
                 }
             }
         }
@@ -105,15 +110,17 @@ namespace Ex03GatageLogic
         public string ChageLoadWithDangerousMaterialsToString()
         {
             string yesOrNo = string.Empty;
+
             if (m_IsLoadWithDangerousMaterials == true)
             {
-                yesOrNo = "Yes";
+                    yesOrNo = "Yes";
             }
+            
             else
             {
-                yesOrNo = "No";
+                yesOrNo = "any another input will select No";
             }
-
+             
             return yesOrNo;
         }
 
@@ -130,7 +137,7 @@ namespace Ex03GatageLogic
         {
             if (i_TypeOfFuel != r_TypeOfFuel)
             {
-                throw new ArgumentException("Invalid fuel type for car - should be Octan95");
+                throw new ArgumentException("Invalid fuel type for car - should be Soler");
             }
         }
 
@@ -138,7 +145,7 @@ namespace Ex03GatageLogic
         {
             if (i_Amount > r_MaxFuelCapacity || i_Amount < 0)
             {
-                throw new ValueOutOfRangeException(new Exception(), 0, r_MaxFuelCapacity);
+                throw new ValueOutOfRangeException(new Exception(), r_MaxFuelCapacity, 0);
             }
         }
     }
