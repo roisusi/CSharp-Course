@@ -146,24 +146,28 @@ namespace Ex03.ConsoleUI
                 {
                     System.Console.WriteLine("Vehicle already exists changed the vehicle to status InRepair");
                 }
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
             catch (ArgumentException ax)
             {
                 System.Console.WriteLine(ax.Message);
                 System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
             catch (FormatException fx)
             {
                 System.Console.WriteLine(fx.Message);
                 System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
             catch (ValueOutOfRangeException ve)
             {
                 System.Console.WriteLine(ve.Message);
                 System.Console.WriteLine("Due to occured error - Cannot add current vehicle to the garage");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
         }
@@ -209,6 +213,7 @@ namespace Ex03.ConsoleUI
             {
                 System.Console.WriteLine("No vehicle in the garrage or you typed incorrect status");
             }
+            System.Console.WriteLine("Press enter to return to Menu");
             System.Console.ReadLine();
 
         }
@@ -229,11 +234,13 @@ namespace Ex03.ConsoleUI
             if (changeSuccessfully == true)
             {
                 System.Console.WriteLine("Vehicle status change");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
             else
             {
                 System.Console.WriteLine("Vehicle status did change because licence not found or new status is incorrect");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
         }
@@ -250,11 +257,13 @@ namespace Ex03.ConsoleUI
             if (changeSuccessfully == true)
             {
                 System.Console.WriteLine("Air Filled");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
             else
             {
                 System.Console.WriteLine("Cant find vehicle with that licence");
+                System.Console.WriteLine("Press enter to return to Menu");
                 System.Console.ReadLine();
             }
         }
@@ -278,14 +287,14 @@ namespace Ex03.ConsoleUI
                 FuelType = System.Console.ReadLine();
                 //CHECK PARSE STRING TO ENUM 
 
-                System.Console.WriteLine("Please enter Amout to Fill: \n");
+                System.Console.WriteLine("Please enter Amount to Fill: \n");
                 amount = System.Console.ReadLine();
                 garageOperation.TryParseStringToFloat(amount);
 
                 isSuccessfully = garageOperation.Refuel(licence, FuelType, amount);
                 if (isSuccessfully == true)
                 {
-                    System.Console.WriteLine("Reful is Done");
+                    System.Console.WriteLine("Refuel is Done");
                 }
                 else
                 {
@@ -333,12 +342,14 @@ namespace Ex03.ConsoleUI
                 if (isSuccessfully)
                 {
                     System.Console.WriteLine("Charge is done");
+                    System.Console.WriteLine("Press enter to return to Menu");
                     System.Console.ReadLine();
                 }
 
                 else
                 {
                     System.Console.WriteLine("The vehicle is not using electrcity to charge the system");
+                    System.Console.WriteLine("Press enter to return to Menu");
                     System.Console.ReadLine();
                 }
             }
