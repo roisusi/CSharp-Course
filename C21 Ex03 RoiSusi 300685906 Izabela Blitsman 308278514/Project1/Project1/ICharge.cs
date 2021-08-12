@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project1
+namespace Ex03GatageLogic
 {
     public interface ICharge
     {

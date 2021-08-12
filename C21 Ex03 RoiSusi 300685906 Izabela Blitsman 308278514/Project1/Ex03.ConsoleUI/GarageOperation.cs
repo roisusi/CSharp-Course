@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Project1;
+using Ex03GatageLogic;
 
 namespace Ex03.ConsoleUI
 {

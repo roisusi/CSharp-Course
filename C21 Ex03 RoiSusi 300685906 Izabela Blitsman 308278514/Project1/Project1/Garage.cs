@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace Project1 {
+namespace Ex03GatageLogic {
     public class Garage
     {
         private CreateVehicles m_createVehicles = new CreateVehicles();

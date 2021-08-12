@@ -4,7 +4,7 @@ using System.Text;
 
 
 //Section 3
-namespace Project1
+namespace Ex03GatageLogic
 {
     internal class CreateVehicles
     {

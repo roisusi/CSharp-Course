@@ -1,4 +1,4 @@
-﻿namespace Project1
+﻿namespace Ex03GatageLogic
 {
     public class GarageVehicleInformation
     {
