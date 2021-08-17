@@ -9,7 +9,7 @@ namespace Ex04.Menus.Test
             DelegateTestActions delegateTestMenuActions = new DelegateTestActions();
             MainMenu mainMenu = new MainMenu("Main Menu");
             SubMenu verisonAndSpaces = new SubMenu("Verison and Spaces");
-            SubMenu dateTimeMenu = new SubMenu("Show date/time");
+            SubMenu dateTimeMenu = new SubMenu("Show Date/Time");
             MenuAction showDate = new MenuAction("Show Date");
             MenuAction showTime = new MenuAction("Show Time");
             MenuAction countSpaces = new MenuAction("Count Spaces");

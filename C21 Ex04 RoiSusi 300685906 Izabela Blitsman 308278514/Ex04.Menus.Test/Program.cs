@@ -11,10 +11,6 @@ namespace Ex04.Menus.Test
 
             DelegateMenuTest delegateMenuTest = new DelegateMenuTest();
             delegateMenuTest.Run();
-
-            Console.WriteLine("Bye Bye, press any key to exit:");
-            Console.ReadLine();
-
         }
     }
 }

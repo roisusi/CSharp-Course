@@ -8,7 +8,7 @@ namespace Ex04.Menus.Test
         {
             MainMenu mainMenu = new MainMenu("Main Menu");
             SubMenu verisonAndSpaces = new SubMenu("Verison and Spaces");
-            SubMenu dateTimeMenu = new SubMenu("Show date/time");
+            SubMenu dateTimeMenu = new SubMenu("Show Date/Time");
             ShowDate showDate = new ShowDate("Show Date");
             ShowTime showTime = new ShowTime("Show Time");
             CountSpaces countSpaces = new CountSpaces("Count Spaces");

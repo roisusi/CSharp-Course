@@ -31,12 +31,14 @@ namespace Ex04.Menus.Interfaces
             {
                 printMenu(i_CurrectLevel);
                 inputUserChoice = getChoiceFromUser();
-                Console.Clear();
+                //System.Console.Clear();
                 subMenu = r_MenuOptionsList[inputUserChoice] as SubMenu;
+
                 if (subMenu != null)
                 {
                     subMenu.Show(i_CurrectLevel + 1);
                 }
+
                 else if (r_MenuOptionsList[inputUserChoice] is IPerform)
                 {
                     ((IPerform)r_MenuOptionsList[inputUserChoice]).Perform();
@@ -45,32 +47,29 @@ namespace Ex04.Menus.Interfaces
             while (inputUserChoice != k_Exit);
         }
 
-        private void printTitle(int i_CurrectLevel)
+        private void printMenuTitle(int i_CurrectLevel)
         {
             if (i_CurrectLevel == 1)
             {
-                Console.WriteLine(@"Interface Menu
-***************");
+                System.Console.WriteLine("Main Interfaces");
             }
-            Console.WriteLine(@"You are in level {0}
-{1}
-=============", i_CurrectLevel, ToString());
+
         }
 
         private void printMenu(int i_CurrectLevel)
         {
-            printTitle(i_CurrectLevel);
-            foreach (int OptionNumber in r_MenuOptionsList.Keys)
+            printMenuTitle(i_CurrectLevel);
+
+            foreach (int optionNumber in r_MenuOptionsList.Keys)
             {
-                if (OptionNumber == k_Exit)
+                if (optionNumber != k_Exit)
                 {
-                    Console.WriteLine("0. {0}", i_CurrectLevel == MainMenu.k_InterfaceMenuLevel ? "Exit" : "Back");
-                }
-                else
-                {
-                    Console.WriteLine("{0}. {1}", OptionNumber.ToString(), r_MenuOptionsList[OptionNumber].ToString());
+                    string menuItem = string.Format("{0}. {1}", optionNumber, r_MenuOptionsList[optionNumber]);
+                    System.Console.WriteLine(menuItem);
                 }
             }
+            
+            System.Console.WriteLine("0. {0}", i_CurrectLevel == MainMenu.k_InterfaceMenuLevel ? "Exit" : "Back");
         }
 
         private int getChoiceFromUser()

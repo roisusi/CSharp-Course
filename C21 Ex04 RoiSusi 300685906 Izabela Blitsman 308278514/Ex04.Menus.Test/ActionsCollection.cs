@@ -6,12 +6,14 @@ namespace Ex04.Menus.Test
     {
         public void ShowDate()
         {
-            Console.WriteLine($"Current Date: {DateTime.Now.Date:dd/MM/yyyy}");
+            string currentDate = string.Format("Current date: {0}", DateTime.Today);
+            System.Console.WriteLine(currentDate);
         }
 
         public void ShowTime()
         {
-            Console.WriteLine($"Current Time: {DateTime.Now:HH:mm:ss}");
+            string currentTime = string.Format("Current time: {0}", DateTime.Now);
+            Console.WriteLine(currentTime);
         }
 
         public void CountSpaces()
@@ -22,21 +24,19 @@ namespace Ex04.Menus.Test
             Console.WriteLine("Please enter a sentence:");
             userStringInput = getStringFromUser();
             spacesNumber = getSpacesNumberInString(userStringInput);
-            Console.WriteLine(@"There are {0} spaces in the sentence: 
-{1}",
-                spacesNumber.ToString(),
-                userStringInput);
+            string userMessage = string.Format("Number of spaces: {0}", spacesNumber);
+            System.Console.WriteLine(userMessage);
         }
 
         private string getStringFromUser()
         {
             string userStringInput;
 
-            userStringInput = Console.ReadLine();
+            userStringInput = System.Console.ReadLine();
             while (userStringInput == string.Empty)
             {
-                Console.WriteLine("Invalid input. Please try again:");
-                userStringInput = Console.ReadLine();
+                System.Console.WriteLine("Invalid input. Please try again:");
+                userStringInput = System.Console.ReadLine();
             }
 
             return userStringInput;
@@ -59,7 +59,7 @@ namespace Ex04.Menus.Test
 
         public void ShowVerison()
         {
-            Console.WriteLine("Version: 21.1.4.8930");
+            System.Console.WriteLine("Version: 21.3.4.8933");
         }
     }
 }
