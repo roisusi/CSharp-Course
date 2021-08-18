@@ -35,10 +35,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IPerform.cs" />
+    <Compile Include="IAction.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MenuItem.cs" />
-    <Compile Include="SubMenu.cs" />
+    <Compile Include="SecondMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

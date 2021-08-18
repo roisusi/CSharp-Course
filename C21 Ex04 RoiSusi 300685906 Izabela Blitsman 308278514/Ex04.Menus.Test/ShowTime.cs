@@ -5,15 +5,15 @@ using Ex04.Menus.Interfaces;
 
 namespace Ex04.Menus.Test
 {
-    public class ShowTime : MenuItem, IPerform
+    public class ShowTime : MenuItem, IAction
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
 
-        public ShowTime(string i_InstructionName) : base(i_InstructionName)
+        public ShowTime(string i_MenuAction) : base(i_MenuAction)
         {
         }
 
-        public void Perform()
+        public void Action()
         {
             r_ActionsCollection.ShowTime();
         }

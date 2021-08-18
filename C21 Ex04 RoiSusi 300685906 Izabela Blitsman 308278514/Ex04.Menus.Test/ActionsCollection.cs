@@ -6,47 +6,48 @@ namespace Ex04.Menus.Test
     {
         public void ShowDate()
         {
-            string currentDate = string.Format("Current date: {0}", DateTime.Today);
+            string currentDate = string.Format("Current date: {0}", DateTime.Today.ToString("dd/MM/yyyy"));
             System.Console.WriteLine(currentDate);
         }
 
         public void ShowTime()
         {
-            string currentTime = string.Format("Current time: {0}", DateTime.Now);
+            string currentTime = string.Format("Current time: {0}", DateTime.Now.ToString("h:mm:ss tt"));
             Console.WriteLine(currentTime);
         }
 
         public void CountSpaces()
         {
-            string userStringInput;
-            int spacesNumber;
+            string userInput = string.Empty;
+            int spacesNumber = 0;
 
-            Console.WriteLine("Please enter a sentence:");
-            userStringInput = getStringFromUser();
-            spacesNumber = getSpacesNumberInString(userStringInput);
+            Console.WriteLine("Please write something:");
+            userInput = getUserInput();
+            spacesNumber = countSpacesNumber(userInput);
             string userMessage = string.Format("Number of spaces: {0}", spacesNumber);
             System.Console.WriteLine(userMessage);
         }
 
-        private string getStringFromUser()
+        private string getUserInput()
         {
-            string userStringInput;
+            string userInput = string.Empty;
 
-            userStringInput = System.Console.ReadLine();
-            while (userStringInput == string.Empty)
+            userInput = System.Console.ReadLine();
+
+            while (userInput == string.Empty)
             {
-                System.Console.WriteLine("Invalid input. Please try again:");
-                userStringInput = System.Console.ReadLine();
+                System.Console.WriteLine("Invalid input - Please try again:");
+                userInput = System.Console.ReadLine();
             }
 
-            return userStringInput;
+            return userInput;
         }
 
-        private int getSpacesNumberInString(string userStringInput)
+        private int countSpacesNumber(string i_UserInput)
         {
             int spacesCounter = 0;
 
-            foreach (char letter in userStringInput)
+            foreach (char letter in i_UserInput)
             {
                 if (char.IsWhiteSpace(letter))
                 {
@@ -57,7 +58,7 @@ namespace Ex04.Menus.Test
             return spacesCounter;
         }
 
-        public void ShowVerison()
+        public void ShowVersion()
         {
             System.Console.WriteLine("Version: 21.3.4.8933");
         }

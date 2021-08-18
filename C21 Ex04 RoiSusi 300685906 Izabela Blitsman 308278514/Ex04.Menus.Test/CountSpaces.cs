@@ -6,15 +6,15 @@ using Ex04.Menus.Interfaces;
 namespace Ex04.Menus.Test
 {
 
-    public class CountSpaces : MenuItem, IPerform
+    public class CountSpaces : MenuItem, IAction
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
 
-        public CountSpaces(string i_InstruciontName) : base(i_InstruciontName)
+        public CountSpaces(string i_MenuAction) : base(i_MenuAction)
         {
         }
 
-        public void Perform()
+        public void Action()
         {
             r_ActionsCollection.CountSpaces();
         }

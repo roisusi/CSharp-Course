@@ -2,22 +2,22 @@
 {
     public class MainMenu
     {
-        internal const int k_InterfaceMenuLevel = 1;
-        private readonly SubMenu r_SubMenu;
+        internal const int r_InterfacesMenuLevel = 0;
+        private readonly SecondMenu r_SecondMenu;
 
         public MainMenu(string i_Title)
         {
-            r_SubMenu = new SubMenu(i_Title);
+            r_SecondMenu = new SecondMenu(i_Title);
         }
 
         public void Show()
         {
-            r_SubMenu.Show(k_InterfaceMenuLevel);
+            r_SecondMenu.Show(r_InterfacesMenuLevel);
         }
 
-        public void AddItem(params MenuItem[] i_NewMenuItems)
+        public void AddMenuItems(params MenuItem[] i_MenuItems)
         {
-            r_SubMenu.AddItem(i_NewMenuItems);
+            r_SecondMenu.AddItem(i_MenuItems);
         }
     }
 }

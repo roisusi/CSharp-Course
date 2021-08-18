@@ -6,11 +6,11 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            InterfaceMenuTest interfaceMenuTest = new InterfaceMenuTest();
-            interfaceMenuTest.Run();
+            InterfacesMenu interfacesMenu = new InterfacesMenu();
+            interfacesMenu.Run();
 
-            DelegateMenuTest delegateMenuTest = new DelegateMenuTest();
-            delegateMenuTest.Run();
+            DelegatesMenu delegatesMenu = new DelegatesMenu();
+            delegatesMenu.Run();
         }
     }
 }

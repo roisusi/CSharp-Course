@@ -1,17 +1,17 @@
 ﻿namespace Ex04.Menus.Interfaces
 {
-    public abstract class MenuItem
+    public class MenuItem
     {
-        private string m_MenuItemName;
+        private string m_MenuTitle;
 
-        public MenuItem(string i_MenuItemName)
+        public MenuItem(string i_MenuTitle)
         {
-            m_MenuItemName = i_MenuItemName;
+            m_MenuTitle = i_MenuTitle;
         }
 
-        public override string ToString()
+        public string MenuTitle
         {
-            return m_MenuItemName;
+            get { return m_MenuTitle; }
         }
     }
 }

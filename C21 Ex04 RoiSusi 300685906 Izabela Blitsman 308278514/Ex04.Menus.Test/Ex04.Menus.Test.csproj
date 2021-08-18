@@ -34,13 +34,13 @@
   <ItemGroup>
     <Compile Include="ActionsCollection.cs" />
     <Compile Include="CountSpaces.cs" />
-    <Compile Include="DelegateMenuTest.cs" />
-    <Compile Include="DelegateTestActions.cs" />
-    <Compile Include="InterfaceMenuTest.cs" />
+    <Compile Include="DelegatesMenu.cs" />
+    <Compile Include="DelegatesMenuActions.cs" />
+    <Compile Include="InterfacesMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ShowDate.cs" />
     <Compile Include="ShowTime.cs" />
-    <Compile Include="ShowVerison.cs" />
+    <Compile Include="ShowVersion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex04.Menus.Delegates\Ex04.Menus.Delegates.csproj">

@@ -1,6 +1,6 @@
 ﻿namespace Ex04.Menus.Test
 {
-    class DelegateTestActions
+    class DelegatesMenuActions
 
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
@@ -20,9 +20,9 @@
             r_ActionsCollection.CountSpaces();
         }
 
-        public void ActionsCollection_ShowVerison()
+        public void ActionsCollection_ShowVersion()
         {
-            r_ActionsCollection.ShowVerison();
+            r_ActionsCollection.ShowVersion();
         }
     }
 

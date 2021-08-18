@@ -2,17 +2,17 @@
 
 namespace Ex04.Menus.Test
 {
-    public class ShowVerison : MenuItem, IPerform
+    public class ShowVersion : MenuItem, IAction
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
 
-        public ShowVerison(string i_InstructionName) : base(i_InstructionName)
+        public ShowVersion(string i_MenuAction) : base(i_MenuAction)
         {
         }
 
-        public void Perform()
+        public void Action()
         {
-            r_ActionsCollection.ShowVerison();
+            r_ActionsCollection.ShowVersion();
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace Ex04.Menus.Delegates
 {
-    public abstract class MenuItem
+    public class MenuItem
     {
-        private readonly string r_MenuItemName;
+        private string m_MenuTitle;
 
-        public MenuItem(string i_MenuItemName)
+        public MenuItem(string i_MenuTitle)
         {
-            r_MenuItemName = i_MenuItemName;
+            m_MenuTitle = i_MenuTitle;
         }
 
-        public override string ToString()
+        public string MenuTitle
         {
-            return r_MenuItemName;
+            get { return m_MenuTitle; }
         }
     }
 }

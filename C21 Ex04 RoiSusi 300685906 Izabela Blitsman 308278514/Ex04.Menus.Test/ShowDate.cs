@@ -2,15 +2,15 @@
 
 namespace Ex04.Menus.Test
 {
-    public class ShowDate : MenuItem, IPerform
+    public class ShowDate : MenuItem, IAction
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
 
-        public ShowDate(string i_InstructionName) : base(i_InstructionName)
+        public ShowDate(string i_MenuAction) : base(i_MenuAction)
         {
         }
 
-        public void Perform()
+        public void Action()
         {
             r_ActionsCollection.ShowDate();
         }

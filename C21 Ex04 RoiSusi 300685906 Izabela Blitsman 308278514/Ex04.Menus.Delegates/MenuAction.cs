@@ -1,26 +1,26 @@
 ﻿namespace Ex04.Menus.Delegates
 {
-    public delegate void ChooseActionEventHandler();
+    public delegate void ChosenMenuActionEventHandler();
 
     public class MenuAction : MenuItem
     {
-        public event ChooseActionEventHandler MenuActionChoosen;
+        public event ChosenMenuActionEventHandler ChosenMenuAction;
 
-        public MenuAction(string i_NameItem) : base(i_NameItem)
+        public MenuAction(string i_MenuItemTitle) : base(i_MenuItemTitle)
         {
         }
 
-        protected virtual void OnActionChoosen()
+        protected virtual void OnActionChosen()
         {
-            if (MenuActionChoosen != null)
+            if (ChosenMenuAction != null)
             {
-                MenuActionChoosen.Invoke();
+                ChosenMenuAction.Invoke();
             }
         }
 
-        public void PreformChosenAction()
+        public void PreformeChosenAction()
         {
-            OnActionChoosen();
+            OnActionChosen();
         }
     }
 }
