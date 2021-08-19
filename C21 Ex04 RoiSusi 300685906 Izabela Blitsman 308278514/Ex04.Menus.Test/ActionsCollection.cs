@@ -18,13 +18,14 @@ namespace Ex04.Menus.Test
 
         public void CountSpaces()
         {
-            string userInput = string.Empty;
-            int spacesNumber = 0;
+            string  userInput = string.Empty;
+            string  userMessage = string.Empty;
+            int     spacesNumber = 0;
 
             Console.WriteLine("Please write something:");
             userInput = getUserInput();
             spacesNumber = countSpacesNumber(userInput);
-            string userMessage = string.Format("Number of spaces: {0}", spacesNumber);
+            userMessage = string.Format("Number of spaces: {0}", spacesNumber);
             System.Console.WriteLine(userMessage);
         }
 
@@ -34,7 +35,7 @@ namespace Ex04.Menus.Test
 
             userInput = System.Console.ReadLine();
 
-            while (userInput == string.Empty)
+            while(userInput == string.Empty)
             {
                 System.Console.WriteLine("Invalid input - Please try again:");
                 userInput = System.Console.ReadLine();
@@ -47,9 +48,9 @@ namespace Ex04.Menus.Test
         {
             int spacesCounter = 0;
 
-            foreach (char letter in i_UserInput)
+            foreach(char letter in i_UserInput)
             {
-                if (char.IsWhiteSpace(letter))
+                if(char.IsWhiteSpace(letter))
                 {
                     spacesCounter++;
                 }

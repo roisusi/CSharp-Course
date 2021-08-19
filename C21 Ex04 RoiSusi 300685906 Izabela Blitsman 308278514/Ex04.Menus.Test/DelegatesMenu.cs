@@ -6,14 +6,14 @@ namespace Ex04.Menus.Test
     {
         public void Run()
         {
-            DelegatesMenuActions delegatesMenuActions = new DelegatesMenuActions();
-            MainMenu mainMenu = new MainMenu("Main Delegates");
-            SecondMenu versionAndSpaces = new SecondMenu("Version and Spaces");
-            SecondMenu showDateTimeMenu = new SecondMenu("Show Date/Time");
-            MenuAction showDate = new MenuAction("Show Date");
-            MenuAction showTime = new MenuAction("Show Time");
-            MenuAction countSpaces = new MenuAction("Count Spaces");
-            MenuAction showVersion = new MenuAction("Show Version");
+            DelegatesMenuActions    delegatesMenuActions = new DelegatesMenuActions();
+            MainMenu                mainMenu = new MainMenu("Main Delegates");
+            SecondMenu              versionAndSpaces = new SecondMenu("Version and Spaces");
+            SecondMenu              showDateTimeMenu = new SecondMenu("Show Date/Time");
+            MenuAction              showDate = new MenuAction("Show Date");
+            MenuAction              showTime = new MenuAction("Show Time");
+            MenuAction              countSpaces = new MenuAction("Count Spaces");
+            MenuAction              showVersion = new MenuAction("Show Version");
 
             mainMenu.AddMenuItems(versionAndSpaces, showDateTimeMenu);
             showDateTimeMenu.AddItem(showDate, showTime);

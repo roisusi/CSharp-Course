@@ -1,7 +1,6 @@
 ﻿namespace Ex04.Menus.Test
 {
     class DelegatesMenuActions
-
     {
         private readonly ActionsCollection r_ActionsCollection = new ActionsCollection();
 
@@ -25,5 +24,4 @@
             r_ActionsCollection.ShowVersion();
         }
     }
-
 }

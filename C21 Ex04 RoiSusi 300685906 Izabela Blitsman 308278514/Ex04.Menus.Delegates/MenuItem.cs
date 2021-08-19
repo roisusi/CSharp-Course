@@ -3,7 +3,7 @@
     public class MenuItem
     {
         private string m_MenuTitle;
-
+        
         public MenuItem(string i_MenuTitle)
         {
             m_MenuTitle = i_MenuTitle;

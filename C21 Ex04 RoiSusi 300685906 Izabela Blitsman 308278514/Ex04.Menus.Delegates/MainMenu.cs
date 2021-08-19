@@ -5,9 +5,9 @@
         internal const int r_DelegatesMenuLevel = 0;
         private readonly SecondMenu r_SecondMenu;
 
-        public MainMenu(string i_Title)
+        public MainMenu(string i_MenuTitle)
         {
-            r_SecondMenu = new SecondMenu(i_Title);
+            r_SecondMenu = new SecondMenu(i_MenuTitle);
         }
 
         public void Show()

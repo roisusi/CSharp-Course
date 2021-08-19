@@ -6,10 +6,10 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            InterfacesMenu interfacesMenu = new InterfacesMenu();
+            InterfacesMenu  interfacesMenu = new InterfacesMenu();
             interfacesMenu.Run();
 
-            DelegatesMenu delegatesMenu = new DelegatesMenu();
+            DelegatesMenu   delegatesMenu = new DelegatesMenu();
             delegatesMenu.Run();
         }
     }

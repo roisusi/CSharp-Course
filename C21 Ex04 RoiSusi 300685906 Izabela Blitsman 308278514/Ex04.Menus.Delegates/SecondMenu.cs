@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Ex04.Menus.Delegates
 {
     public class SecondMenu : MenuItem
@@ -17,9 +16,9 @@ namespace Ex04.Menus.Delegates
 
         public void Show(int i_CurrentLevel)
         {
-            string userInput = string.Empty;
-            int userInputChoice = 0;
-            SecondMenu secondMenu;
+            string      userInput = string.Empty;
+            int         userInputChoice = 0;
+            SecondMenu  secondMenu = null;
 
             do
             {
@@ -30,32 +29,30 @@ namespace Ex04.Menus.Delegates
                 System.Console.WriteLine("Please select option:");
                 userInput = Console.ReadLine();
 
-                while (!int.TryParse(userInput, out userInputChoice) || !r_MenuItemsList.ContainsKey(userInputChoice))
+                while(!int.TryParse(userInput, out userInputChoice) || !r_MenuItemsList.ContainsKey(userInputChoice))
                 {
                     Console.WriteLine("Invalid input - Please choose one of the existing options");
                     userInput = Console.ReadLine();
                 }
 
-
                 secondMenu = r_MenuItemsList[userInputChoice] as SecondMenu;
 
-                if (secondMenu != null)
+                if(secondMenu != null)
                 {
                     secondMenu.Show(i_CurrentLevel + 1);
                 }
-
-                else if (r_MenuItemsList[userInputChoice] is MenuAction)
+                else if(r_MenuItemsList[userInputChoice] is MenuAction)
                 {
                     ((MenuAction)r_MenuItemsList[userInputChoice]).PreformeChosenAction();
                     System.Console.WriteLine();
                 }
             }
-            while (userInputChoice != r_Exit);
+            while(userInputChoice != r_Exit);
         }
 
         public void AddItem(params MenuItem[] i_MenuItems)
         {
-            foreach (MenuItem menuItem in i_MenuItems)
+            foreach(MenuItem menuItem in i_MenuItems)
             {
                 r_MenuItemsList.Add(m_InstructionNumber++, menuItem);
             }
@@ -68,9 +65,9 @@ namespace Ex04.Menus.Delegates
 
         private void printMenuItems(int i_CurrentLevel)
         {
-            foreach (int menuOption in r_MenuItemsList.Keys)
+            foreach(int menuOption in r_MenuItemsList.Keys)
             {
-                if (menuOption != r_Exit)
+                if(menuOption != r_Exit)
                 {
                     string menuItem = string.Format("{0}. {1}", menuOption, r_MenuItemsList[menuOption].MenuTitle);
                     System.Console.WriteLine(menuItem);

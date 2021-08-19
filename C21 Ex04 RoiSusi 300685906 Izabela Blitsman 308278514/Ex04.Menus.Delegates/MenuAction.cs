@@ -10,9 +10,9 @@
         {
         }
 
-        protected virtual void OnActionChosen()
+        protected virtual void OnChosenMenuAction()
         {
-            if (ChosenMenuAction != null)
+            if(ChosenMenuAction != null)
             {
                 ChosenMenuAction.Invoke();
             }
@@ -20,7 +20,7 @@
 
         public void PreformeChosenAction()
         {
-            OnActionChosen();
+            OnChosenMenuAction();
         }
     }
 }
