@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using C21_Ex02;
 
 namespace FourInRow
 {
@@ -39,9 +40,6 @@ namespace FourInRow
             InitControls();
         }
 
-        /// <summary>
-        /// Layouting the controls (textboxes, lables, buttons) on the form
-        /// </summary>
         private void InitControls()
         {
             m_LabelPlayers.Text = "Players:";
@@ -116,6 +114,8 @@ namespace FourInRow
         {  
             this.Visible = false;
             GameBorad startGame = new GameBorad(m_NumericUpDownRows.Value, m_NumericUpDownCols.Value, m_TextboxPlayer1Name.Text, m_TextboxPlayer2Name.Text);
+            FourInRowLogic game = new FourInRowLogic();
+            game.Play(startGame);
         }
 
         private void m_CheckboxPlayer2_Click(object sender, EventArgs e)
@@ -127,13 +127,13 @@ namespace FourInRow
         public string Player1Name
         {
             get { return m_TextboxPlayer1Name.Text; }
-            set { m_TextboxPlayer1Name.Text = value; }
         }
 
         public string Player2Name
         {
             get { return m_TextboxPlayer2Name.Text; }
-            set { m_TextboxPlayer2Name.Text = value; }
         }
+
+        
     }
 }
