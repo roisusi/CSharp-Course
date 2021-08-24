@@ -17,54 +17,35 @@ namespace C21_Ex02
             this.m_Turn = i_Turn;
         }
 
-        public string GetName()
+        public string Name
         {
-            return this.m_Name;
+            get { return this.m_Name; }
+            set { this.m_Name = value; }
         }
 
-        public void SetName(string i_SetName)
+        public int Score
         {
-            this.m_Name = i_SetName;
+            get { return this.m_Score; }
+            set { this.m_Score = value; }
         }
 
-        public int GetScore()
+        public string Coin
         {
-            return this.m_Score;
+            get { return this.m_Coin; }
+            set { this.m_Coin = value; }
         }
 
-        public void SetScore(int i_Score)
+        public bool Machine
         {
-            this.m_Score = i_Score;
+            get { return this.m_Machine; }
+            set { this.m_Machine = value; }
         }
 
-        public string GetCoin()
+        public bool Turn
         {
-            return this.m_Coin;
+            get { return this.m_Turn; }
+            set { this.m_Turn = value; }
         }
 
-        public void SetCoin(string i_Coin)
-        {
-            this.m_Coin = i_Coin;
-        }
-
-        public bool GetMachine()
-        {
-            return this.m_Machine;
-        }
-
-        public void SetMachine(bool i_Machine)
-        {
-            this.m_Machine = i_Machine;
-        }
-
-        public bool GetTurn()
-        {
-            return this.m_Turn;
-        }
-
-        public void SetTurn(bool i_Turn)
-        {
-            this.m_Turn = i_Turn;
-        }
     }
 }

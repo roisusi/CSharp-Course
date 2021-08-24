@@ -113,6 +113,8 @@ namespace FourInRow
         private void m_ButtonStart_Click(object sender, EventArgs e)
         {  
             this.Visible = false;
+            m_TextboxPlayer1Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer1Name,1);
+            m_TextboxPlayer2Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer2Name,2);
             GameBorad startGame = new GameBorad(m_NumericUpDownRows.Value, m_NumericUpDownCols.Value, m_TextboxPlayer1Name.Text, m_TextboxPlayer2Name.Text);
 
         }
@@ -127,6 +129,21 @@ namespace FourInRow
                 m_TextboxPlayer2Name.Text = string.Empty;
             }
         }
+
+        public string ChangeEmptyInputPlayer(TextBox i_Name,int i_NumberOfPlayer)
+        {
+            string newName = string.Empty;
+            if (i_Name.Text.Equals(string.Empty))
+            {
+                newName = string.Format("Player{0}", i_NumberOfPlayer);
+            }
+            else
+            {
+                newName = i_Name.Text;
+            }
+
+            return newName;
+    }
 
         public string Player1Name
         {

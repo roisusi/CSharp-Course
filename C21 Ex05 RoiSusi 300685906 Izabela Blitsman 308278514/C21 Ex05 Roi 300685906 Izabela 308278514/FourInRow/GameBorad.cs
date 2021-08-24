@@ -18,6 +18,8 @@ namespace FourInRow
         private readonly int r_FixLocationOfXByTheSizeOfTheMatrix = 0;
         private readonly int r_FixLocationOfYByTheSizeOfTheMatrix = 0;
         private string[,] m_PlayerInput = null;
+        private string m_Player1 = string.Empty;
+        private string m_Player2 = string.Empty;
         //private List<string> m_CurrentHeightGame = null;
 
         Panel m_BoradPanel = new Panel();
@@ -33,8 +35,10 @@ namespace FourInRow
         
         public GameBorad(decimal i_Rows, decimal i_Columns , string i_Player1 , string i_Player2)
         {
-            m_fourInRow = new FourInRowLogic(Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns));
-            m_PlayerInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
+            this.m_Player1 = i_Player1;
+            this.m_Player2 = i_Player2;
+            this.m_fourInRow = new FourInRowLogic(Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns));
+            this.m_PlayerInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
             this.r_FixLocationOfXByTheSizeOfTheMatrix = m_Columns * (k_ButtonSize + 10);
             this.r_FixLocationOfYByTheSizeOfTheMatrix = m_Rows * (k_ButtonSize + 10);
             this.m_Rows = Decimal.ToInt32(i_Rows);
@@ -56,20 +60,29 @@ namespace FourInRow
             m_Player2Name.Text = i_Player2;
             BoradScore();
 
-            m_fourInRow.SetPlayers(m_Player1Name.Text, m_Player2Name.Text);
+            m_fourInRow.SetPlayers(i_Player1, i_Player2);
             this.Controls.AddRange(new[] { m_BoradPanel, m_ScorePanel });
             this.ShowDialog();
         }
 
-        public void ButtonAdd_Click(object sender, EventArgs e)
+        public void CleanMatrix()
         {
-            Button clickedButton = (Button)sender;
-            int index = Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
+            for (int i = 0; i < m_Rows; i++)
+            {
+                for (int j = 0; j < m_Columns; j++)
+                {
+                    m_GameBoardMatrixCoins[i, j].Text = "";
+                }
+            }
 
-            m_fourInRow.PlayerVsPlayerGame(index);
-            m_PlayerInput = m_fourInRow.GetCurrentCoinsInTheMatrix();
+            for (int i = 0; i < m_Columns; i++)
+            {
+                m_InsertCoinButton[i].Enabled = true;
+            }
+        }
 
-
+        public void UpdateMatrix()
+        {
             for (int i = 0; i < m_Rows; i++)
             {
                 for (int j = 0; j < m_Columns; j++)
@@ -77,6 +90,24 @@ namespace FourInRow
                     m_GameBoardMatrixCoins[i, j].Text = m_PlayerInput[i, j];
                 }
             }
+        }
+
+        public void ButtonAdd_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            int index = Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
+            if (!m_Player2.Equals("[Computer]"))
+            {
+                m_fourInRow.PlayerVsPlayerGame(index);
+            }
+            else
+            {
+                m_fourInRow.PlayerVsMachineGame(index);
+            }
+
+            m_PlayerInput = m_fourInRow.GetCurrentPlayerBoardMatrix();
+
+            UpdateMatrix();
 
             if (m_fourInRow.IsMatrixColumnFull(index))
             {
@@ -84,15 +115,61 @@ namespace FourInRow
 
             }
 
-            //check if win update score there
-            //check if matrix full for tie             if (m_fourInRow.IsMatrixColumnFull(index))
+            //check if matrix full for tie 
+            if (m_fourInRow.AnnouncePlayer())
             {
-                clickedButton.Enabled = false;
+                string message = string.Format("Player {0} Won !!\nAnother round?", m_fourInRow.PlayarWonName());
+                string title = string.Format("Player {0} Won!", m_fourInRow.PlayarWonName());
+                this.WinnerOrTieUpadteAndAnnounce(message, title);
+            }
 
+            if (m_fourInRow.AnnounceTie())
+            {
+                string message = string.Format("A Tie!\nAnother round?");
+                string title = string.Format("A Tie!!");
+                this.WinnerOrTieUpadteAndAnnounce(message, title);
             }
 
         }
 
+        private void CheckWhoWonOrTieAndUpateScore()
+        {
+            if(m_fourInRow.PlayarWonName().Equals(m_Player1))
+            {
+                m_Player1Score.Text = string.Format("{0}", m_fourInRow.PlayarScore());
+            }
+            else if (m_fourInRow.PlayarWonName().Equals(m_Player2))
+            {
+                m_Player2Score.Text = string.Format("{0}", m_fourInRow.PlayarScore());
+            }
+            else
+            {
+                int Player1Score = int.Parse(m_Player1Score.Text);
+                int Player2Score = int.Parse(m_Player2Score.Text);
+                Player1Score++;
+                Player2Score++;
+                m_Player1Score.Text = string.Format("{0}", Player1Score);
+                m_Player2Score.Text = string.Format("{0}", Player2Score);
+            }
+
+        }
+
+        public void WinnerOrTieUpadteAndAnnounce(string i_Message, string i_Title)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(i_Message, i_Title, buttons,MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                m_fourInRow.ClearGame();
+                CleanMatrix();
+                CheckWhoWonOrTieAndUpateScore();            
+            }
+            else
+            {
+                this.Close();
+            }
+
+        }
 
         public void CreateBoradMatrix(int i_Rows, int i_Columns)
         {
@@ -158,15 +235,6 @@ namespace FourInRow
         }
 
 
-        //public string GetIndex(int i_Width, int i_Height)
-        //{
-        //    return m_PlayerInput[i_Width, i_Height];
-        //}
-
-        //public void ClearGame()
-        //{
-        //    m_PlayerInput = new string[m_Rows, m_Columns];
-        //}
 
     }
 }
