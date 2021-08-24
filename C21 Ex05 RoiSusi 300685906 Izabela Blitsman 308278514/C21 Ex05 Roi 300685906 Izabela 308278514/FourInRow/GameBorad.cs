@@ -18,7 +18,7 @@ namespace FourInRow
         private readonly int r_FixLocationOfXByTheSizeOfTheMatrix = 0;
         private readonly int r_FixLocationOfYByTheSizeOfTheMatrix = 0;
         private string[,] m_PlayerInput = null;
-        private List<string> m_CurrentHeightGame = null;
+        //private List<string> m_CurrentHeightGame = null;
 
         Panel m_BoradPanel = new Panel();
         Panel m_ScorePanel = new Panel();
@@ -28,13 +28,13 @@ namespace FourInRow
         Label m_Player2Name = new Label();
         Label m_Player1Score = new Label();
         Label m_Player2Score = new Label();
-        FourInRowLogic m_fourInRow = new FourInRowLogic();
+        FourInRowLogic m_fourInRow = null;
         
         
         public GameBorad(decimal i_Rows, decimal i_Columns , string i_Player1 , string i_Player2)
         {
+            m_fourInRow = new FourInRowLogic(Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns));
             m_PlayerInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
-            m_CurrentHeightGame = new List<string>(Decimal.ToInt32(i_Columns));
             this.r_FixLocationOfXByTheSizeOfTheMatrix = m_Columns * (k_ButtonSize + 10);
             this.r_FixLocationOfYByTheSizeOfTheMatrix = m_Rows * (k_ButtonSize + 10);
             this.m_Rows = Decimal.ToInt32(i_Rows);
@@ -56,7 +56,7 @@ namespace FourInRow
             m_Player2Name.Text = i_Player2;
             BoradScore();
 
-            
+            m_fourInRow.SetPlayers(m_Player1Name.Text, m_Player2Name.Text);
             this.Controls.AddRange(new[] { m_BoradPanel, m_ScorePanel });
             this.ShowDialog();
         }
@@ -66,8 +66,33 @@ namespace FourInRow
             Button clickedButton = (Button)sender;
             int index = Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
 
-            clickedButton.Text = "...button clicked...";
+            m_fourInRow.PlayerVsPlayerGame(index);
+            m_PlayerInput = m_fourInRow.GetCurrentCoinsInTheMatrix();
+
+
+            for (int i = 0; i < m_Rows; i++)
+            {
+                for (int j = 0; j < m_Columns; j++)
+                {
+                    m_GameBoardMatrixCoins[i, j].Text = m_PlayerInput[i, j];
+                }
+            }
+
+            if (m_fourInRow.IsMatrixColumnFull(index))
+            {
+                clickedButton.Enabled = false;
+
+            }
+
+            //check if win update score there
+            //check if matrix full for tie             if (m_fourInRow.IsMatrixColumnFull(index))
+            {
+                clickedButton.Enabled = false;
+
+            }
+
         }
+
 
         public void CreateBoradMatrix(int i_Rows, int i_Columns)
         {
@@ -132,41 +157,16 @@ namespace FourInRow
             }
         }
 
-        public void AddCoin(int i_Width, int i_Height, string i_Coin)
-        {
-            m_PlayerInput[i_Width, i_Height] = i_Coin;
-            m_GameBoardMatrixCoins[i_Width, i_Height].Text = i_Coin;
-            
-        }
 
-        public string GetIndex(int i_Width, int i_Height)
-        {
-            return m_PlayerInput[i_Width, i_Height];
-        }
+        //public string GetIndex(int i_Width, int i_Height)
+        //{
+        //    return m_PlayerInput[i_Width, i_Height];
+        //}
 
-        public List<string> GetColumnPlayerInput(int i_Height)
-        {
-            m_CurrentHeightGame.Clear();
-
-            for (int width = 0; width < m_PlayerInput.GetLength(0); width++)
-            {
-                if (!m_PlayerInput[width, i_Height].Equals(""))
-                {
-                    m_CurrentHeightGame.Add(m_PlayerInput[m_Rows, i_Height]);
-                }
-            }
-            return m_CurrentHeightGame;
-        }
-
-        public string[,] GetCurrentPlayerBoardMatrix()
-        {
-            return m_PlayerInput;
-        }
-
-        public void ClearGame()
-        {
-            m_PlayerInput = new string[m_Rows, m_Columns];
-        }
+        //public void ClearGame()
+        //{
+        //    m_PlayerInput = new string[m_Rows, m_Columns];
+        //}
 
     }
 }

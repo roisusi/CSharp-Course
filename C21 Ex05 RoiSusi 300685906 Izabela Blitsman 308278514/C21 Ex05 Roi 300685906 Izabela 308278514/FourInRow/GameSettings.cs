@@ -107,21 +107,25 @@ namespace FourInRow
             this.Controls.Add(m_ButtonStart);
 
             m_ButtonStart.Click += new EventHandler(m_ButtonStart_Click);
-            m_CheckboxPlayer2.Click += new EventHandler(m_CheckboxPlayer2_Click);
+            m_CheckboxPlayer2.CheckedChanged += new EventHandler(m_CheckboxPlayer2_CheckedChanged);
         }
 
         private void m_ButtonStart_Click(object sender, EventArgs e)
         {  
             this.Visible = false;
             GameBorad startGame = new GameBorad(m_NumericUpDownRows.Value, m_NumericUpDownCols.Value, m_TextboxPlayer1Name.Text, m_TextboxPlayer2Name.Text);
-            FourInRowLogic game = new FourInRowLogic();
-            game.Play(startGame);
+
         }
 
-        private void m_CheckboxPlayer2_Click(object sender, EventArgs e)
+        private void m_CheckboxPlayer2_CheckedChanged(object sender, EventArgs e)
         {
-            m_TextboxPlayer2Name.Enabled = true;
-            m_TextboxPlayer2Name.Text = string.Empty;
+            CheckBox checkBox = (sender as CheckBox);
+
+            if (checkBox.Checked)
+            {
+                m_TextboxPlayer2Name.Enabled = true;
+                m_TextboxPlayer2Name.Text = string.Empty;
+            }
         }
 
         public string Player1Name
