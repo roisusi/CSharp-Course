@@ -22,6 +22,10 @@ namespace FourInRow
 
         NumericUpDown m_NumericUpDownRows = new NumericUpDown();
         NumericUpDown m_NumericUpDownCols = new NumericUpDown();
+        private const int k_MaxRows = 8;
+        private const int k_MaxCols = 8;
+        private const int k_MinRows = 4;
+        private const int k_MinCols = 4;
 
         Button m_ButtonStart = new Button();
 
@@ -80,8 +84,8 @@ namespace FourInRow
             m_LabelRows.Location = new Point(30, 180);
             this.Controls.Add(m_LabelRows);
 
-            m_NumericUpDownRows.Minimum = 4;
-            m_NumericUpDownRows.Maximum = 10;
+            m_NumericUpDownRows.Minimum = k_MinRows; 
+            m_NumericUpDownRows.Maximum = k_MaxRows;
             m_NumericUpDownRows.AutoSize = true;
             m_NumericUpDownRows.Location = new Point(m_LabelRows.Right + 1, 180);
             m_NumericUpDownRows.Width = 10;
@@ -92,8 +96,8 @@ namespace FourInRow
             m_LabelCols.Location = new Point(m_NumericUpDownRows.Right + 32, m_LabelRows.Top);
             this.Controls.Add(m_LabelCols);
 
-            m_NumericUpDownCols.Minimum = 4;
-            m_NumericUpDownCols.Maximum = 10;
+            m_NumericUpDownCols.Minimum = k_MinCols;
+            m_NumericUpDownCols.Maximum = k_MaxCols;
             m_NumericUpDownCols.AutoSize = true;
             m_NumericUpDownCols.Location = new Point(m_LabelCols.Right + 1, 180);
             m_NumericUpDownCols.Width = 10;
@@ -109,8 +113,9 @@ namespace FourInRow
         }
 
         private void m_ButtonStart_Click(object sender, EventArgs e)
-        {
-            //TODO: call to the game ui
+        {  
+            this.Visible = false;
+            GameBorad startGame = new GameBorad(m_NumericUpDownRows.Value, m_NumericUpDownCols.Value, m_TextboxPlayer1Name.Text, m_TextboxPlayer2Name.Text);
         }
 
         private void m_CheckboxPlayer2_Click(object sender, EventArgs e)
