@@ -6,14 +6,12 @@ namespace C21_Ex02
         private string m_Name;
         private int m_Score = 0;
         private string m_Coin;
-        private bool m_Machine;
         private bool m_Turn; 
 
-        public Player(string i_Name, string i_Coin, bool i_Machine, bool i_Turn)
+        public Player(string i_Name, string i_Coin, bool i_Turn)
         {
             this.m_Name = i_Name;
             this.m_Coin = i_Coin;
-            this.m_Machine = i_Machine;
             this.m_Turn = i_Turn;
         }
 
@@ -35,17 +33,10 @@ namespace C21_Ex02
             set { this.m_Coin = value; }
         }
 
-        public bool Machine
-        {
-            get { return this.m_Machine; }
-            set { this.m_Machine = value; }
-        }
-
         public bool Turn
         {
             get { return this.m_Turn; }
             set { this.m_Turn = value; }
         }
-
     }
 }

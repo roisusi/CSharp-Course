@@ -129,7 +129,6 @@ namespace FourInRow
                 string title = string.Format("A Tie!!");
                 this.WinnerOrTieUpadteAndAnnounce(message, title);
             }
-
         }
 
         private void CheckWhoWonOrTieAndUpateScore()
