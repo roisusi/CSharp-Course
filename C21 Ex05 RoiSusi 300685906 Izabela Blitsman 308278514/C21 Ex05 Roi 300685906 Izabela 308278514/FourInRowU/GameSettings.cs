@@ -1,46 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using C21_Ex02;
 
 namespace FourInRow
 {
     class GameSettings : Form
     {
+        Button m_ButtonStart = new Button();
         TextBox m_TextboxPlayer1Name = new TextBox();
         TextBox m_TextboxPlayer2Name = new TextBox();
-
         Label m_LabelPlayers = new Label();
         Label m_LabelPlayer1 = new Label();
         Label m_LabelPlayer2 = new Label();
         Label m_LabelBoardSize = new Label();
         Label m_LabelRows = new Label();
         Label m_LabelCols = new Label();
-
         CheckBox m_CheckboxPlayer2 = new CheckBox();
-
         NumericUpDown m_NumericUpDownRows = new NumericUpDown();
         NumericUpDown m_NumericUpDownCols = new NumericUpDown();
-        private const int k_MaxRows = 8;
-        private const int k_MaxCols = 8;
+        private const int k_MaxRows = 10;
+        private const int k_MaxCols = 10;
         private const int k_MinRows = 4;
         private const int k_MinCols = 4;
 
-        Button m_ButtonStart = new Button();
-
-        public GameSettings()
+        public          GameSettings()
         {
             this.Text = "Game Settings";
-            this.Size = new Size(250, 280);
+            this.Size = new Size(250, 270);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
-            InitControls();
+            initControls();
         }
 
-        private void InitControls()
+        private void    initControls()
         {
             m_LabelPlayers.Text = "Players:";
             m_LabelPlayers.Location = new Point(10, 20);
@@ -53,9 +46,10 @@ namespace FourInRow
             int textBoxPlayer1Top = m_LabelPlayer1.Top + m_LabelPlayer1.Height / 2;
             textBoxPlayer1Top -= m_TextboxPlayer1Name.Height / 2;
 
-            m_TextboxPlayer1Name.Location = new Point(m_LabelPlayer1.Right + 8, textBoxPlayer1Top);
+            m_TextboxPlayer1Name.Location = new Point(m_LabelPlayer1.Right, textBoxPlayer1Top);
+            m_LabelPlayer1.AutoSize = true;
             this.Controls.Add(m_TextboxPlayer1Name);
-            
+
             m_CheckboxPlayer2.AutoSize = true;
             m_CheckboxPlayer2.Location = new Point(20, 80);
             this.Controls.Add(m_CheckboxPlayer2);
@@ -74,22 +68,22 @@ namespace FourInRow
             this.Controls.Add(m_TextboxPlayer2Name);
 
             m_LabelBoardSize.Text = "Board Size:";
-            m_LabelBoardSize.Location = new Point(20, 150);
+            m_LabelBoardSize.Location = new Point(20, 120);
             this.Controls.Add(m_LabelBoardSize);
 
-            m_LabelRows.Text = "Rows:";
+            m_LabelRows.Text = "Rows:  ";
             m_LabelRows.AutoSize = true;
-            m_LabelRows.Location = new Point(30, 180);
+            m_LabelRows.Location = new Point(30, 152);
             this.Controls.Add(m_LabelRows);
 
-            m_NumericUpDownRows.Minimum = k_MinRows; 
+            m_NumericUpDownRows.Minimum = k_MinRows;
             m_NumericUpDownRows.Maximum = k_MaxRows;
             m_NumericUpDownRows.AutoSize = true;
-            m_NumericUpDownRows.Location = new Point(m_LabelRows.Right + 1, 180);
+            m_NumericUpDownRows.Location = new Point(m_LabelRows.Right + 1, 150);
             m_NumericUpDownRows.Width = 10;
             this.Controls.Add(m_NumericUpDownRows);
 
-            m_LabelCols.Text = "Cols:";
+            m_LabelCols.Text = "Cols:  ";
             m_LabelCols.AutoSize = true;
             m_LabelCols.Location = new Point(m_NumericUpDownRows.Right + 32, m_LabelRows.Top);
             this.Controls.Add(m_LabelCols);
@@ -97,30 +91,30 @@ namespace FourInRow
             m_NumericUpDownCols.Minimum = k_MinCols;
             m_NumericUpDownCols.Maximum = k_MaxCols;
             m_NumericUpDownCols.AutoSize = true;
-            m_NumericUpDownCols.Location = new Point(m_LabelCols.Right + 1, 180);
+            m_NumericUpDownCols.Location = new Point(m_LabelCols.Right + 1, 150);
             m_NumericUpDownCols.Width = 10;
             this.Controls.Add(m_NumericUpDownCols);
 
-            m_ButtonStart.Text = "Start!";
-            m_ButtonStart.Location = new Point(20, 210);
-            m_ButtonStart.Width = m_NumericUpDownCols.Right + 8;
+            m_ButtonStart.Text = "Play!";
+            m_ButtonStart.Location = new Point(15, 190);
+            m_ButtonStart.Width = m_NumericUpDownCols.Right-15;
             this.Controls.Add(m_ButtonStart);
 
-            m_ButtonStart.Click += new EventHandler(m_ButtonStart_Click);
-            m_CheckboxPlayer2.CheckedChanged += new EventHandler(m_CheckboxPlayer2_CheckedChanged);
+            m_ButtonStart.Click += new EventHandler(buttonStart_Click);
+            m_CheckboxPlayer2.CheckedChanged += new EventHandler(checkboxPlayer2_CheckedChanged);
         }
 
-        private void m_ButtonStart_Click(object sender, EventArgs e)
-        {  
+        private void    buttonStart_Click(object sender, EventArgs e)
+        {
             this.Visible = false;
-            m_TextboxPlayer1Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer1Name,1);
-            m_TextboxPlayer2Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer2Name,2);
+            m_TextboxPlayer1Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer1Name, 1);
+            m_TextboxPlayer2Name.Text = ChangeEmptyInputPlayer(m_TextboxPlayer2Name, 2);
             GameBorad startGame = new GameBorad(m_NumericUpDownRows.Value, m_NumericUpDownCols.Value, m_TextboxPlayer1Name.Text, m_TextboxPlayer2Name.Text);
         }
 
-        private void m_CheckboxPlayer2_CheckedChanged(object sender, EventArgs e)
+        private void    checkboxPlayer2_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox checkBox = (sender as CheckBox);
+            CheckBox        checkBox = (sender as CheckBox);
 
             if (checkBox.Checked)
             {
@@ -129,9 +123,10 @@ namespace FourInRow
             }
         }
 
-        public string ChangeEmptyInputPlayer(TextBox i_Name,int i_NumberOfPlayer)
+        public string   ChangeEmptyInputPlayer(TextBox i_Name, int i_NumberOfPlayer)
         {
-            string newName = string.Empty;
+            string      newName = string.Empty;
+
             if (i_Name.Text.Equals(string.Empty))
             {
                 newName = string.Format("Player{0}", i_NumberOfPlayer);
@@ -142,18 +137,18 @@ namespace FourInRow
             }
 
             return newName;
-    }
+        }
 
-        public string Player1Name
+        public string   Player1Name
         {
             get { return m_TextboxPlayer1Name.Text; }
         }
 
-        public string Player2Name
+        public string   Player2Name
         {
             get { return m_TextboxPlayer2Name.Text; }
         }
 
-        
+
     }
 }

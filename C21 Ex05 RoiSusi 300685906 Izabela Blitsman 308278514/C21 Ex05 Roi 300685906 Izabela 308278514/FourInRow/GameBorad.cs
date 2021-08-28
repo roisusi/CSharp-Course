@@ -91,6 +91,18 @@ namespace FourInRow
             }
         }
 
+        public void CheckMachineInput()
+        {
+            int MachineIndex = m_fourInRow.MachineCurrentIndexInput;
+            Button button = new Button();
+            if (m_fourInRow.IsMatrixColumnFull(MachineIndex))
+            {
+                button = m_InsertCoinButton[MachineIndex];
+                button.Enabled = false;
+            }
+
+        }
+
         public void ButtonAdd_Click(object sender, EventArgs e)
         {
             Button clickedButton =      (Button)sender;
@@ -103,13 +115,14 @@ namespace FourInRow
             else
             {
                 m_fourInRow.PlayerVsMachineGame(playerIndexInput);
+                CheckMachineInput();
             }
 
             m_GameBoardInput = m_fourInRow.GetCurrentPlayerBoardMatrix();
 
             UpdateMatrix();
 
-            if(m_fourInRow.IsMatrixColumnFull(playerIndexInput))
+            if (m_fourInRow.IsMatrixColumnFull(playerIndexInput))
             {
                 clickedButton.Enabled = false;
             }
