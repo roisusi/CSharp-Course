@@ -17,7 +17,7 @@ namespace FourInRow
         private const int c_ButtonSize = 50;
         private readonly int r_FixLocationOfXByTheSizeOfTheMatrix = 0;
         private readonly int r_FixLocationOfYByTheSizeOfTheMatrix = 0;
-        private string[,] m_PlayerInput = null;
+        private string[,] m_GameBoardInput = null;
         private string m_Player1 = string.Empty;
         private string m_Player2 = string.Empty;
 
@@ -37,7 +37,7 @@ namespace FourInRow
             this.m_Player1 = i_Player1;
             this.m_Player2 = i_Player2;
             this.m_fourInRow = new FourInRowLogic(Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns));
-            this.m_PlayerInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
+            this.m_GameBoardInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
             this.r_FixLocationOfXByTheSizeOfTheMatrix = r_Columns * (c_ButtonSize + 10);
             this.r_FixLocationOfYByTheSizeOfTheMatrix = r_Rows * (c_ButtonSize + 10);
             this.r_Rows = Decimal.ToInt32(i_Rows);
@@ -86,30 +86,30 @@ namespace FourInRow
             {
                 for(int j = 0; j < r_Columns; j++)
                 {
-                    m_GameBoardMatrixCoins[i, j].Text = m_PlayerInput[i, j];
+                    m_GameBoardMatrixCoins[i, j].Text = m_GameBoardInput[i, j];
                 }
             }
         }
 
         public void ButtonAdd_Click(object sender, EventArgs e)
         {
-            Button clickedButton = (Button)sender;
-            int index =             Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
+            Button clickedButton =      (Button)sender;
+            int playerIndexInput =      Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
             
             if(!m_Player2.Equals("[Computer]"))
             {
-                m_fourInRow.PlayerVsPlayerGame(index);
+                m_fourInRow.PlayerVsPlayerGame(playerIndexInput);
             }
             else
             {
-                m_fourInRow.PlayerVsMachineGame(index);
+                m_fourInRow.PlayerVsMachineGame(playerIndexInput);
             }
 
-            m_PlayerInput = m_fourInRow.GetCurrentPlayerBoardMatrix();
+            m_GameBoardInput = m_fourInRow.GetCurrentPlayerBoardMatrix();
 
             UpdateMatrix();
 
-            if(m_fourInRow.IsMatrixColumnFull(index))
+            if(m_fourInRow.IsMatrixColumnFull(playerIndexInput))
             {
                 clickedButton.Enabled = false;
             }

@@ -44,6 +44,7 @@ namespace C21_Ex02
 
         public void PlayerVsMachineGame(int i_ButtonIndex)
         {
+            
             m_IsATie = false;
 
             foreach (Player currentPlayer in m_PlayersList)
@@ -115,7 +116,7 @@ namespace C21_Ex02
 
                 CheckIfPlayerWon(currentPlayer);
 
-                if (IsMatrixFull())
+                if (IsMatrixFull() && !m_IsPlayerWin)
                 {
                     m_IsATie = true;
                     m_SecondPlayer.Score++;
@@ -125,6 +126,11 @@ namespace C21_Ex02
             }    
         } 
 
+        public int MachineCurrentIndexInput
+        {
+            get { return m_MachineLastHight; }
+        }
+ 
         public void PlayerVsPlayerGame(int i_ButtonIndex)
         {
             m_IsATie = false;
@@ -132,7 +138,7 @@ namespace C21_Ex02
             PlayerTurn(currentPlayer, i_ButtonIndex);
             CheckIfPlayerWon(currentPlayer);
             
-            if(IsMatrixFull())
+            if(IsMatrixFull() && !m_IsPlayerWin)
             {
                 m_IsATie = true;
                 m_SecondPlayer.Score++;
@@ -163,7 +169,6 @@ namespace C21_Ex02
         private void PlayerTurn(Player io_CurrentPlayer, int i_Column)
         {
             int row = 0;
-
             row = m_Rows - this.GetColumnPlayerInput(i_Column).Count - 1;
             this.AddCoin(row, i_Column, io_CurrentPlayer.Coin);
         }
@@ -203,30 +208,6 @@ namespace C21_Ex02
 
             return m_IsPlayerWin;
         }
-
-/*        public void FindGameWinner(List<Player> i_PlayersList)
-        {
-            Player winner = null;
-
-            foreach (Player player in i_PlayersList)
-            {
-                if (player.Turn)
-                {
-                    winner = player;
-                    break;
-                }
-            }
-
-            if (winner != null)
-            {
-                string winnerMessage = string.Format("Congradulations, the winner is {0}", winner.Name);
-                System.Console.WriteLine(winnerMessage);
-            }
-            else
-            {
-                System.Console.WriteLine("This is a Tie - no winner in this game");
-            }
-        }*/
 
         public bool IsMatrixColumnFull(int i_MatrixColumn)
         {
@@ -362,22 +343,6 @@ namespace C21_Ex02
             }
 
             return isUpwardDiagonalSequence;
-        }
-
-        public bool IsAnotherRound()
-        {
-            bool isAnotherRound = false;
-            string readFromUser = null;
-
-            System.Console.WriteLine("Do you want to play another round? Press YES or any other key to exit");
-            readFromUser = System.Console.ReadLine();
-            
-            if(readFromUser.ToUpper().Equals("YES"))
-            {
-                isAnotherRound = true;
-            }
-
-            return isAnotherRound;
         }
 
         public void AddCoin(int i_Rows, int i_Columns, string i_Coin)
