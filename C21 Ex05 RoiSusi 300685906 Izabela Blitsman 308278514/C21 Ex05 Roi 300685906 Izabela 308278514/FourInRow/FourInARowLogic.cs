@@ -14,8 +14,8 @@ namespace C21_Ex02
         private int m_Columns = 0;
         private string[,] m_PlayerInput = null;
         private List<string> m_CurrentHeightGame = null;
-        private bool m_isPlayerWin = false;
-        private bool m_isATie = false;
+        private bool m_IsPlayerWin = false;
+        private bool m_IsATie = false;
         private int m_Score = 0;
         private string m_PlayerWonName = string.Empty;
         private System.Random m_Random = new System.Random();
@@ -32,28 +32,25 @@ namespace C21_Ex02
             m_PlayerInput = new string[i_Rows, i_Columns];
             m_CurrentHeightGame = new List<string>(i_Columns);
             CreateEmptyMatrix();
-
         }
 
         public void SetPlayers(string i_Player1Name, string i_Player2Name)
         {
-            m_FirstPlayer = new Player(i_Player1Name, r_CoinOne, true);
-            m_SecondPlayer = new Player(i_Player2Name, r_CoinTwo, false);
+            m_FirstPlayer =     new Player(i_Player1Name, r_CoinOne, true);
+            m_SecondPlayer =    new Player(i_Player2Name, r_CoinTwo, false);
             m_PlayersList.Add(m_FirstPlayer);
             m_PlayersList.Add(m_SecondPlayer);
         }
 
         public void PlayerVsMachineGame(int i_ButtonIndex)
         {
-            m_isATie = false;
+            m_IsATie = false;
 
             foreach (Player currentPlayer in m_PlayersList)
             {
                 if (m_PlayersList[1].Equals(currentPlayer))
                 {
-                    i_ButtonIndex += 1;
-
-                    width = m_Rows - this.GetColumnPlayerInput(i_ButtonIndex).Count - 1;
+                    width = m_Rows - this.GetColumnPlayerInput(i_ButtonIndex).Count;
 
                     if (m_MachineLastHight != -1 && m_MachineAI.TryToWinMove(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight) != -1)
                     {
@@ -102,7 +99,7 @@ namespace C21_Ex02
                     {
                         do
                         {
-                            height = m_Random.Next(1, m_Columns + 1);
+                            height = m_Random.Next(0, m_Columns);
                         } while (IsMatrixColumnFull(height));
                     }
 
@@ -120,7 +117,7 @@ namespace C21_Ex02
 
                 if (IsMatrixFull())
                 {
-                    m_isATie = true;
+                    m_IsATie = true;
                     m_SecondPlayer.Score++;
                     m_FirstPlayer.Score++;
                     m_PlayerWonName = string.Empty;
@@ -130,14 +127,14 @@ namespace C21_Ex02
 
         public void PlayerVsPlayerGame(int i_ButtonIndex)
         {
-            m_isATie = false;
+            m_IsATie = false;
             Player currentPlayer = getCurrentPlayer();
             PlayerTurn(currentPlayer, i_ButtonIndex);
             CheckIfPlayerWon(currentPlayer);
             
             if(IsMatrixFull())
             {
-                m_isATie = true;
+                m_IsATie = true;
                 m_SecondPlayer.Score++;
                 m_FirstPlayer.Score++;
                 m_PlayerWonName = string.Empty;
@@ -165,18 +162,18 @@ namespace C21_Ex02
 
         private void PlayerTurn(Player io_CurrentPlayer, int i_Column)
         {
-            int width = 0;
+            int row = 0;
 
-            width = m_Rows - this.GetColumnPlayerInput(i_Column).Count - 1;
-            this.AddCoin(width, i_Column, io_CurrentPlayer.Coin);
+            row = m_Rows - this.GetColumnPlayerInput(i_Column).Count - 1;
+            this.AddCoin(row, i_Column, io_CurrentPlayer.Coin);
         }
         public bool AnnounceTie()
         {
-            return m_isATie;
+            return m_IsATie;
         }
         public bool AnnouncePlayer()
         {
-            return m_isPlayerWin;
+            return m_IsPlayerWin;
         }
 
         public string PlayarWonName()
@@ -192,22 +189,22 @@ namespace C21_Ex02
         public bool CheckIfPlayerWon(Player io_CurrentPlayer)
         {
             int score = 0;
+
             if (CheckIfPlayerWin(io_CurrentPlayer.Coin))
             {
                 score = io_CurrentPlayer.Score;
                 io_CurrentPlayer.Score= ++score;
-                m_isPlayerWin = true;
+                m_IsPlayerWin = true;
                 m_Score = score;
                 m_PlayerWonName = io_CurrentPlayer.Name;
                 m_FirstPlayer.Turn = true;
                 m_SecondPlayer.Turn = false;
-
             }
 
-            return m_isPlayerWin;
+            return m_IsPlayerWin;
         }
 
-        public void FindGameWinner(List<Player> i_PlayersList)
+/*        public void FindGameWinner(List<Player> i_PlayersList)
         {
             Player winner = null;
 
@@ -225,28 +222,30 @@ namespace C21_Ex02
                 string winnerMessage = string.Format("Congradulations, the winner is {0}", winner.Name);
                 System.Console.WriteLine(winnerMessage);
             }
-
             else
             {
                 System.Console.WriteLine("This is a Tie - no winner in this game");
             }
-        }
+        }*/
 
         public bool IsMatrixColumnFull(int i_MatrixColumn)
         {
+            bool isColumnFull = false;
+
             List<string> matrixColumn = this.GetColumnPlayerInput(i_MatrixColumn);
 
-            if (matrixColumn.Count < m_Rows)
+            if (matrixColumn.Count >= m_Rows)
             {
-                return false;
+                isColumnFull = true;
             }
 
-            return true;
+            return isColumnFull;
         }
 
         public bool IsMatrixFull()
         {
-            string[,] matrixBoard = this.GetCurrentPlayerBoardMatrix();
+            bool isMatrixFull =     true;
+            string[,] matrixBoard = GetCurrentPlayerBoardMatrix();
 
             for (int i = 0; i < m_Rows; i++)
             {
@@ -254,72 +253,77 @@ namespace C21_Ex02
                 {
                     if (matrixBoard[i, j].Equals(""))
                     {
-                        return false;
+                        isMatrixFull = false;
                     }
                 }
             }
 
-            return true;
+            return isMatrixFull;
         }
 
         public bool CheckIfPlayerWin(string i_PlayerCoin)
         {
-            if (IsHorizontalSequence(i_PlayerCoin) ||
+            bool isPlayerWin = false;
+
+            if(IsHorizontalSequence(i_PlayerCoin) ||
                 IsVerticalSequence(i_PlayerCoin) ||
                 IsDownwardDiagonalSequence(i_PlayerCoin) ||
                 IsUpwardDiagonalSequence(i_PlayerCoin))
             {
-                return true;
+                isPlayerWin = true;
             }
 
-            return false;
+            return isPlayerWin;
         }
 
         public bool IsHorizontalSequence(string i_PlayerCoin)
         {
-            string[,] matrixBoard = this.GetCurrentPlayerBoardMatrix();
+            bool isHorizontalSequence = false;
+            string[,] matrixBoard =     GetCurrentPlayerBoardMatrix();
 
-            for (int i = 0; i < m_Rows; i++)
+            for(int i = 0; i < m_Rows; i++)
             {
-                for (int j = 0; j <= m_Columns - 4; j++)
+                for(int j = 0; j <= m_Columns - 4; j++)
                 {
-                    if (matrixBoard[i, j].Equals(i_PlayerCoin) &&
+                    if(matrixBoard[i, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i, j + 1].Equals(i_PlayerCoin) &&
                         matrixBoard[i, j + 2].Equals(i_PlayerCoin) &&
                         matrixBoard[i, j + 3].Equals(i_PlayerCoin))
                     {
-                        return true;
+                        isHorizontalSequence = true;
                     }
                 }
             }
 
-            return false;
+            return isHorizontalSequence;
         }
 
         public bool IsVerticalSequence(string i_PlayerCoin)
         {
-            string[,] matrixBoard = this.GetCurrentPlayerBoardMatrix();
+            bool isVerticalSequence =   false;
+            string[,] matrixBoard =     GetCurrentPlayerBoardMatrix();
 
-            for (int i = 0; i <= m_Rows - 4; i++)
+            for(int i = 0; i <= m_Rows - 4; i++)
             {
-                for (int j = 0; j < m_Columns; j++)
+                for(int j = 0; j < m_Columns; j++)
                 {
-                    if (matrixBoard[i, j].Equals(i_PlayerCoin) &&
+                    if(matrixBoard[i, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 1, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 2, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 3, j].Equals(i_PlayerCoin))
                     {
-                        return true;
+                        isVerticalSequence = true;
                     }
                 }
             }
 
-            return false;
+            return isVerticalSequence;
         }
 
         public bool IsDownwardDiagonalSequence(string i_PlayerCoin)
         {
-            string[,] matrixBoard = this.GetCurrentPlayerBoardMatrix();
+            bool isDownwardDiagonalSequence =   false;
+            string[,] matrixBoard =             GetCurrentPlayerBoardMatrix();
 
             for (int i = 0; i <= m_Rows - 4; i++)
             {
@@ -330,48 +334,50 @@ namespace C21_Ex02
                         matrixBoard[i + 2, j + 2].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 3, j + 3].Equals(i_PlayerCoin))
                     {
-                        return true;
+                        isDownwardDiagonalSequence = true;
                     }
                 }
             }
 
-            return false;
+            return isDownwardDiagonalSequence;
         }
 
         public bool IsUpwardDiagonalSequence(string i_PlayerCoin)
         {
-            string[,] matrixBoard = this.GetCurrentPlayerBoardMatrix();
+            bool isUpwardDiagonalSequence = false;
+            string[,] matrixBoard =         GetCurrentPlayerBoardMatrix();
 
-            for (int i = 0; i <= m_Rows - 4; i++)
+            for(int i = 0; i <= m_Rows - 4; i++)
             {
-                for (int j = m_Columns - 1; j >= 3; j--)
+                for(int j = m_Columns - 1; j >= 3; j--)
                 {
-                    if (matrixBoard[i, j].Equals(i_PlayerCoin) &&
+                    if(matrixBoard[i, j].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 1, j - 1].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 2, j - 2].Equals(i_PlayerCoin) &&
                         matrixBoard[i + 3, j - 3].Equals(i_PlayerCoin))
                     {
-                        return true;
+                        isUpwardDiagonalSequence = true;
                     }
                 }
             }
 
-            return false;
+            return isUpwardDiagonalSequence;
         }
 
         public bool IsAnotherRound()
         {
+            bool isAnotherRound = false;
             string readFromUser = null;
 
             System.Console.WriteLine("Do you want to play another round? Press YES or any other key to exit");
             readFromUser = System.Console.ReadLine();
             
-            if (readFromUser.ToUpper().Equals("YES"))
+            if(readFromUser.ToUpper().Equals("YES"))
             {
-                return true;
+                isAnotherRound = true;
             }
 
-            return false;
+            return isAnotherRound;
         }
 
         public void AddCoin(int i_Rows, int i_Columns, string i_Coin)
@@ -383,9 +389,9 @@ namespace C21_Ex02
         {
             m_CurrentHeightGame.Clear();
 
-            for (int width = 0; width < m_PlayerInput.GetLength(0); width++)
+            for(int width = 0; width < m_PlayerInput.GetLength(0); width++)
             {
-                if (!m_PlayerInput[width, i_Height].Equals(""))
+                if(!m_PlayerInput[width, i_Height].Equals(""))
                 {
                     m_CurrentHeightGame.Add(m_PlayerInput[width, i_Height]);
                 }
@@ -400,9 +406,9 @@ namespace C21_Ex02
 
         public void CreateEmptyMatrix()
         {
-            for (int i = 0; i < m_Rows; i++)
+            for(int i = 0; i < m_Rows; i++)
             {
-                for (int j = 0; j < m_Columns; j++)
+                for(int j = 0; j < m_Columns; j++)
                 {
                     m_PlayerInput[i, j] = "";
                 }
@@ -413,8 +419,7 @@ namespace C21_Ex02
         {
             m_PlayerInput = new string[m_Rows, m_Columns];
             CreateEmptyMatrix();
-            m_isPlayerWin = false ;
-
+            m_IsPlayerWin = false ;
         }
     }
 }

@@ -12,15 +12,14 @@ namespace FourInRow
 {
     public class GameBorad : Form
     {
-        private readonly int m_Rows = 0;
-        private readonly int m_Columns = 0;
-        private const int k_ButtonSize = 50;
+        private readonly int r_Rows = 0;
+        private readonly int r_Columns = 0;
+        private const int c_ButtonSize = 50;
         private readonly int r_FixLocationOfXByTheSizeOfTheMatrix = 0;
         private readonly int r_FixLocationOfYByTheSizeOfTheMatrix = 0;
         private string[,] m_PlayerInput = null;
         private string m_Player1 = string.Empty;
         private string m_Player2 = string.Empty;
-        //private List<string> m_CurrentHeightGame = null;
 
         Panel m_BoradPanel = new Panel();
         Panel m_ScorePanel = new Panel();
@@ -33,49 +32,49 @@ namespace FourInRow
         FourInRowLogic m_fourInRow = null;
         
         
-        public GameBorad(decimal i_Rows, decimal i_Columns , string i_Player1 , string i_Player2)
+        public GameBorad(decimal i_Rows, decimal i_Columns, string i_Player1, string i_Player2)
         {
             this.m_Player1 = i_Player1;
             this.m_Player2 = i_Player2;
             this.m_fourInRow = new FourInRowLogic(Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns));
             this.m_PlayerInput = new string[Decimal.ToInt32(i_Rows), Decimal.ToInt32(i_Columns)];
-            this.r_FixLocationOfXByTheSizeOfTheMatrix = m_Columns * (k_ButtonSize + 10);
-            this.r_FixLocationOfYByTheSizeOfTheMatrix = m_Rows * (k_ButtonSize + 10);
-            this.m_Rows = Decimal.ToInt32(i_Rows);
-            this.m_Columns = Decimal.ToInt32(i_Columns);
+            this.r_FixLocationOfXByTheSizeOfTheMatrix = r_Columns * (c_ButtonSize + 10);
+            this.r_FixLocationOfYByTheSizeOfTheMatrix = r_Rows * (c_ButtonSize + 10);
+            this.r_Rows = Decimal.ToInt32(i_Rows);
+            this.r_Columns = Decimal.ToInt32(i_Columns);
             this.Text = "4 in a Row Game Panel";
             this.CenterToParent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.Size = new Size(m_Columns* (k_ButtonSize+10) + 70 , m_Rows * (k_ButtonSize+10) + 125);
+            this.Size = new Size(r_Columns* (c_ButtonSize+10) + 70 , r_Rows * (c_ButtonSize+10) + 125);
 
-            m_BoradPanel.Size = new Size(m_Columns * (k_ButtonSize + 10), m_Rows * (k_ButtonSize + 10) + 40);
+            m_BoradPanel.Size = new Size(r_Columns * (c_ButtonSize + 10), r_Rows * (c_ButtonSize + 10) + 40);
             m_BoradPanel.Left = 20;
-            m_GameBoardMatrixCoins = new Button[m_Rows, m_Columns];
-            m_InsertCoinButton = new List<Button>(m_Columns);
-            CreateBoradMatrix(m_Rows, m_Columns);
+            m_GameBoardMatrixCoins = new Button[r_Rows, r_Columns];
+            m_InsertCoinButton = new List<Button>(r_Columns);
+            CreateBoradMatrix(r_Rows, r_Columns);
 
             m_ScorePanel.Size = new Size(200,20);
             m_ScorePanel.Location = new Point(this.ClientSize.Width / 2 - m_ScorePanel.Size.Width / 2, this.ClientSize.Height -40);
             m_Player1Name.Text = i_Player1;
             m_Player2Name.Text = i_Player2;
-            BoradScore();
+            boradScore();
 
             m_fourInRow.SetPlayers(i_Player1, i_Player2);
             this.Controls.AddRange(new[] { m_BoradPanel, m_ScorePanel });
             this.ShowDialog();
         }
 
-        public void CleanMatrix()
+        private void cleanMatrix()
         {
-            for (int i = 0; i < m_Rows; i++)
+            for(int i = 0; i < r_Rows; i++)
             {
-                for (int j = 0; j < m_Columns; j++)
+                for(int j = 0; j < r_Columns; j++)
                 {
                     m_GameBoardMatrixCoins[i, j].Text = "";
                 }
             }
 
-            for (int i = 0; i < m_Columns; i++)
+            for(int i = 0; i < r_Columns; i++)
             {
                 m_InsertCoinButton[i].Enabled = true;
             }
@@ -83,9 +82,9 @@ namespace FourInRow
 
         public void UpdateMatrix()
         {
-            for (int i = 0; i < m_Rows; i++)
+            for(int i = 0; i < r_Rows; i++)
             {
-                for (int j = 0; j < m_Columns; j++)
+                for(int j = 0; j < r_Columns; j++)
                 {
                     m_GameBoardMatrixCoins[i, j].Text = m_PlayerInput[i, j];
                 }
@@ -95,8 +94,9 @@ namespace FourInRow
         public void ButtonAdd_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
-            int index = Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
-            if (!m_Player2.Equals("[Computer]"))
+            int index =             Array.IndexOf(m_InsertCoinButton.ToArray(), clickedButton);
+            
+            if(!m_Player2.Equals("[Computer]"))
             {
                 m_fourInRow.PlayerVsPlayerGame(index);
             }
@@ -109,21 +109,18 @@ namespace FourInRow
 
             UpdateMatrix();
 
-            if (m_fourInRow.IsMatrixColumnFull(index))
+            if(m_fourInRow.IsMatrixColumnFull(index))
             {
                 clickedButton.Enabled = false;
-
             }
-
-            //check if matrix full for tie 
-            if (m_fourInRow.AnnouncePlayer())
+ 
+            if(m_fourInRow.AnnouncePlayer())
             {
                 string message = string.Format("Player {0} Won !!\nAnother round?", m_fourInRow.PlayarWonName());
                 string title = string.Format("Player {0} Won!", m_fourInRow.PlayarWonName());
                 this.WinnerOrTieUpadteAndAnnounce(message, title);
             }
-
-            if (m_fourInRow.AnnounceTie())
+            else if(m_fourInRow.AnnounceTie())
             {
                 string message = string.Format("A Tie!\nAnother round?");
                 string title = string.Format("A Tie!!");
@@ -131,13 +128,13 @@ namespace FourInRow
             }
         }
 
-        private void CheckWhoWonOrTieAndUpateScore()
+        private void checkWhoWonOrTieAndUpateScore()
         {
             if(m_fourInRow.PlayarWonName().Equals(m_Player1))
             {
                 m_Player1Score.Text = string.Format("{0}", m_fourInRow.PlayarScore());
             }
-            else if (m_fourInRow.PlayarWonName().Equals(m_Player2))
+            else if(m_fourInRow.PlayarWonName().Equals(m_Player2))
             {
                 m_Player2Score.Text = string.Format("{0}", m_fourInRow.PlayarScore());
             }
@@ -150,30 +147,28 @@ namespace FourInRow
                 m_Player1Score.Text = string.Format("{0}", Player1Score);
                 m_Player2Score.Text = string.Format("{0}", Player2Score);
             }
-
         }
 
         public void WinnerOrTieUpadteAndAnnounce(string i_Message, string i_Title)
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show(i_Message, i_Title, buttons,MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
+            DialogResult result = MessageBox.Show(i_Message, i_Title, buttons, MessageBoxIcon.Information);
+            
+            if(result == DialogResult.Yes)
             {
                 m_fourInRow.ClearGame();
-                CleanMatrix();
-                CheckWhoWonOrTieAndUpateScore();            
+                cleanMatrix();
+                checkWhoWonOrTieAndUpateScore();            
             }
             else
             {
                 this.Close();
             }
-
         }
 
         public void CreateBoradMatrix(int i_Rows, int i_Columns)
         {
-
-            for (int i = 0; i < i_Columns; i++)
+            for(int i = 0; i < i_Columns; i++)
             {
                 m_InsertCoinButton.Add(new Button());
                 m_InsertCoinButton[i].Text = string.Format("{0}", i+1);
@@ -183,9 +178,9 @@ namespace FourInRow
                 m_InsertCoinButton[i].Click += ButtonAdd_Click;
             }
 
-            for (int i=0; i< i_Rows; i++)
+            for(int i=0; i< i_Rows; i++)
             {
-                for (int j = 0; j < i_Columns; j++)
+                for(int j = 0; j < i_Columns; j++)
                 {                 
                     m_GameBoardMatrixCoins[i, j] = new Button();
                     m_GameBoardMatrixCoins[i, j].Size = new Size(50, 50);
@@ -195,9 +190,8 @@ namespace FourInRow
             }
         }
 
-        private void BoradScore()
+        private void boradScore()
         {
-
             SetPlayerNames(m_Player1Name,1);
             SetPlayerNames(m_Player2Name,2);
 
@@ -223,7 +217,7 @@ namespace FourInRow
 
         public void SetPlayerNames(Label i_name,int i_PlayerNumber)
         {
-            if (i_name.Text.Equals(string.Empty))
+            if(i_name.Text.Equals(string.Empty))
             {
                 i_name.Text = string.Format("Player{0} : ", i_PlayerNumber);
             }
@@ -232,8 +226,5 @@ namespace FourInRow
                 i_name.Text += " : ";
             }
         }
-
-
-
     }
 }
