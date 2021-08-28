@@ -41,7 +41,11 @@ namespace FourInRow
             this.CenterToParent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Size = new Size(r_Columns * (c_ButtonSize + 10) + 70, r_Rows * (c_ButtonSize + 10) + 125);
+            initControls();
+        }
 
+        private void    initControls()
+        {
             m_PanelBorad.Size = new Size(r_Columns * (c_ButtonSize + 10), r_Rows * (c_ButtonSize + 10) + 40);
             m_PanelBorad.Left = 20;
             m_ButtonsGameBoardMatrixCoins = new Button[r_Rows, r_Columns];
@@ -50,11 +54,11 @@ namespace FourInRow
 
             m_PanelScore.Size = new Size(200, 20);
             m_PanelScore.Location = new Point(this.ClientSize.Width / 2 - m_PanelScore.Size.Width / 2, this.ClientSize.Height - 40);
-            m_LabelPlayer1Name.Text = i_Player1;
-            m_LabelPlayer2Name.Text = i_Player2;
+            m_LabelPlayer1Name.Text = m_Player1;
+            m_LabelPlayer2Name.Text = m_Player2;
             boradScore();
 
-            m_fourInRow.SetPlayers(i_Player1, i_Player2);
+            m_fourInRow.SetPlayers(m_Player1, m_Player2);
             this.Controls.AddRange(new[] { m_PanelBorad, m_PanelScore });
             this.ShowDialog();
         }
@@ -98,7 +102,7 @@ namespace FourInRow
             }
         }
 
-        private void     buttonAdd_Click(object sender, EventArgs e)
+        private void    buttonAdd_Click(object sender, EventArgs e)
         {
             Button      clickedButton = (Button)sender;
             int         playerIndexInput = Array.IndexOf(m_ButtonsInsertCoinButton.ToArray(), clickedButton);

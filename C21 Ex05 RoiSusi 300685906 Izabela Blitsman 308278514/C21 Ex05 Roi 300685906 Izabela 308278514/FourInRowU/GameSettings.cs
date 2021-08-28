@@ -95,7 +95,7 @@ namespace FourInRow
             m_NumericUpDownCols.Width = 10;
             this.Controls.Add(m_NumericUpDownCols);
 
-            m_ButtonStart.Text = "Play!";
+            m_ButtonStart.Text = "Play";
             m_ButtonStart.Location = new Point(15, 190);
             m_ButtonStart.Width = m_NumericUpDownCols.Right-15;
             this.Controls.Add(m_ButtonStart);
