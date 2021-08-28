@@ -138,17 +138,5 @@ namespace FourInRow
 
             return newName;
         }
-
-        public string   Player1Name
-        {
-            get { return m_TextboxPlayer1Name.Text; }
-        }
-
-        public string   Player2Name
-        {
-            get { return m_TextboxPlayer2Name.Text; }
-        }
-
-
     }
 }

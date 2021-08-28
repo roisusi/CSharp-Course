@@ -16,10 +16,10 @@ namespace FourInRowLogic
         private bool m_IsPlayerWin = false;
         private bool m_IsATie = false;
         private int m_Score = 0;
-        private int m_MachineLastHight = -1;
-        private int m_MachineLastWidth = -1;
-        private int width = 0;
-        private int height = 0;
+        private int m_MachineLastColumn = -1;
+        private int m_MachineLastRow = -1;
+        private int m_LastPlayerRowMove = 0;
+        private int m_NextMachineColumnMove = 0;
         private int m_Rows = 0;
         private int m_Columns = 0;
         private System.Random m_Random = new System.Random();
@@ -49,53 +49,54 @@ namespace FourInRowLogic
             {
                 if (m_PlayersList[1].Equals(currentPlayer))
                 {
-                    width = m_Rows - this.GetColumnPlayerInput(i_ButtonIndex).Count;
-                    if (m_MachineLastHight != -1 && m_MachineAI.TryToWinMove(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight) != -1)
+                    m_LastPlayerRowMove = m_Rows - this.GetColumnPlayerInput(i_ButtonIndex).Count;
+
+                    if (m_MachineLastColumn != -1 && m_MachineAI.TryToWinMove(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn) != -1)
                     {
-                        height = m_MachineAI.TryToWinMove(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight);
+                        m_NextMachineColumnMove = m_MachineAI.TryToWinMove(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn);
                     }
-                    else if (m_MachineAI.TryNotToLoseeUp(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) != -1)
+                    else if (m_MachineAI.TryNotToLoseeUp(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) != -1)
                     {
-                        height = m_MachineAI.TryNotToLoseeUp(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex);
+                        m_NextMachineColumnMove = m_MachineAI.TryNotToLoseeUp(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex);
                     }
-                    else if (m_MachineAI.TryNotToLoseeLeft(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) != -1)
+                    else if (m_MachineAI.TryNotToLoseeLeft(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) != -1)
                     {
-                        height = m_MachineAI.TryNotToLoseeLeft(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex);
+                        m_NextMachineColumnMove = m_MachineAI.TryNotToLoseeLeft(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex);
                     }
-                    else if (m_MachineAI.TryNotToLoseeRigth(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) != -1)
+                    else if (m_MachineAI.TryNotToLoseeRigth(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) != -1)
                     {
-                        height = m_MachineAI.TryNotToLoseeRigth(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex);
+                        m_NextMachineColumnMove = m_MachineAI.TryNotToLoseeRigth(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex);
                     }
-                    else if (m_MachineLastHight != -1 && m_MachineAI.FindFreeCellSequenceOfTwoLeft(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight) != -1)
+                    else if (m_MachineLastColumn != -1 && m_MachineAI.FindFreeCellSequenceOfTwoLeft(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn) != -1)
                     {
-                        height = m_MachineAI.FindFreeCellSequenceOfTwoLeft(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight);
+                        m_NextMachineColumnMove = m_MachineAI.FindFreeCellSequenceOfTwoLeft(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn);
                     }
-                    else if (m_MachineLastHight != -1 && m_MachineAI.FindFreeCellSequenceOfTwoRight(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight) != -1)
+                    else if (m_MachineLastColumn != -1 && m_MachineAI.FindFreeCellSequenceOfTwoRight(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn) != -1)
                     {
-                        height = m_MachineAI.FindFreeCellSequenceOfTwoRight(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight);
+                        m_NextMachineColumnMove = m_MachineAI.FindFreeCellSequenceOfTwoRight(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn);
                     }
-                    else if (m_MachineLastHight != -1 && m_MachineAI.FindFreeCellSequenceOfTwoUp(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight) != -1)
+                    else if (m_MachineLastColumn != -1 && m_MachineAI.FindFreeCellSequenceOfTwoUp(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn) != -1)
                     {
-                        height = m_MachineAI.FindFreeCellSequenceOfTwoUp(this.GetCurrentPlayerBoardMatrix(), m_MachineLastWidth, m_MachineLastHight);
+                        m_NextMachineColumnMove = m_MachineAI.FindFreeCellSequenceOfTwoUp(this.GetCurrentPlayerBoardMatrix(), m_MachineLastRow, m_MachineLastColumn);
                     }
-                    else if (m_MachineAI.IfCanMoveLeftRightUp(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) &&
-                        !m_MachineAI.FindSeuenceOfThreeUp(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) &&
-                        !m_MachineAI.FindSeuenceOfThreeLeft(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex) &&
-                        !m_MachineAI.FindSeuenceOfThreeRight(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex))
+                    else if (m_MachineAI.IfCanMoveLeftRightUp(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) &&
+                        !m_MachineAI.FindSeuenceOfThreeUp(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) &&
+                        !m_MachineAI.FindSeuenceOfThreeLeft(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex) &&
+                        !m_MachineAI.FindSeuenceOfThreeRight(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex))
                     {
-                        height = m_MachineAI.MoveLeftOrRightOrUp(this.GetCurrentPlayerBoardMatrix(), width, i_ButtonIndex);
+                        m_NextMachineColumnMove = m_MachineAI.MoveLeftOrRightOrUp(this.GetCurrentPlayerBoardMatrix(), m_LastPlayerRowMove, i_ButtonIndex);
                     }
                     else
                     {
                         do
                         {
-                            height = m_Random.Next(0, m_Columns);
-                        } while (IsMatrixColumnFull(height));
+                            m_NextMachineColumnMove = m_Random.Next(0, m_Columns);
+                        } while (IsMatrixColumnFull(m_NextMachineColumnMove));
                     }
 
-                    m_MachineLastHight = height;
-                    m_MachineLastWidth = m_Rows - this.GetColumnPlayerInput(height).Count - 1;
-                    playerTurn(currentPlayer, m_MachineLastHight);
+                    m_MachineLastColumn = m_NextMachineColumnMove;
+                    m_MachineLastRow = m_Rows - this.GetColumnPlayerInput(m_NextMachineColumnMove).Count - 1;
+                    playerTurn(currentPlayer, m_MachineLastColumn);
                 }
                 else
                 {
@@ -116,7 +117,7 @@ namespace FourInRowLogic
 
         public int          MachineCurrentIndexInput
         {
-            get { return m_MachineLastHight; }
+            get { return m_MachineLastColumn; }
         }
 
         public void         PlayerVsPlayerGame(int i_ButtonIndex)
@@ -235,7 +236,7 @@ namespace FourInRowLogic
 
         public bool         CheckIfPlayerWin(string i_PlayerCoin)
         {
-            bool isPlayerWin = false;
+            bool    isPlayerWin = false;
 
             if (IsHorizontalSequence(i_PlayerCoin) ||
                 IsVerticalSequence(i_PlayerCoin) ||
